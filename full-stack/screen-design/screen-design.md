@@ -45,7 +45,7 @@ KRDS(한국UI/UX 가이드라인)
  - DELETE : 대여 반납 처리
  - PROCESS : ---
 
-![librayservice](https://raw.githubusercontent.com/kinetas/full-stack/main/화면설계/260204도서관리요구사항.png)
+![librayservice](https://raw.githubusercontent.com/kinetas/full-stack/main/full-stack/screen-design/260204libManager.png)
 
 ## 3.유스케이스
 요구사항이 끝난 후 유스케이스  
@@ -57,7 +57,7 @@ extend 파생 기능이 있는 경우 {파생}-<<extend>>-> {기능} 점선
 generalization 일반화 {일반화 파편} -|> {기능} 실선(빈 화살표}  
 결제같은 경우 외부 api를 사용하기 때문에 내부에 액터를 생성하기도 함
 
-![librayUse](https://raw.githubusercontent.com/kinetas/full-stack/main/화면설계/260204도서관리요구사항2.png)
+![librayUse](https://raw.githubusercontent.com/kinetas/full-stack/main/full-stack/screen-design/260204libManager2.png)
 
 유스케이스 명세서  
 --- 구성 요소 ---  
@@ -78,6 +78,7 @@ wireframe : 아이콘이나 사진 같은 것 없이 기본적인 구조만 스�
 Figma사용  
 폰트 참고 프리텐다드  
 https://www.figma.com/design/doAt7Mv98ImaOusD5qumBt/01-Basic?node-id=3-190&t=UiV1hxstArygYBa8-0
+
 
 
 
