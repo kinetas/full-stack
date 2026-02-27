@@ -1,0 +1,83 @@
+# 화면설계
+## 1.UI/UX
+User interface 사용자가 사용법에 맞게 할 수 있는 환경
+ - 요구사항 확인 : pm이 고객의 요구사항을 정리
+ - 프로토타입 : 요구사항 정리사항 시각화
+
+UI설계  
+흐름과 상세 설계
+
+UX  
+사용자의 편의성과 같은 경험
+
+ISO(국제표준화단체)
+KRDS(한국UI/UX 가이드라인)
+
+## 2.요구사항 확인
+
+요구사항 정리 실습(draw.io)  
+
+도서관리 프로그램(오프라인)  
+요소
+ - 사서
+ - 회원
+ - 비회원
+ - 관리자  
+
+도서 서비스
+ - CREATE : 도서 등록
+ - READ : 도서 조회
+ - UPDATE : 도서 수정
+ - DELETE : 도서 삭제
+ - PROCESS : ---
+   
+인증 서비스
+ - CREATE : 회원가입
+ - READ : 회원정보 조회(단건, 전체)
+ - UPDATE : 회원정보 수정
+ - DELETE : 회원정보 삭제
+ - PROCESS : 로그인, 로그아웃
+
+대여 서비스
+ - CREATE : 대여처리
+ - READ : 대여 정보 조회(단건, 전체)
+ - UPDATE : 대여 정보 수정
+ - DELETE : 대여 반납 처리
+ - PROCESS : ---
+
+![librayservice](https://raw.githubusercontent.com/kinetas/full-stack/main/화면설계/260204도서관리요구사항.png)
+
+## 3.유스케이스
+요구사항이 끝난 후 유스케이스  
+기능적 유스케이스를 먼저 구현 후 비기능적 유스케이스 구현  
+
+액터와 유스케이스를 선으로 연결하여 관계설정  <- 실선  
+include 먼저 해야하는 관계가 있을 경우 {선행} <-<<include>>- {기능} 점선  
+extend 파생 기능이 있는 경우 {파생}-<<extend>>-> {기능} 점선  
+generalization 일반화 {일반화 파편} -|> {기능} 실선(빈 화살표}  
+결제같은 경우 외부 api를 사용하기 때문에 내부에 액터를 생성하기도 함
+
+![librayUse](https://raw.githubusercontent.com/kinetas/full-stack/main/화면설계/260204도서관리요구사항2.png)
+
+유스케이스 명세서  
+--- 구성 요소 ---  
+ - 목표
+ - 엑터
+ - 사전 조건
+ - 사후 처리
+ - 기본흐름
+ - 대안흐름
+ - 예외흐름
+
+
+## 4.프로토타입
+Figma 툴 이용  
+wireframe : 아이콘이나 사진 같은 것 없이 기본적인 구조만 스케치, 상호작용 없이 ppt처럼 슬라이드 넘기 듯이 봄  
+프로토타입 : 상호작용 존재, 시각적으로 거의 완성  
+
+Figma사용  
+폰트 참고 프리텐다드  
+https://www.figma.com/design/doAt7Mv98ImaOusD5qumBt/01-Basic?node-id=3-190&t=UiV1hxstArygYBa8-0
+
+
+
