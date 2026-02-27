@@ -77,7 +77,9 @@ wireframe : 아이콘이나 사진 같은 것 없이 기본적인 구조만 스�
 
 Figma사용  
 폰트 참고 프리텐다드  
-https://www.figma.com/design/doAt7Mv98ImaOusD5qumBt/01-Basic?node-id=3-190&t=UiV1hxstArygYBa8-0
+https://www.figma.com/design/doAt7Mv98ImaOusD5qumBt/01-Basic?node-id=3-190&t=UiV1hxstArygYBa8-0  
+
+
 
 
 
