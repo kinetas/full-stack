@@ -29,10 +29,11 @@ git은 형상관리도구이지만 협업 도구인 깃허브 연동을 위한 �
   - git checkout 브랜치이름 : 브랜치 전환 + 여러기능
 6. 병합하기
   - git merge 브랜치이름 : git switch로 병합 위치 선정 후 merge로 불러오기 (여기에 브랜치이름을 merge해라)
-    - merge기본 옵션
-    - Fast-Forward : 커밋 생성x
-    - non-Fast-Forward : 커밋 생성o
-  - 
+    - Fast-Forward : 커밋 생성x merge기본옵션
+    - non-Fast-Forward : 커밋 생성o git merge 브랜치이름 --no-ff
+    - --no-ff로 하면 커밋 이름을 적으라고 창이 뜸 이때 나가기 위해서는 :wq를 사용해 나갈 수 있음
+    - --no-ff -m "커밋내용"으로 하면 바로 커밋됨
 
 
 ## 2.github
+
