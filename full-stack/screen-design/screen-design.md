@@ -123,7 +123,7 @@
   : {일반화 파편} -|> {기능}  
   : 실선 (빈 화살표)
 
-* 결제와 같이 외부 API를 사용하는 경우 내부에 액터를 생성하기도 함
+*결제와 같이 외부 API를 사용하는 경우 내부에 액터를 생성하기도 함
 
 ---
 
@@ -173,4 +173,5 @@
 폰트 : 프리텐다드
 
 https://www.figma.com/design/doAt7Mv98ImaOusD5qumBt/01-Basic?node-id=3-190&t=UiV1hxstArygYBa8-0
+
 
