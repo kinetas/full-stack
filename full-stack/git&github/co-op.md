@@ -200,3 +200,12 @@ new issue를 통해 이슈 생성가능
 
 new project를 통해 보드 생성 가능  
 이슈로 연동 가능
+
+---
+
+## sourcetree
+
+---
+
+1. local_repo -> github push
+2. github repo(readMD) -> sourcetree
