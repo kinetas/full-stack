@@ -209,3 +209,10 @@ new project를 통해 보드 생성 가능
 
 1. local_repo -> github push
 2. github repo(readMD) -> sourcetree
+
+---
+
+### rebase
+
+다른 분기로 작업 중에 기반 분기에서 작업이 계속 이루어지고 있다면 이를 최신화 반영해주는 것  
+히스토리 정리
