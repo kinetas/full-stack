@@ -181,3 +181,22 @@ dev -> main 으로 pull request 확인 및 병합 승인처리
 2. 본인이름/기능명 branch 생성
 3. dev branch에 pull request요청
 4. 서로 approve 댓글 추가해서 dev에 merge해보기
+
+---
+
+### 5) issue
+
+new issue를 통해 이슈 생성가능  
+이슈 : [기획] 유스케이스 - 홍길동  
+- [x] 요구사항 확인 정리
+- [ ] 가나다라
+
+생성 후 내가 생성한 이슈를 들어가 오른쪽 메뉴에서 깃브랜치를 생성하고 복사  
+이후 작업 후 내 브랜치에 저장 한 다음 깃허브의 내 브랜치에서 pull request 요청가능  
+
+---
+
+### 6) project
+
+new project를 통해 보드 생성 가능  
+이슈로 연동 가능
