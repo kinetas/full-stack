@@ -5,15 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        /* 클래스 활용을 통한 버튼 스타일 : "." */
+        .btn {
+            display: inline-block;
+            /* width: 120px;   너비 고정 시 글자를 추가할 때 문제발생*/
+            padding: 0 10px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            /* border: 1px solid; 스타일 구분을 위해 잠시 생성 후 삭제는 선택*/
+            text-decoration: none;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: .8rem;
+            background-color: lightgrey;
+            color: white;
+            box-shadow: 3px 2px 3px lightgray;
+            opacity: .5;
+        }
+/* 버튼 반응 ':' */
+        .btn:hover {
+            opacity: 1;
+        }
+/* 버튼 개별 설정 */
+        .btn-1 {
+            background-color: orange;
+        }
+
+        .btn-2 {
+            background-color: royalblue;
+        }
+
+        .btn-3 {
+            background-color: cyan;
+        }
+    </style>
 </head>
 
 <body style="height: 5000px; position: relative;">
-
-    <a href="./02Basic.html">문서이동1</a>
-    <a href="./02Basic.html" target="_blank">문서이동2</a>
-    <a href="https://naver.com" target="frm1">Naver</a>
+    <!-- -blank는 새창으로 -->
+     <!-- 버튼의 클래스 각 개별 설정 class="클래스 개별클래스"  -->
+    <a class="btn btn-1" href="./02Basic.html">문서이동1</a>
+    <a class="btn btn-2" href="./02Basic.html" target="_blank">문서이동2</a>
+    <a class="btn btn-3" href="https://naver.com" target="frm1">Naver</a>
     <hr />
-
+    <!-- iframe안에 페이지를 띄울수 있지만 보안관련 문제발생 -->
     <a href="https://daum.net" target="frm1">DAUM으로 이동</a>
     <iframe name="frm1" src="" frameborder="1" width="400px" height="400px"></iframe>
 
