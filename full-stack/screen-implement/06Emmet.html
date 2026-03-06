@@ -67,9 +67,9 @@
             </li>
         </ul>
     </div>
-    <hr/>
+    <hr />
     <!-- div>ul>li*4>a{$.MainMenu}+ul>li*5>a{$.SubMenu}  -->
-    <div >
+    <div>
         <ul>
             <li>
                 <a href="">1.MainMenu</a>
@@ -113,6 +113,35 @@
             </li>
         </ul>
     </div>
+    <!-- 클래스 선택자 : '.' -->
+     <!-- .c1 -->
+    <div class="c1"></div>
+    <div class="abc"></div>
+    <!-- ID선택자 : '#' -->
+    <div id="wrapper"></div>
+
+    <!-- 속성 : [] -->
+    <!-- ol[type='I']>li*4{Test_$} -->
+    <ol type="I">
+        <li>Test_1</li>
+        <li>Test_2</li>
+        <li>Test_3</li>
+        <li>Test_4</li>
+    </ol>
+    <!-- .wrapper>header>.top-header+nav^main>section^footer -->
+    
+    <div class="wrapper">
+        <header>
+            <div class="top-header"></div>
+            <nav></nav>
+        </header>
+        <main>
+            <section></section>
+        </main>
+        <footer></footer>
+    </div>
+    
+
 
 
 </body>
