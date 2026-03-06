@@ -14,7 +14,7 @@ IP : 네트워크 환경 상 주소
 
 Hyper Text Markup Language  
 Hyper Text는 여러 텍스트 페이지들을 링크같은 것들을 통해 이동할 수 있는 것  
-Markup [h1] 같은 것들  
+Markup &lt;h1&gt; 같은 것들  
 프로토콜 : 통신을 위한 프로그램(http)  
 Request : 요청  
 Response : 수신  

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 자식 요소 선택 : '>'-->
+    <!-- div>ul>li -->
+    <div>
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+    <!-- div>p>ul>li-->
+    <div>
+        <p>
+        <ul>
+            <li></li>
+        </ul>
+        </p>
+    </div>
+    <!-- 형제 노드 : '+' -->
+    <!-- div>ol+ul -->
+    <div>
+        <ol></ol>
+        <ul></ul>
+    </div>
+    <!-- div>p+div+span -->
+    <div>
+        <p></p>
+        <div></div>
+        <span></span>
+    </div>
+    <!-- div>ul>li>a+ul-->
+    <div>
+        <ul>
+            <li>
+                <a href=""></a>
+                <ul></ul>
+            </li>
+        </ul>
+    </div>
+    <!-- 상위태그 이동 : '^'-->
+    <!-- div>ul>li^p -->
+    <div>
+        <ul>
+            <li></li>
+        </ul>
+        <p></p>
+    </div>
+
+    <!-- Nav 메뉴구조 만들기 -->
+    <!-- 기본 구조 : div>ul>li>a+ul>li*3 -->
+    <div>
+        <ul>
+            <li>
+                <a href=""></a>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <hr/>
+    <!-- div>ul>li*4>a{$.MainMenu}+ul>li*5>a{$.SubMenu}  -->
+    <div >
+        <ul>
+            <li>
+                <a href="">1.MainMenu</a>
+                <ul>
+                    <li><a href="">1.SubMenu</a></li>
+                    <li><a href="">2.SubMenu</a></li>
+                    <li><a href="">3.SubMenu</a></li>
+                    <li><a href="">4.SubMenu</a></li>
+                    <li><a href="">5.SubMenu</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">2.MainMenu</a>
+                <ul>
+                    <li><a href="">1.SubMenu</a></li>
+                    <li><a href="">2.SubMenu</a></li>
+                    <li><a href="">3.SubMenu</a></li>
+                    <li><a href="">4.SubMenu</a></li>
+                    <li><a href="">5.SubMenu</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">3.MainMenu</a>
+                <ul>
+                    <li><a href="">1.SubMenu</a></li>
+                    <li><a href="">2.SubMenu</a></li>
+                    <li><a href="">3.SubMenu</a></li>
+                    <li><a href="">4.SubMenu</a></li>
+                    <li><a href="">5.SubMenu</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">4.MainMenu</a>
+                <ul>
+                    <li><a href="">1.SubMenu</a></li>
+                    <li><a href="">2.SubMenu</a></li>
+                    <li><a href="">3.SubMenu</a></li>
+                    <li><a href="">4.SubMenu</a></li>
+                    <li><a href="">5.SubMenu</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+
+</body>
+
+</html>
