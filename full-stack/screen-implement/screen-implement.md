@@ -32,7 +32,8 @@ practice.html 주석참고
 
 #### Basic
 
-<!DOCTYPE html>     :   이 문서가 HTML5 문서임을 선언    
+<!--  
+        <!DOCTYPE html>     :   이 문서가 HTML5 문서임을 선언    
         <html lang="ko">    :   HTML문서의 시작을 나타내며  lang 속성을 이용하여 문서의 기본언어가 한국어임을 명시
         <head>              :   문서의 메타데이터와 제목등을 포함하는 머리말
         <meta charset="UTF-8"> : 문서의 문자 인코딩을 UTF-8 으로 설정
@@ -42,7 +43,8 @@ practice.html 주석참고
         : initial-scale=1.0 : 페이지가 처음 로드될때 기본 확대/축소 수준을 지정 
         <title>Document</title>                    
         <body>              :   문서의 본문, 브라우저에 ViewPort(웹페이지를 사용자가 보는영역)에 표시되는 내용 
-        
+    -->
+
 ---
 
 ### CSS

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+    헤드에서는 점수가 같다면 스타일이 충돌되면 마지막 내용이 적용됨
+    인라인 안에서 스타일을 적용하면 우선 적용이나 유지보수에 불편
+    !important를 쓰면 우선순위 상향
+    -->
+    <style>
+        h1{
+            background-color: orange !important;
+            color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="./css/common.css">
+</head>
+
+<body>
+    <h1 style="background-color: red;">HELLO WORLD</h1>
+</body>
+
+</html>
