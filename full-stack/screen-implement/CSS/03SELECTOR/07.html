@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 의사선택자 or 가상선택자 */
+
+        *{box-sizing: border-box;}
+        a{text-decoration: none;}
+        .btn{
+            display: block;
+            width: 120px;
+            /* padding: 10px; */
+            height: 35px;
+            text-align: center;
+            line-height: 35px;
+            color: gray;
+            margin: 10px;
+            border: 1px solid gray;
+            opacity: .7;
+            border-radius: 5px;
+            font-size: .9rem;
+            transition: .2s;
+        }
+        .btn:hover{
+            opacity: 1;
+            font-size: 1.1rem;
+        }
+        .btn:active{
+            color: white;
+            background-color: black;
+        }
+        .btn:visited{
+            color: green;
+            font-size: .9rem;
+            background-color: tomato;
+        }
+        </style>
+</head>
+
+<body>
+    <a class="btn" href="./01.html">BUTTON-1</a>
+    <a class="btn" href="javascript:void(0)">BUTTON-2</a>
+    <a class="btn" href="javascript:void(0)">BUTTON-3</a>
+    <a class="btn" href="javascript:void(0)">BUTTON-4</a>
+</body>
+
+</html>

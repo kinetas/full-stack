@@ -1030,6 +1030,125 @@ border-radius: 50%;            /* 원형 */
 
 ---
 
+### Box Sizing
+
+기본값은 `content-box`이며, 이 경우 `padding`/`border`가 **width/height 바깥으로 추가**되어 실제 박스가 커질 수 있음.  
+`border-box`는 `padding`/`border`를 **width/height 안에 포함**시켜 레이아웃 계산이 쉬움.
+
+```css
+/* 기본값 */
+box-sizing: content-box;
+
+/* 권장 */
+box-sizing: border-box;
+```
+
+---
+
+### Overflow
+
+컨텐츠가 박스를 넘칠 때 처리.
+
+| 값 | 설명 |
+|---|---|
+| `visible` | 넘친 컨텐츠 그대로 표시 (기본) |
+| `hidden` | 넘친 부분 숨김 |
+| `scroll` | 항상 스크롤바 표시 |
+| `auto` | 필요할 때만 스크롤바 표시 |
+
+```css
+.parent { overflow: auto; }
+/* overflow-x, overflow-y 로 축별 제어 가능 */
+```
+
+---
+
+### Selector (선택자) 기초
+
+| 선택자 | 형태 | 의미 |
+|---|---|---|
+| 전체 선택자 | `*` | 모든 요소 |
+| 요소 선택자 | `div`, `span` | 태그로 선택 |
+| ID 선택자 | `#id` | 유일한 요소 1개 (권장: 페이지 내 1번만) |
+| class 선택자 | `.class` | 여러 요소 그룹 |
+| 그룹 선택자 | `A, B` | 여러 선택자 동시 적용 |
+
+```css
+* { box-sizing: border-box; }
+div { width: 150px; height: 150px; }
+#id_01 { background: red; }
+.c1 { background: royalblue; }
+#id_01, .c1 { border-radius: 50px; }
+```
+
+---
+
+### 자식/자손 선택자
+
+- **자식 선택자**: `A > B` (바로 아래 1단계)
+- **자손 선택자**: `A B` (하위 모든 단계)
+
+```css
+.parent > p { color: orange; }
+.parent p { background: royalblue; }
+```
+
+---
+
+### 동위(형제) 선택자
+
+- `A + B` : A 바로 다음의 형제 1개
+- `A ~ B` : A 다음의 형제 전체
+
+```css
+.c2 + p { width: 200px; }
+.c2 ~ p { background-color: orange; }
+```
+
+---
+
+### 속성 선택자
+
+```css
+input[type="checkbox"] { display: none; }
+input[type="checkbox"] + label { cursor: pointer; }
+```
+
+---
+
+### 의사 클래스 선택자 (Pseudo-class)
+
+상태/구조에 따라 스타일 적용.
+
+```css
+/* 링크 상태 */
+.btn:hover { opacity: 1; }
+.btn:active { background: black; color: white; }
+.btn:visited { color: green; }
+
+/* 체크 상태 */
+input[type="checkbox"]:checked + label { background-color: lightgreen; }
+
+/* 구조 선택 */
+li:first-child { background: red; }
+li:last-child { background: orange; }
+li:nth-child(2n) { border: 5px solid; }
+li:nth-child(2n+1) { border: 5px solid blue; }
+```
+
+---
+
+### 의사 요소 선택자 (Pseudo-element)
+
+요소의 특정 “부분”을 생성/선택 (`::before`, `::after`).
+
+```css
+div::before { content: '😢'; }
+div::after { content: '🤬'; }
+```
+
+---
+
 ### CSS 핵심 요약
 
 1. **display** : block / inline / inline-block 구분  
@@ -1040,8 +1159,10 @@ border-radius: 50%;            /* 원형 */
 6. **배경** : image, repeat, size, attachment  
 7. **텍스트** : letter/word-spacing, line-height, text-align, font-weight  
 8. **폰트** : font-family, @font-face, Google Font  
-9. **박스** : margin(바깥 여백), padding(안쪽 여백), border(테두리)  
-10. **가운데 정렬** : margin: 0 auto, flex, position  
+9. **박스** : box-sizing, margin(바깥 여백), padding(안쪽 여백), border(테두리)  
+10. **오버플로우** : overflow, overflow-x/y  
+11. **선택자** : 기본/조합/속성/가상 선택자  
+12. **가운데 정렬** : margin: 0 auto, flex, position  
 
 ---
 
