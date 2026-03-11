@@ -30,7 +30,7 @@
         /* layout */
         .wrapper {}
 
-        /* layout header */
+        /* layout-header */
         .wrapper>header {}
 
         .wrapper>header>.top-header {}
@@ -42,107 +42,124 @@
         /* layout-nav-gnb */
         .wrapper>header>nav>.main-menu {
             display: flex;
+            flex-direction: column;
             justify-content: space-around;
             height: 100%;
-            border: 1px solid;
+            /* border: 1px solid; */
+            
+            position:relative;
         }
 
         .wrapper>header>nav>.main-menu>li {
-            border: 1px solid;
+            /* border: 1px solid; */
             height: 100%;
+            width: 150px;
+            text-align: center;
             background-color: royalblue;
             padding: 0 20px;
-
-            position: relative;
+            
+            /* position:relative; */
         }
-
+        
         .wrapper>header>nav>.main-menu>li>a {
             display: block;
             height: 100%;
             line-height: 50px;
             color: white;
         }
-
+        
         .wrapper>header>nav>.main-menu>li>.sub-menu {
-            border: 1px solid red;
-            width: 100%;
+            /* border: 1px solid red; */
+            width: 150px;
             height: 100%;
-
-            position: absolute;
-            left: 0;
-            /* top: 0; */
+            
+            position:absolute;
+            left: 150px;;
+            top:0;
+            
+            display: none;
         }
-
+        
         .wrapper>header>nav>.main-menu>li>.sub-menu>li {
-            border: 1px solid;
+            /* border: 1px solid; */
             height: 100%;
             background-color: orange;
             padding: 0 20px;
-
         }
-
+        
         .wrapper>header>nav>.main-menu>li>.sub-menu>li>a {
             display: block;
             height: 100%;
             line-height: 50px;
             color: white;
+            
+        }
+        /* main-menu>li에 마우스호버시 각 sub-menu 표시 */
+        .wrapper>header>nav>.main-menu>li:hover>.sub-menu {
+            display: block;
         }
 
-        /* layout main */
+        /* layout-main */
         .wrapper>main {}
 
         .wrapper>main>section {}
 
-        /* layout footer */
+        /* layout-footer */
         .wrapper>footer {}
     </style>
 </head>
 
 <body>
 
+    <!-- 
+        .wrapper>header>.top-header+nav^main>section^footer
+    -->
     <div class="wrapper">
         <header>
             <div class="top-header"></div>
             <nav>
+                <!-- 
+                    ul.main-menu>li*4>a{$_MAINMENU}+ul.sub-menu>li*5>a{$_SUBMENU}
+                -->
                 <ul class="main-menu">
                     <li>
-                        <a href="">1_MainMenu</a>
+                        <a href="">1_MAINMENU</a>
                         <ul class="sub-menu">
-                            <li><a href="">1_SubMenu</a></li>
-                            <li><a href="">2_SubMenu</a></li>
-                            <li><a href="">3_SubMenu</a></li>
-                            <li><a href="">4_SubMenu</a></li>
-                            <li><a href="">5_SubMenu</a></li>
+                            <li><a href="">1-1_SUBMENU</a></li>
+                            <li><a href="">1-2_SUBMENU</a></li>
+                            <li><a href="">1-3_SUBMENU</a></li>
+                            <li><a href="">1-4_SUBMENU</a></li>
+                            <li><a href="">1-5_SUBMENU</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="">2_MainMenu</a>
+                        <a href="">2_MAINMENU</a>
                         <ul class="sub-menu">
-                            <li><a href="">1_SubMenu</a></li>
-                            <li><a href="">2_SubMenu</a></li>
-                            <li><a href="">3_SubMenu</a></li>
-                            <li><a href="">4_SubMenu</a></li>
-                            <li><a href="">5_SubMenu</a></li>
+                            <li><a href="">2-1_SUBMENU</a></li>
+                            <li><a href="">2-2_SUBMENU</a></li>
+                            <li><a href="">2-3_SUBMENU</a></li>
+                            <li><a href="">2-4_SUBMENU</a></li>
+                            <li><a href="">2-5_SUBMENU</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="">3_MainMenu</a>
+                        <a href="">3_MAINMENU</a>
                         <ul class="sub-menu">
-                            <li><a href="">1_SubMenu</a></li>
-                            <li><a href="">2_SubMenu</a></li>
-                            <li><a href="">3_SubMenu</a></li>
-                            <li><a href="">4_SubMenu</a></li>
-                            <li><a href="">5_SubMenu</a></li>
+                            <li><a href="">3-1_SUBMENU</a></li>
+                            <li><a href="">3-2_SUBMENU</a></li>
+                            <li><a href="">3-3_SUBMENU</a></li>
+                            <li><a href="">3-4_SUBMENU</a></li>
+                            <li><a href="">3-5_SUBMENU</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="">4_MainMenu</a>
+                        <a href="">4_MAINMENU</a>
                         <ul class="sub-menu">
-                            <li><a href="">1_SubMenu</a></li>
-                            <li><a href="">2_SubMenu</a></li>
-                            <li><a href="">3_SubMenu</a></li>
-                            <li><a href="">4_SubMenu</a></li>
-                            <li><a href="">5_SubMenu</a></li>
+                            <li><a href="">4-1_SUBMENU</a></li>
+                            <li><a href="">4-2_SUBMENU</a></li>
+                            <li><a href="">4-3_SUBMENU</a></li>
+                            <li><a href="">4-4_SUBMENU</a></li>
+                            <li><a href="">4-5_SUBMENU</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -153,7 +170,6 @@
         </main>
         <footer></footer>
     </div>
-
 </body>
 
 </html>
