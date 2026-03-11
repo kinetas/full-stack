@@ -1149,6 +1149,88 @@ div::after { content: '🤬'; }
 
 ---
 
+### Position (위치 지정)
+
+| 값 | 기준점 |
+|----|--------|
+| `static` | 기본값, 문서 흐름 그대로 |
+| `relative` | **원래 위치(static)** 기준으로 `top`/`left` 등으로 이동 |
+| `absolute` | **position이 있는 가장 가까운 상위 요소** 기준 (없으면 viewport) |
+| `fixed` | viewport 기준 (스크롤해도 고정) |
+
+```css
+/* relative: 원래 위치 기준 offset */
+position: relative;
+left: 20px;
+top: -10px;
+
+/* absolute: 상위 relative/absolute 요소 기준 */
+.parent { position: relative; }
+.son {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: -1px;
+    right: -10px;
+}
+```
+
+**absolute 기준**: 상위에 `position: relative`(또는 absolute)가 없으면 **viewport** 기준.
+
+---
+
+### GNB (글로벌 네비게이션 바)
+
+**가로 GNB + 서브메뉴 (아래로 펼침)**
+
+```css
+.main-menu {
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+}
+.main-menu > li {
+    position: relative;
+}
+.sub-menu {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    display: none;
+}
+.main-menu > li:hover > .sub-menu {
+    display: block;
+}
+```
+
+**세로 GNB + 서브메뉴 (오른쪽으로 펼침)**
+
+```css
+.main-menu {
+    display: flex;
+    flex-direction: column;
+}
+.main-menu > li {
+    position: relative;
+    width: 150px;
+}
+.sub-menu {
+    position: absolute;
+    left: 150px;
+    top: 0;
+    display: none;
+}
+.main-menu > li:hover > .sub-menu {
+    display: block;
+}
+```
+
+- 부모 `position: relative` + 자식 `position: absolute` 로 서브메뉴 위치 지정
+- `:hover` + `display: none/block` 으로 토글
+- `transition` 으로 애니메이션 추가 가능
+
+---
+
 ### CSS 핵심 요약
 
 1. **display** : block / inline / inline-block 구분  
@@ -1162,7 +1244,9 @@ div::after { content: '🤬'; }
 9. **박스** : box-sizing, margin(바깥 여백), padding(안쪽 여백), border(테두리)  
 10. **오버플로우** : overflow, overflow-x/y  
 11. **선택자** : 기본/조합/속성/가상 선택자  
-12. **가운데 정렬** : margin: 0 auto, flex, position  
+12. **position** : relative(원래 위치 기준), absolute(상위 기준)  
+13. **GNB** : relative + absolute, hover로 서브메뉴 토글  
+14. **가운데 정렬** : margin: 0 auto, flex, position  
 
 ---
 

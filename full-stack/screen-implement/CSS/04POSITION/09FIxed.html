@@ -44,10 +44,14 @@
             display: flex;
             justify-content: space-around;
             height: 50px;
-            border: 1px solid;
+            /* border: 1px solid; */
 
             transition: .3s;
             background-color: green;
+
+            position: relative;
+            z-index: 1;
+            
         }
 
         .wrapper>header>nav>.main-menu>li {
@@ -56,8 +60,8 @@
             background-color: royalblue;
             padding: 0 20px;
 
-            position:relative;
-            height:50px;
+            position: relative;
+            height: 50px;
 
         }
 
@@ -72,29 +76,30 @@
             /* border: 1px solid red; */
             /* width: 100%; */
             /* height:100%; */
-            
-            position:absolute;
-            top:50px;
-            left : 0;right:0;
-            margin:auto;
-            
-            display:block;
-            overflow:hidden;
-            z-index:-1;
-            
+
+            position: absolute;
+            top: 50px;
+            left: 0;
+            right: 0;
+            margin: auto;
+
+            display: block;
+            overflow: hidden;
+            z-index: -1;
+
             /* border : 1px solid; */
-           
-            transition:.4s;
+
+            transition: .4s;
             background-color: orange;
-            height:0;
+            height: 0;
         }
 
         .wrapper>header>nav>.main-menu>li>.sub-menu>li {
             height: 50px;
-            width:100%;
+            width: 100%;
             padding: 0 20px;
-            
-            
+
+
 
         }
 
@@ -103,28 +108,63 @@
             height: 100%;
             line-height: 50px;
             color: white;
-            
+
 
         }
-        .wrapper>header>nav>.main-menu:hover{
-            height:350px;
+
+        .wrapper>header>nav>.main-menu:hover {
+            height: 350px;
             /* height:100%; */
         }
-   
-        .wrapper>header>nav>.main-menu:hover .sub-menu{
-            display:block;
-            height:300px;
-            z-index:1;
-            
+
+        .wrapper>header>nav>.main-menu:hover .sub-menu {
+            display: block;
+            height: 300px;
+            z-index: 1;
+
         }
 
         /* layout-main */
         .wrapper>main {}
 
-        .wrapper>main>section {}
+        .wrapper>main>section {
+            height: 500px;
+        }
+
+        .wrapper>main>section:nth-child(1) {
+            background-color: red;
+        }
+
+        .wrapper>main>section:nth-child(2) {
+            background-color: orange;
+        }
+
+        .wrapper>main>section:nth-child(3) {
+            background-color: yellow;
+        }
+
+        .wrapper>main>section:nth-child(4) {
+            background-color: green;
+        }
+
+        .wrapper>main>section:nth-child(5) {
+            background-color: blue;
+        }
 
         /* layout-footer */
         .wrapper>footer {}
+
+        /* bedge */
+        .bedge-item{
+            position: fixed;
+            z-index: 5;
+            right: 15px;
+            bottom: 15px;
+            width: 150px;
+            height: 300px;
+            border-radius: 10px;
+            background-color: cadetblue;
+        }
     </style>
 </head>
 
@@ -186,9 +226,16 @@
         </header>
         <main>
             <section></section>
+            <section></section>
+            <section></section>
+            <section></section>
+            <section></section>
         </main>
         <footer></footer>
     </div>
+
+    <!-- bedge -->
+     <div class="bedge-item"></div>
 </body>
 
 </html>
