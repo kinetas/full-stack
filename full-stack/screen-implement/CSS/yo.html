@@ -10,7 +10,8 @@
             box-sizing: border-box;
         }
         .layout-1020{
-            padding: 0 1020px;
+            width: 1020px;
+            margin: 0 auto;
         }
 
         header {
@@ -18,29 +19,37 @@
             margin: 0;
             padding: 0;
             height: 78px;
+            justify-content: center;
         }
         header>.top-header{
             height: 100%;
-            max-width: 1020px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 10px;
         }
         header>.top-header>div{
+            margin: 0 10px;
+            height: 100%;
+            
         }
 
         header>.top-header>div>label {
             display: block;
             color: white;
             margin: 0;
+            line-height: 78px;
         }
 
         header>.top-header>div>button {
             background-color: crimson;
             border: 1px solid;
             border-color: white;
-            border-radius: 0;
+            border-radius: 1px;
             color: white;
+            width: 120px;
+            height: 50%;
+            margin-top: 20px;
         }
 
         body {
@@ -48,22 +57,63 @@
             margin: 0;
             padding: 0;
         }
-
-        .items {
+        main{
+            padding: 20px 10px 30px;
+        }
+        .All-Item{
             display: flex;
             justify-content: center;
-            border: 1px solid black;
+            /* border: 1px solid black; */
             margin: 1px;
             padding: 10px;
+            gap: 10px;
         }
+        
+        .items {
+            width: 660px;
 
+        }
+        
         .item_01 {
-            border: 1px solid black;
+            /* border: 1px solid black; */
+            /* height: 800px; */
+            width: 100%;
         }
         .item_02 {
-            border: 1px solid black;
-            width: clamp(250px,15vw,500px);
+            /* border: 1px solid black; */
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
         }
+        .banner{
+            width: 340px;
+        }
+        .row{
+            display: block;
+            padding: 15px 10px 10px 10px;
+            background-color: #E6E6E6;
+            border: 1px solid #E6E6E6;
+        }
+        .row.firstR{
+            background-color: black;
+            color: white;
+        }
+        .row:nth-child(2n){
+            background-color: white;
+        }
+        /* 수정요망 */
+        .row.traspoert{
+            display: flex;
+            justify-content: space-between;
+        }
+        .row.transport_detail{
+            
+        }
+        .row.transport_detail>div>div>label{
+            
+        }
+        
     </style>
 </head>
 
@@ -79,136 +129,141 @@
                 </div>
             </div>
         </header>
-        <main>
+        <main class="layout-1020">
+            <div class="All-Item">
 
-            <div class="items">
-                <!-- 목록 -->
-                <div class="item_01">
-                    <!-- 결제하기 -->
-                    <div>
-                        <label for="">결제하기</label>
-                    </div>
-    
-                    <!-- 배달 정보 -->
-                    <div>
-                        <label for="">배달정보</label>
-                        <button>^</button>
-                    </div>
-                    <!-- 배달정보 상세 내역 -->
-                    <div>
-                        <!-- 주소 -->
-                        <div>
+                <div class="items">
+                    <!-- 목록 -->
+                     <div class="item_01">
+                         <!-- 결제하기 -->
+                         <div class="row firstR">
+                             <label for="">결제하기</label>
+                         </div>
+                     </div>
+                    <div class="item_02">
+                        <!-- 배달 정보 -->
+                        <div class="row transport">
+                            <label for="">배달정보</label>
+                            <button>^</button>
+                        </div>
+                        <!-- 배달정보 상세 내역 -->
+                        <div class="row transport_detail">
+                            <!-- 주소 -->
                             <div>
-                                <label for="">주소</label>
-                                <input type="text">
+                                <div>
+                                    <label for="">주소</label>
+                                    <input type="text">
+                                </div>
+                                <div>
+                                    <div>
+                                        <input type="text" placeholder="(필수) 상세주소 입력">
+                                    </div>
+                                    <div>
+                                        <label for="">상세한 주소를 입력해주세요.</label>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <!-- 휴대전화번호 -->
+                            <div>
+                                <div>
+                                    <label for="">휴대전화번호</label>
+                                    <div>
+                                        <input type="text" placeholder="(필수) 휴대전화 번호 입력">
+                                        <label for="">전화번호를 입력해주세요. (050 등 안신번호 사용불가)</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="usingSafeNum">
+                                    <label for="">안심번호 사용</label>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!-- 주문시 요청사항 -->
+                        <div class="row">
+                            <label for="">주문시 요청사항</label>
+                            <button>^</button>
+                        </div>
+        
+                        <!-- 주문시 요청사항 세부 -->
+                        <div class="row">
+                            <div>
+                                <input type="text"
+                                    placeholder="코로나19 예방을 위해 비대면 배달 권장드립니다. 요기서 결제 선택 후, &quot;문앞 배달&quot;을 요청사항에 남겨주세요.">
+                            </div>
+                            <div>
+                                <label for="">0/100</label>
+                            </div>
+                        </div>
+        
+                        <!-- 결제수단 선택 -->
+                        <div class="row">
+                            <label for="">결제수단 선택</label>
+                        </div>
+        
+                        <!-- 결제수단 선택 세부 -->
+                        <div class="row">
+                            <!-- 온라인 결제 -->
+                            <div>
+                                <div>
+                                    <label for="">요기서결제</label>
+                                    <label for="">웹에서 미리 결제</label>
+                                </div>
+                                <div>
+                                    <label for="">*신용카드와 휴대전화 결제는 Internet Explorer에서 가능합니다.</label>
+                                </div>
                             </div>
                             <div>
                                 <div>
-                                    <input type="text" placeholder="(필수) 상세주소 입력">
+                                    <button>신용카드</button>
+                                    <button>휴대전화</button>
                                 </div>
                                 <div>
-                                    <label for="">상세한 주소를 입력해주세요.</label>
+                                    <button>Npay</button>
+                                    <button>스마일페이</button>
                                 </div>
                             </div>
-                        </div>
-    
-                        <!-- 휴대전화번호 -->
-                        <div>
+        
+                            <!-- 오프라인 결제 -->
                             <div>
-                                <label for="">휴대전화번호</label>
                                 <div>
-                                    <input type="text" placeholder="(필수) 휴대전화 번호 입력">
-                                    <label for="">전화번호를 입력해주세요. (050 등 안신번호 사용불가)</label>
+                                    <label for="">현장결제</label>
+                                </div>
+                                <div>
+                                    <label for="">*로그인 후, 음식받고 직접 결제할 수 있어요!</label>
                                 </div>
                             </div>
                             <div>
-                                <input type="checkbox" name="usingSafeNum">
-                                <label for="">안심번호 사용</label>
+                                <button>현금</button>
                             </div>
                         </div>
+        
                     </div>
-    
-                    <!-- 주문시 요청사항 -->
-                    <div>
-                        <label for="">주문시 요청사항</label>
-                        <button>^</button>
-                    </div>
-    
-                    <!-- 주문시 요청사항 세부 -->
-                    <div>
-                        <div>
-                            <input type="text"
-                                placeholder="코로나19 예방을 위해 비대면 배달 권장드립니다. 요기서 결제 선택 후, &quot;문앞 배달&quot;을 요청사항에 남겨주세요.">
+                    <div class="item_03">
+                        <!-- 할인방법 선택 -->
+                        <div class="row">
+                            <label for="">할인방법 선택</label>
                         </div>
-                        <div>
-                            <label for="">0/100</label>
+        
+                        <!-- 할인방법 선택 세부 -->
+                        <div class="row">
+                            <label for="">쿠폰</label>
+                            <input type="text" placeholder="쿠폰 코드 입력">
+                            <button>적용</button>
                         </div>
                     </div>
-    
-                    <!-- 결제수단 선택 -->
-                    <div>
-                        <label for="">결제수단 선택</label>
-                    </div>
-    
-                    <!-- 결제수단 선택 세부 -->
-                    <div>
-                        <!-- 온라인 결제 -->
-                        <div>
-                            <div>
-                                <label for="">요기서결제</label>
-                                <label for="">웹에서 미리 결제</label>
-                            </div>
-                            <div>
-                                <label for="">*신용카드와 휴대전화 결제는 Internet Explorer에서 가능합니다.</label>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <button>신용카드</button>
-                                <button>휴대전화</button>
-                            </div>
-                            <div>
-                                <button>Npay</button>
-                                <button>스마일페이</button>
-                            </div>
-                        </div>
-    
-                        <!-- 오프라인 결제 -->
-                        <div>
-                            <div>
-                                <label for="">현장결제</label>
-                            </div>
-                            <div>
-                                <label for="">*로그인 후, 음식받고 직접 결제할 수 있어요!</label>
-                            </div>
-                        </div>
-                        <div>
-                            <button>현금</button>
-                        </div>
-                    </div>
-    
-                    <!-- 할인방법 선택 -->
-                    <div>
-                        <label for="">할인방법 선택</label>
-                    </div>
-    
-                    <!-- 할인방법 선택 세부 -->
-                    <div>
-                        <label for="">쿠폰</label>
-                        <input type="text" placeholder="쿠폰 코드 입력">
-                        <button>적용</button>
-                    </div>
+        
                 </div>
-    
                 <!-- 배너 결제 -->
-                <div class="item_02">
-                    <div>
+                <div class="banner">
+                    <div class="row">
                         <label for="">주문내역</label>
                     </div>
-                    <div>
+                    <div class="row">
                         <label for="">배달 가게</label>
                     </div>
-                    <div>
+                    <div class="row">
                         <div>
                             <label for="">목록1</label>
                             <label for="">가격</label>
@@ -222,11 +277,11 @@
                             <label for="">합계</label>
                         </div>
                     </div>
-                    <div>
+                    <div class="row">
                         <label for="">이용약관, 개인정보 수집 및 이용, 개인정보 제 3자 제공, 전자 금융 거래 이용약관, 만 14세 이상 이용자 내용 확인하였으면 결제에
                             동의합니다.</label>
                     </div>
-                    <div>
+                    <div class="row">
                         <button>결제하기</button>
                     </div>
                 </div>
