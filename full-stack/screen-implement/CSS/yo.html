@@ -9,21 +9,33 @@
         * {
             box-sizing: border-box;
         }
+        .layout-1020{
+            padding: 0 1020px;
+        }
 
         header {
             background-color: crimson;
             margin: 0;
             padding: 0;
-            height: 50px;
+            height: 78px;
+        }
+        header>.top-header{
+            height: 100%;
+            max-width: 1020px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header>.top-header>div{
         }
 
-        header>label {
-            display: inline-block;
+        header>.top-header>div>label {
+            display: block;
             color: white;
             margin: 0;
         }
 
-        header>button {
+        header>.top-header>div>button {
             background-color: crimson;
             border: 1px solid;
             border-color: white;
@@ -58,8 +70,14 @@
 <body>
     <form action="">
         <header>
-            <label for="">기요</label>
-            <button>로그인</button>
+            <div class="top-header layout-1020">
+                <div>
+                    <label for="">기요</label>
+                </div>
+                <div>
+                    <button>로그인</button>
+                </div>
+            </div>
         </header>
         <main>
 
