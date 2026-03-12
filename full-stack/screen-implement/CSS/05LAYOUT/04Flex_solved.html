@@ -27,132 +27,161 @@
             margin: 0;
         }
 
-        .layout-padding{
-            padding: 20px;
+        /* layout */
+        .layout-padding {
+            padding: 0 20px;
         }
 
-        /* layout */
         .wrapper {}
 
         /* header */
         .wrapper>header {}
 
-        .wrapper>header>.top-header {
-            height: 50px;
-            display: block;
-            font-size: 30px;
-            font-weight: bold;
-            padding: 0 15px;
-            align-items: center;
-        }
+        .wrapper>header>.top-header {}
 
         .wrapper>header>nav {
             display: flex;
-            background-color: black;
             justify-content: space-between;
-            padding: 0 25px;
-            height: 50px;
             align-items: center;
+            background-color: black;
+            height: 80px;
+
         }
 
         .wrapper>header>nav>.nav-logo {
+            font-size: 2rem;
+            font-weight: 800;
             color: white;
-            font-weight: bold;
-            font-size: 120%;
-
-
         }
 
         .wrapper>header>nav>.nav-menu {
-            color: white;
             display: flex;
-            gap: 20px;
+            /* border:1px solid; */
+        }
 
+        .wrapper>header>nav>.nav-menu>li {
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .wrapper>header>nav>.nav-menu>li:last-child {
+            padding-right: 0;
         }
 
         /* main  */
-        .wrapper>main {
-            margin: 0;
-            padding: 15px;
-        }
+        .wrapper>main {}
 
         .wrapper>main>section {}
 
-        .wrapper>main>section>h2 {
-            font-size: 25;
-            font-weight: bold;
-        }
-        
-        .wrapper>main>section>.card-container {
+        .wrapper>main>section:nth-child(1) {}
+
+        .wrapper>main>section:nth-child(1)>.card-container {
             display: flex;
             justify-content: left;
             align-items: center;
-            gap: 10px;
+            gap: 30px;
+            flex-wrap: wrap;
         }
-        
-        .wrapper>main>section>.card-container>.card {
-            border: 1px solid gray;
-            border-radius: 10px;
-            padding: 0 10px;
-            flex-basis: 300px;
-            flex-grow: .5;
 
-            
+        .wrapper>main>section:nth-child(1)>.card-container>.card {
+            border: 1px solid;
+            border-radius: 20px;
+            padding: 20px;
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: 300px;
         }
+
+        .wrapper>main>section:nth-child(2) {}
 
         .wrapper>main>section:nth-child(2)>.container {
+            padding: 20px;
+            border: 1px solid;
+            border-radius: 20px;
+
             display: flex;
             flex-direction: column;
-            border: 1px solid gray;
-            border-radius: 10px;
-            padding: 20px;
+            gap: 20px;
         }
 
         .wrapper>main>section:nth-child(2)>.container>.media-item {
             display: flex;
-            /* flex-direction: row; */
             justify-content: left;
             align-items: start;
             gap: 20px;
-            margin: 10px;
-            
-        }
-        .wrapper>main>section:nth-child(2)>.container>.media-item>.media-img {
-            height: 15vw;
-            width: 20vw;
-            background-color: lightgrey;
+            border: 1px solid;
+
+            flex-wrap: wrap;
+
         }
 
-            /* footer */
-            .wrapper>footer {
-                
+        .wrapper>main>section:nth-child(2)>.container>.media-item>.media-img {
+            max-width: 400px;
+            height: 200px;
+            background-color: lightgray;
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: 200px;
+        }
+
+        .wrapper>main>section:nth-child(2)>.container>.media-item>.media-content {
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: 200px;
+        }
+
+        /* footer */
+        .wrapper>footer {}
+
+        .wrapper>footer>.footer {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            gap: 20px;
+            background-color: black;
+            padding: 20px;
+
+            flex-wrap: wrap;
+        }
+
+        .wrapper>footer>.footer>.footer-section {
+            width: 100%;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 480px;
+        }
+
+        .wrapper>footer>.footer>.footer-section>h3 {
+            color: white;
+            font-size: 1.7rem;
+            margin: 0;
+        }
+
+        .wrapper>footer>.footer>.footer-section>p {
+            color: white;
+        }
+
+        @media (max-width : 640px) {
+            .wrapper>header>nav {
+                flex-direction: column;
+                height: 100%;
             }
-            .wrapper>footer>.footer {
-                background-color: black;
-                display: flex;
-                justify-content: left;
-                align-items:center;
-                gap: 20px;
-            }
-            .wrapper>footer>.footer>.footer-section {
-                width: 100%;
-                padding: 20px;
-            }
-            .wrapper>footer>.footer>.footer-section>h3 {
-                color: white;
-            }
-            .wrapper>footer>.footer>.footer-section>p {color: white;}
+
+            .wrapper>header>nav>.nav-menu {
+                flex-direction: column;
+            }  
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="wrapper">
+    <div class="wrapper ">
         <header>
-            <div class="top-header">
-                1. 네비게이션 바 레이아웃
+            <div class="top-header layout-padding">
+                <h2>1. 네비게이션 바 레이아웃</h2>
             </div>
-            <nav>
+            <nav class="layout-padding">
                 <div class="nav-logo">Logo</div>
                 <ul class="nav-menu">
                     <li>Home</li>
@@ -162,8 +191,7 @@
                 </ul>
             </nav>
         </header>
-        <main>
-
+        <main class="layout-padding">
             <section>
                 <h2>2. 카드 레이아웃</h2>
                 <div class="card-container">
@@ -204,8 +232,8 @@
 
         </main>
         <footer>
-            <h2>4. 반응형 푸터</h2>
-            <footer class="footer">
+            <h2 class="layout-padding">4. 반응형 푸터</h2>
+            <footer class="footer layout-padding">
                 <div class="footer-section">
                     <h3>About Us</h3>
                     <p>회사 소개 내용이 들어갑니다.</p>
