@@ -835,6 +835,53 @@ els.forEach(el => console.log(el.dataset));
 
 ---
 
+### CSS 폴더 예제 파일 인덱스
+
+| 폴더 | 파일 | 설명 |
+|------|------|------|
+| **01BASIC** | 01Block_vs_Inline.html | block / inline / inline-block |
+| | 02StylePiority.html | 스타일 우선순위 |
+| | 03WidthHeight.html | width, height, min/max |
+| | 04Color.html | 색상 표현 |
+| | 05단위.html | px, %, vw, vh 등 |
+| | 06Background.html | 배경 속성 |
+| | 07textBasic.html | 텍스트 스타일 |
+| | 08FontSize.html | font-size, em, rem |
+| | 09FontFamily.html | font-family, @font-face |
+| | css/common.css | 공통 스타일 |
+| **02BOX** | 01Margin.html | margin, 가운데 정렬 |
+| | 02padding.html | padding |
+| | 03border.html | border, border-radius |
+| | 04BoxSizing.html | content-box / border-box |
+| | 05Overflow.html | overflow |
+| **03SELECTOR** | 01.html | 전체/요소/id/class/그룹 선택자 |
+| | 02.html | 자식(>), 자손(공백) 선택자 |
+| | 03.html | 자식 선택자 레이아웃 예제 |
+| | 04.html | 동위 선택자 (+, ~) |
+| | 05.html | 속성 선택자, :checked + label |
+| | 06.html | 체크박스 커스텀 스타일 |
+| | 07.html | 의사 클래스 (:hover, :active, :visited) |
+| | 08.html | 의사 요소 (::before, ::after) |
+| | 09.html | :nth-child(2n), :nth-child(2n+1) |
+| **04POSITION** | 01Relative.html | position: relative |
+| | 02Absolute.html | position: absolute |
+| | 03GnB_origin.html | GNB 기본 구조 |
+| | 04GnB_01.html ~ 08GnB_05.html | GNB 단계별 예제 |
+| | 09FIxed.html | fixed GNB 레이아웃 |
+| | 10sticky.html | position: sticky 예제 |
+| | 11index.html | position 종합 |
+| | 98GnB_Ex.html | GNB 연습 예제 |
+| | 99_GNB_practice.html | GNB 연습 |
+| **05LAYOUT** | 01Flex.html | Flex 기초 (direction, justify, align, gap, wrap) |
+| | 02Flex.html | flex-grow, flex-shrink, flex-basis, align-self |
+| | 03flex_solve.html | Flex 연습 |
+| | 04Flex_solved.html | Flex 연습 정답 |
+| | 05Grid.html | Grid (template-columns/rows, areas) |
+| | 06KREAM_Layout.html | KREAM 스타일 실전 레이아웃 |
+| **CSS 루트** | yo.html | 기타 연습용 |
+
+---
+
 ### Block vs Inline (display)
 
 Block 요소와 Inline 요소의 `display` 속성 차이
@@ -1157,6 +1204,7 @@ div::after { content: '🤬'; }
 | `relative` | **원래 위치(static)** 기준으로 `top`/`left` 등으로 이동 |
 | `absolute` | **position이 있는 가장 가까운 상위 요소** 기준 (없으면 viewport) |
 | `fixed` | viewport 기준 (스크롤해도 고정) |
+| `sticky` | 스크롤 시 `top`/`left` 값만큼 고정 (흐름 있다가 특정 지점에서 고정) |
 
 ```css
 /* relative: 원래 위치 기준 offset */
@@ -1176,6 +1224,67 @@ top: -10px;
 ```
 
 **absolute 기준**: 상위에 `position: relative`(또는 absolute)가 없으면 **viewport** 기준.
+
+**sticky**: 스크롤 전에는 일반 흐름, 스크롤 시 `top`(또는 `left`)에 도달하면 그 위치에 고정. 예제: `04POSITION/10sticky.html`
+
+---
+
+### Flexbox (플렉스 레이아웃)
+
+단일 행/열 기준 배치. 예제: `05LAYOUT/01Flex.html`, `02Flex.html`
+
+| 속성 (컨테이너) | 설명 |
+|-----------------|------|
+| `display: flex` | Flex 컨테이너로 지정 |
+| `flex-direction` | `row` / `column` / `row-reverse` / `column-reverse` |
+| `justify-content` | 주축 정렬: `start`, `end`, `center`, `space-between`, `space-around`, `space-evenly` |
+| `align-items` | 교차축 정렬: `start`, `end`, `center`, `stretch` |
+| `flex-wrap` | `nowrap`(한 줄) / `wrap`(줄바꿈) |
+| `gap` | 자식 간 간격 |
+
+| 속성 (자식) | 설명 |
+|-------------|------|
+| `flex-grow` | 남는 공간 비율로 확장 |
+| `flex-shrink` | 부족 시 축소 비율 |
+| `flex-basis` | 기본 크기 (예: `200px`) |
+| `align-self` | 해당 자식만 교차축 정렬 (`flex-start`, `flex-end`, `center`, `stretch`) |
+
+---
+
+### Grid (그리드 레이아웃)
+
+행·열 기준 배치. 예제: `05LAYOUT/05Grid.html`
+
+```css
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;   /* repeat(3, 1fr) 가능 */
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+/* 영역 이름으로 배치 */
+.grid-areas {
+    display: grid;
+    grid-template-areas:
+        'header header header'
+        'sidebar main main'
+        'footer footer footer';
+    gap: 10px;
+}
+.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }
+```
+
+---
+
+### KREAM 스타일 레이아웃
+
+실전 레이아웃 예제: `05LAYOUT/06KREAM_Layout.html`  
+- 1280px 중앙 레이아웃, 상단 헤더·네비·메인 구조  
+- Flex로 상단/네비 배치, Google Material Icons 사용
 
 ---
 
@@ -1243,10 +1352,13 @@ top: -10px;
 8. **폰트** : font-family, @font-face, Google Font  
 9. **박스** : box-sizing, margin(바깥 여백), padding(안쪽 여백), border(테두리)  
 10. **오버플로우** : overflow, overflow-x/y  
-11. **선택자** : 기본/조합/속성/가상 선택자  
-12. **position** : relative(원래 위치 기준), absolute(상위 기준)  
-13. **GNB** : relative + absolute, hover로 서브메뉴 토글  
-14. **가운데 정렬** : margin: 0 auto, flex, position  
+11. **선택자** : 기본/조합/속성/가상 선택자 (예제: `03SELECTOR/01.html`~`09.html`)  
+12. **position** : relative, absolute, fixed, **sticky**(스크롤 시 고정)  
+13. **Flexbox** : display: flex, direction, justify-content, align-items, gap, wrap, flex-grow/shrink/basis (예제: `05LAYOUT/01Flex.html`, `02Flex.html`)  
+14. **Grid** : grid-template-columns/rows, grid-template-areas, gap (예제: `05LAYOUT/05Grid.html`)  
+15. **GNB** : relative + absolute, hover로 서브메뉴 토글  
+16. **가운데 정렬** : margin: 0 auto, flex, position  
+17. **예제 파일** : CSS 폴더 내 `01BASIC`, `02BOX`, `03SELECTOR`, `04POSITION`, `05LAYOUT` 참고  
 
 ---
 
