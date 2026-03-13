@@ -878,6 +878,25 @@ els.forEach(el => console.log(el.dataset));
 | | 04Flex_solved.html | Flex 연습 정답 |
 | | 05Grid.html | Grid (template-columns/rows, areas) |
 | | 06KREAM_Layout.html | KREAM 스타일 실전 레이아웃 |
+| **06ANIMATION** | 01Transition.html | Transition 기초 (hover 시 duration) |
+| | 02Transition.html | transition + top/left 이미지 슬라이드 |
+| | 03Transform.html | transform (translate, scale, rotate, skew) |
+| | 04Sitemenu.html | 사이트 메뉴 + transition/transform 활용 |
+| | 05Transform3D.html | 3D transform (perspective, rotateY) |
+| | 06Transform3D.html | 3D transform 예제 |
+| | 07Animation.html | @keyframes 기초 (moving1, moving2) |
+| | 08Animation.html | @keyframes 애니메이션 |
+| | 09Animation.html | @keyframes 다단계 + 색상/위치 변화 |
+| | 10Animation.html | @keyframes 애니메이션 |
+| | 11Ball.html | 바운스 볼 (ease-in/out, 변형) |
+| | 12Slider.html | 슬라이더 (keyframes + hover pause) |
+| | 13Slider.html | 슬라이더 예제 |
+| | 14Slider.html | 슬라이더 예제 |
+| **07MQ** | 01.html | 미디어 쿼리 인라인 (@media max-width) |
+| | 02.html | 미디어 쿼리 분리 (link media) |
+| | css/desktop.css | 데스크톱 기본 스타일 |
+| | css/tablet.css | 태블릿 (max-width: 1024px) |
+| | css/mobile.css | 모바일 (max-width: 400px) |
 | **CSS 루트** | yo.html | 기타 연습용 |
 
 ---
@@ -1288,6 +1307,121 @@ top: -10px;
 
 ---
 
+### Transition (전환)
+
+속성 값이 바뀔 때 **일정 시간에 걸쳐** 부드럽게 변하게 함. 예제: `06ANIMATION/01Transition.html`, `02Transition.html`
+
+| 속성 | 설명 |
+|------|------|
+| `transition-property` | 전환할 속성 (all 또는 width, background-color 등) |
+| `transition-duration` | 지속 시간 (예: `.5s`, `1s`) |
+| `transition-timing-function` | 가속도: `ease`, `linear`, `ease-in`, `ease-out` |
+| `transition-delay` | 시작 지연 시간 |
+
+```css
+div {
+    transition: 1s;                    /* duration만 */
+    transition: .5s ease;              /* duration + timing */
+    transition: width .5s, background .3s;
+}
+div:hover { width: 500px; background-color: aqua; }
+```
+
+---
+
+### Transform (변형)
+
+요소의 **위치·크기·회전·기울기**를 변경. 레이아웃 흐름에는 영향 없음. 예제: `06ANIMATION/03Transform.html`, `05Transform3D.html`, `06Transform3D.html`
+
+| 함수 | 설명 |
+|------|------|
+| `translate(x, y)` / `translateX`, `translateY` | 이동 |
+| `scale(x, y)` | 크기 비율 (2 = 2배) |
+| `rotate(deg)` | 2D 회전 (단위: deg) |
+| `skew(x, y)` | 기울이기 |
+| `perspective(npx)` | 3D 원근 (부모에 지정) |
+| `rotateX`, `rotateY`, `rotateZ` | 3D 회전 |
+
+```css
+.son:hover {
+    transform: translate(400px, 400px) scale(2) rotate(360deg);
+}
+/* 3D */
+.container:hover > .item {
+    transform: perspective(100px) rotateY(180deg);
+}
+```
+
+---
+
+### Animation (@keyframes)
+
+**키프레임**으로 구간별 스타일을 정의하고, 요소에 `animation-*` 속성으로 적용. 예제: `06ANIMATION/07Animation.html`, `09Animation.html`, `11Ball.html`
+
+| 속성 | 설명 |
+|------|------|
+| `animation-name` | @keyframes 이름 |
+| `animation-duration` | 한 사이클 시간 |
+| `animation-iteration-count` | 반복 횟수 (`infinite` 가능) |
+| `animation-direction` | `normal` / `alternate`(왕복) |
+| `animation-timing-function` | `linear`, `ease-in`, `ease-out` 등 |
+| `animation-play-state` | `running` / `paused` (hover에서 정지 등) |
+
+```css
+@keyframes moving {
+    from { margin-left: 100%; }
+    to   { margin-left: 0%; }
+}
+div {
+    animation-name: moving;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+```
+
+---
+
+### 슬라이더 예제
+
+`06ANIMATION/12Slider.html`, `13Slider.html`, `14Slider.html`  
+- `overflow: hidden` + 넓은 wrapper + `@keyframes`로 좌우 이동  
+- `animation-play-state: paused` on hover 로 멈춤  
+- 자식 아이템에 `transform: scale(1.5)` 등으로 강조 가능
+
+---
+
+### 미디어 쿼리 (Media Query, 07MQ)
+
+화면 너비 등 조건에 따라 **다른 CSS**를 적용. 반응형 레이아웃의 기본. 예제: `07MQ/01.html`, `07MQ/02.html`
+
+**방법 1: 같은 파일 안에서 @media**
+
+```css
+/* 기본: 데스크톱 */
+div { height: 150px; background-color: orange; }
+
+@media all and (max-width: 1024px) {
+    div { background-color: green; height: 100px; }
+}
+@media all and (max-width: 400px) {
+    div { background-color: royalblue; height: 50px; }
+}
+```
+
+**방법 2: link 태그에 media 속성**
+
+```html
+<link rel="stylesheet" href="./css/desktop.css">
+<link rel="stylesheet" href="./css/tablet.css" media="all and (max-width:1024px)">
+<link rel="stylesheet" href="./css/mobile.css" media="all and (max-width:400px)">
+```
+
+- `07MQ/01.html`: 한 HTML에 `<style>` 내부에 `@media` 작성  
+- `07MQ/02.html`: desktop / tablet / mobile CSS 파일 분리 후 `link`의 `media`로 로드
+
+---
+
 ### GNB (글로벌 네비게이션 바)
 
 **가로 GNB + 서브메뉴 (아래로 펼침)**
@@ -1358,7 +1492,11 @@ top: -10px;
 14. **Grid** : grid-template-columns/rows, grid-template-areas, gap (예제: `05LAYOUT/05Grid.html`)  
 15. **GNB** : relative + absolute, hover로 서브메뉴 토글  
 16. **가운데 정렬** : margin: 0 auto, flex, position  
-17. **예제 파일** : CSS 폴더 내 `01BASIC`, `02BOX`, `03SELECTOR`, `04POSITION`, `05LAYOUT` 참고  
+17. **Transition** : transition-duration, timing-function (예제: `06ANIMATION/01Transition.html`, `02Transition.html`)  
+18. **Transform** : translate, scale, rotate, skew, 3D perspective/rotateY (예제: `06ANIMATION/03Transform.html`, `05Transform3D.html`)  
+19. **Animation** : @keyframes, animation-name/duration/iteration-count/direction, play-state (예제: `06ANIMATION/07Animation.html`, `11Ball.html`, `12Slider.html`)  
+20. **미디어 쿼리** : @media (max-width), link media (예제: `07MQ/01.html`, `02.html`)  
+21. **예제 파일** : CSS 폴더 내 `01BASIC`, `02BOX`, `03SELECTOR`, `04POSITION`, `05LAYOUT`, `06ANIMATION`, `07MQ` 참고  
 
 ---
 
