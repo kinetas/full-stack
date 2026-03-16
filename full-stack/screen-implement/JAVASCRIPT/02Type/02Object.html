@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!--  -->
+    <h1>MYCAR</h1>
+    <div>
+        <h2>속성</h2>
+    </div>
+    <div>
+        <label>owner</label> <input id="o" readonly/>
+    </div>
+    <div>
+        <label>categoty</label> <input id="categoty" readonly/>
+    </div>
+    <div>
+        <label>fuelType</label> <input id="fT" readonly/>
+    </div>
+    <div>
+        <label>currentSpeed</label> <input id="currentSpeed" readonly/>
+    </div>
+    <div>
+        <label>fuelAmount</label> <input id="fA" readonly/>
+    </div>
+    <div>
+        <button onClick="MyCar.Accel()">가속</button>
+        <button onClick="MyCar.Break()">감속</button>
+        <button onClick="MyCar.toString()">상태확인</button>
+    </div>
+    <div>
+        <label>속도</label>
+        <div id="gauge" style="height: 50px;width: 1px;background-color: orange; transition: .2s;"></div>
+    </div>
+
+
+    <hr>
+    <!--  -->
+    <script>
+        // Object 사물, 객체 {key : value}
+        // 속성
+        // 기능
+
+        // MyCar : 
+        // 속성 : 소유자, 브랜드명, 속도, 연료타입, 연려량...
+        // 기능 : 가속하다, 감속하다, 시동걸다, 시동끄다...
+        const MyCar=
+        {
+            // 속성
+            owner:"김",
+            cat :"truck",
+            fuelType:"disel",
+            curSpeed:0,
+            fuelAmount: 0,
+            // 기능
+            Accel: function(){
+                this.curSpeed+=10;
+                console.log("가속처리 완료, 현재속도 : ",this.curSpeed);
+                document.getElementById('gauge').style.width=`${this.curSpeed}px`;
+                document.getElementById('currentSpeed').value=this.curSpeed;
+            },
+            Break: function(){
+                this.curSpeed-=10;
+                console.log("감속처리 완료, 현재속도 : ",this.curSpeed)
+                document.getElementById('gauge').style.width=`${this.curSpeed}px`;
+                document.getElementById('currentSpeed').value=this.curSpeed;
+            },
+            toString : function(){
+                console.log(this.owner.this.cat,this.fuelType,this.curSpeed,this.fuelType);
+            }
+        };
+
+        console.log(MyCar);
+        document.getElementById('o').value=MyCar.owner;
+        document.getElementById('categoty').value=MyCar.cat;
+        document.getElementById('fT').value=MyCar.fuelType;
+        document.getElementById('currentSpeed').value=MyCar.curSpeed;
+        document.getElementById('fA').value=MyCar.fuelAmount;
+
+        //
+        const dog ={
+            // 속성
+            name : 'dog',
+            kind : 'mutant',
+            age : 2,
+            weight : 10.5,
+            // 기능
+
+            sound : function(){console.log(`${name} 가 짓습니다!`);},
+            toString : function(){console.log(this.name,this.kind,this.age,this.weight)}
+        }
+        console.log(dog);
+        // dog.toString();
+        // dog.sound();
+        dog["color"] = "rainbow";
+        console.log(dog);
+
+    </script>
+
+</body>
+
+</html>

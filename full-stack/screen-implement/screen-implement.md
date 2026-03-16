@@ -829,6 +829,36 @@ els.forEach(el => console.log(el.dataset));
 
 ---
 
+### HTML 폴더 예제 파일 인덱스
+
+| 파일 | 설명 |
+|------|------|
+| 01Basic.html | (71-183) Basic / (60-69) 단축키·확장 플러그인 |
+| 02Basic.html | (106-217) block / inline, p, div, span |
+| 03List.html | (225-365) ul, ol, li 리스트 |
+| 04ListEx.html | (225-365) 리스트·중첩 리스트 예제 |
+| 05Entity.html | (387-464) 엔티티 |
+| 06Emmet.html | (466-678) Emmet 문법, 메뉴·레이아웃 구조 |
+| 07Table.html | (822) table, rowspan/colspan |
+| 07-1TableEx.html | (822) 테이블 예제 |
+| 08Table.html | (822) 테이블 활용 |
+| 09ATag.html | (680-701) a, img, target _blank / (466-678) Emmet |
+| 10ATag.html | (660-677) 레이아웃 구조 생성 예시 |
+| 12Video.html | (703-728) video, MIME TYPE |
+| 13video.html | (703-728) 비디오 예제 |
+| 14form.html | (730-783) form, input, select, label |
+| 15form_add_css.html | (730-783) 폼 + CSS |
+| 16Form_only_html.html | (730-754) form 기본 개념, input 종류 |
+| 17Form_only_css.html | (730-783) form + CSS |
+| 18Form_only_bs.html | (730-783) form + Bootstrap |
+| 19myForm.html | (730-783) 폼 예제 |
+| 20form_validation.html | (770-783) 폼 유효성 검증 (HTML5) |
+| 21DataSet.html | (799-813) data-* 속성 (DataSet) |
+| 22etc_input.html | (785-797) 기타 input type |
+| 99form_only_html.html | (730-783) 폼 연습 |
+
+---
+
 ## CSS
 
 스타일링 담당 - 색상, 크기, 레이아웃, 디자인
@@ -839,64 +869,64 @@ els.forEach(el => console.log(el.dataset));
 
 | 폴더 | 파일 | 설명 |
 |------|------|------|
-| **01BASIC** | 01Block_vs_Inline.html | block / inline / inline-block |
-| | 02StylePiority.html | 스타일 우선순위 |
-| | 03WidthHeight.html | width, height, min/max |
-| | 04Color.html | 색상 표현 |
-| | 05단위.html | px, %, vw, vh 등 |
-| | 06Background.html | 배경 속성 |
-| | 07textBasic.html | 텍스트 스타일 |
-| | 08FontSize.html | font-size, em, rem |
-| | 09FontFamily.html | font-family, @font-face |
+| **01BASIC** | 01Block_vs_Inline.html | (934-950) Block vs Inline (display) |
+| | 02StylePiority.html | (952-962) 스타일 우선순위 |
+| | 03WidthHeight.html | (964-973) Width / Height |
+| | 04Color.html | (975-984) Color |
+| | 05단위.html | (986-1003) 단위 |
+| | 06Background.html | (1005-1015) Background |
+| | 07textBasic.html | (1017-1028) 텍스트 스타일 |
+| | 08FontSize.html | (1030-1048) Font Size |
+| | 09FontFamily.html | (1050-1068) Font Family |
 | | css/common.css | 공통 스타일 |
-| **02BOX** | 01Margin.html | margin, 가운데 정렬 |
-| | 02padding.html | padding |
-| | 03border.html | border, border-radius |
-| | 04BoxSizing.html | content-box / border-box |
-| | 05Overflow.html | overflow |
-| **03SELECTOR** | 01.html | 전체/요소/id/class/그룹 선택자 |
-| | 02.html | 자식(>), 자손(공백) 선택자 |
-| | 03.html | 자식 선택자 레이아웃 예제 |
-| | 04.html | 동위 선택자 (+, ~) |
-| | 05.html | 속성 선택자, :checked + label |
-| | 06.html | 체크박스 커스텀 스타일 |
-| | 07.html | 의사 클래스 (:hover, :active, :visited) |
-| | 08.html | 의사 요소 (::before, ::after) |
-| | 09.html | :nth-child(2n), :nth-child(2n+1) |
-| **04POSITION** | 01Relative.html | position: relative |
-| | 02Absolute.html | position: absolute |
-| | 03GnB_origin.html | GNB 기본 구조 |
-| | 04GnB_01.html ~ 08GnB_05.html | GNB 단계별 예제 |
-| | 09FIxed.html | fixed GNB 레이아웃 |
-| | 10sticky.html | position: sticky 예제 |
-| | 11index.html | position 종합 |
-| | 98GnB_Ex.html | GNB 연습 예제 |
-| | 99_GNB_practice.html | GNB 연습 |
-| **05LAYOUT** | 01Flex.html | Flex 기초 (direction, justify, align, gap, wrap) |
-| | 02Flex.html | flex-grow, flex-shrink, flex-basis, align-self |
-| | 03flex_solve.html | Flex 연습 |
-| | 04Flex_solved.html | Flex 연습 정답 |
-| | 05Grid.html | Grid (template-columns/rows, areas) |
-| | 06KREAM_Layout.html | KREAM 스타일 실전 레이아웃 |
-| **06ANIMATION** | 01Transition.html | Transition 기초 (hover 시 duration) |
-| | 02Transition.html | transition + top/left 이미지 슬라이드 |
-| | 03Transform.html | transform (translate, scale, rotate, skew) |
-| | 04Sitemenu.html | 사이트 메뉴 + transition/transform 활용 |
-| | 05Transform3D.html | 3D transform (perspective, rotateY) |
-| | 06Transform3D.html | 3D transform 예제 |
-| | 07Animation.html | @keyframes 기초 (moving1, moving2) |
-| | 08Animation.html | @keyframes 애니메이션 |
-| | 09Animation.html | @keyframes 다단계 + 색상/위치 변화 |
-| | 10Animation.html | @keyframes 애니메이션 |
-| | 11Ball.html | 바운스 볼 (ease-in/out, 변형) |
-| | 12Slider.html | 슬라이더 (keyframes + hover pause) |
-| | 13Slider.html | 슬라이더 예제 |
-| | 14Slider.html | 슬라이더 예제 |
-| **07MQ** | 01.html | 미디어 쿼리 인라인 (@media max-width) |
-| | 02.html | 미디어 쿼리 분리 (link media) |
-| | css/desktop.css | 데스크톱 기본 스타일 |
-| | css/tablet.css | 태블릿 (max-width: 1024px) |
-| | css/mobile.css | 모바일 (max-width: 400px) |
+| **02BOX** | 01Margin.html | (1070-1094) Margin |
+| | 02padding.html | (1096-1107) Padding |
+| | 03border.html | (1109-1127) Border |
+| | 04BoxSizing.html | (1129-1142) Box Sizing |
+| | 05Overflow.html | (1144-1160) Overflow |
+| **03SELECTOR** | 01.html | (1162-1179) 선택자 기초 |
+| | 02.html | (1182-1192) 자식/자손 선택자 |
+| | 03.html | (1182-1192) 자식 선택자 레이아웃 예제 |
+| | 04.html | (1194-1204) 동위(형제) 선택자 |
+| | 05.html | (1206-1213) 속성 선택자 |
+| | 06.html | (1215-1235) 의사 클래스, :checked + label |
+| | 07.html | (1215-1235) 의사 클래스 (:hover, :active, :visited) |
+| | 08.html | (1237-1245) 의사 요소 (::before, ::after) |
+| | 09.html | (1215-1235) :nth-child |
+| **04POSITION** | 01Relative.html | (1248-1279) Position |
+| | 02Absolute.html | (1248-1279) Position |
+| | 03GnB_origin.html | (1455-1504) GNB |
+| | 04GnB_01.html ~ 08GnB_05.html | (1455-1504) GNB |
+| | 09FIxed.html | (1248-1279) fixed |
+| | 10sticky.html | (1248-1279) sticky |
+| | 11index.html | (1248-1279) position 종합 |
+| | 98GnB_Ex.html | (1455-1504) GNB 연습 |
+| | 99_GNB_practice.html | (1455-1504) GNB 연습 |
+| **05LAYOUT** | 01Flex.html | (1281-1301) Flexbox |
+| | 02Flex.html | (1281-1301) Flexbox |
+| | 03flex_solve.html | (1281-1301) Flex 연습 |
+| | 04Flex_solved.html | (1281-1301) Flex 연습 정답 |
+| | 05Grid.html | (1303-1330) Grid |
+| | 06KREAM_Layout.html | (1332-1338) KREAM 스타일 레이아웃 |
+| **06ANIMATION** | 01Transition.html | (1340-1360) Transition |
+| | 02Transition.html | (1340-1360) Transition |
+| | 03Transform.html | (1362-1385) Transform |
+| | 04Sitemenu.html | (1340-1385) Transition, Transform |
+| | 05Transform3D.html | (1362-1385) Transform 3D |
+| | 06Transform3D.html | (1362-1385) Transform 3D |
+| | 07Animation.html | (1387-1413) Animation (@keyframes) |
+| | 08Animation.html | (1387-1413) Animation |
+| | 09Animation.html | (1387-1413) Animation |
+| | 10Animation.html | (1387-1413) Animation |
+| | 11Ball.html | (1387-1413) Animation |
+| | 12Slider.html | (1415-1422) 슬라이더 예제 |
+| | 13Slider.html | (1415-1422) 슬라이더 예제 |
+| | 14Slider.html | (1415-1422) 슬라이더 예제 |
+| **07MQ** | 01.html | (1424-1453) 미디어 쿼리 |
+| | 02.html | (1424-1453) 미디어 쿼리 (link media) |
+| | css/desktop.css | (1424-1453) |
+| | css/tablet.css | (1424-1453) |
+| | css/mobile.css | (1424-1453) |
 | **CSS 루트** | yo.html | 기타 연습용 |
 
 ---
@@ -1507,3 +1537,177 @@ div { height: 150px; background-color: orange; }
 - 브라우저 기능 사용
 - 사용자 이벤트 처리
 - 객체지향 문법 기반
+
+---
+
+### onclick (이벤트 속성)
+
+HTML 요소에 **클릭 시 실행할 JavaScript**를 넣을 때 씀. 버튼·링크 등에 사용.
+
+```html
+<button onclick="alert('Hello World')">Btn_1</button>
+<button onclick="alert(10 + 20)">Btn_2</button>
+```
+
+- 클릭하면 `onclick` 뒤 따옴표 안 코드가 실행됨
+- 예: 문자열 알림, 계산식 결과(30), `\n` 줄바꿈 문자열 등
+
+---
+
+### alert()
+
+브라우저가 **알림창(팝업)**을 띄우는 함수. 인자로 준 문자열·숫자 등을 그대로 보여 줌.
+
+```javascript
+alert('Hello World');   // 알림창에 Hello World
+alert(10 + 20);        // 알림창에 30
+alert('A\nB\nC');      // 알림창에 A, B, C 세 줄
+```
+
+- 사용자가 확인 버튼을 누르기 전까지 다음 코드는 실행되지 않음
+
+---
+
+### href="javascript:..."
+
+`<a>` 태그에서 **클릭 시 페이지 이동 대신 JavaScript 실행**할 때 씀.
+
+```html
+<a href="javascript:void(0)">아무 동작 없음</a>
+<a href="javascript:alert('HELLOWORLD')">BTN_2</a>
+```
+
+- `javascript:` 뒤에 올 표현식이 실행됨
+- `void(0)` 은 아무 값도 반환하지 않아서, 링크만 눌렀을 때 아무 동작도 안 함
+
+---
+
+### document.write
+
+문서에 **HTML 문자열을 그대로 출력**하는 메서드. 주로 예제·테스트용.
+
+```javascript
+document.write('<h1>HELLO WORLD</h1>');
+```
+
+- 호출 시점에 문서에 바로 쓰여서, 로드 후에 쓰면 기존 내용이 다 지워질 수 있음
+
+---
+
+### getElementById, innerHTML
+
+**id로 요소를 찾아서**, 그 요소 **안의 HTML/텍스트를 바꿀 때** 씀.
+
+```javascript
+document.getElementById('d1');        // id="d1" 인 요소
+document.getElementById('d1').innerHTML = '<h2>ABCD</h2>';  // 내용 변경
+```
+
+| 메서드 / 속성 | 설명 |
+|---------------|------|
+| `getElementById('id값')` | id로 요소 한 개 찾기 |
+| `innerHTML` | 요소 안의 HTML 문자열 읽기·쓰기 |
+
+---
+
+### typeof
+
+**값의 타입**이 뭔지 문자열로 알려 주는 연산자.
+
+```javascript
+typeof 10;           // "number"
+typeof "HELLO";      // "string"
+typeof {};           // "object"
+typeof null;         // "object" (예외)
+typeof undefined;    // "undefined"
+typeof true;         // "boolean"
+```
+
+---
+
+### 보간법 (템플릿 리터럴)
+
+**백틱(``)** 문자열 안에서 `${표현식}` 으로 변수·계산 결과를 넣는 문법.
+
+```javascript
+let str1 = 'hello', str2 = 'world';
+`TEST1 : ${str1} / ${str2}`   // "TEST1 : hello / world"
+`TEST2 : ${10 + 20 + 30}`     // "TEST2 : 60"
+```
+
+- 일반 따옴표 `'...'`, `"..."` 에서는 `${}` 가 그대로 문자로 나옴. **백틱에서만** 보간됨
+
+---
+
+### 객체 (Object), this
+
+**속성(key)과 값(value)** 묶음. 함수를 넣으면 그 객체의 **메서드**가 되고, 메서드 안에서는 `this` 가 그 객체를 가리킴.
+
+```javascript
+const MyCar = {
+    owner: '홍길동',
+    currentSpeed: 0,
+    Accel: function() { this.currentSpeed += 10; },
+    Break: function() { this.currentSpeed -= 10; }
+};
+MyCar.Accel();   // this === MyCar
+```
+
+| 개념 | 설명 |
+|------|------|
+| `{ key: value }` | 객체 리터럴 |
+| 메서드 | 객체 안의 함수 (예: `Accel`, `Break`) |
+| `this` | 메서드가 호출될 때, 그 메서드를 가진 객체 |
+
+---
+
+### 배열 (Array)
+
+**순서가 있는 값의 나열.** index(0부터)로 접근하고, `push`/`pop`, `forEach`, `sort` 등으로 다룸.
+
+```javascript
+let arr = ['str1', 'str2', 'str3'];
+arr[0];              // "str1"
+arr.push('aaa');     // 맨 뒤에 추가
+arr.pop();           // 맨 뒤 제거
+arr.forEach((item, idx) => { console.log(idx, item); });
+arr.sort((a, b) => a - b);   // 오름차순
+```
+
+| 메서드 / 개념 | 설명 |
+|---------------|------|
+| `arr[index]` | index번째 요소 접근 |
+| `push(값)` | 맨 뒤에 추가 |
+| `pop()` | 맨 뒤 제거 |
+| `forEach(콜백)` | 요소를 순서대로 하나씩 넘겨서 처리 |
+| `sort(비교함수)` | 배열 정렬 (비교함수 생략 시 문자열 기준) |
+
+---
+
+### JAVASCRIPT 폴더 예제 파일 인덱스
+
+| 폴더 | 파일 | 설명 |
+|------|------|------|
+| **01Basic** | 01.html | (1560-1568) onclick, href="javascript:" |
+| | 02.html | (1560-1568) document.write, DOM |
+| | 03.html | (1560-1568) getElementById, innerHTML |
+| | 04.html | (1560-1568) typeof |
+| **02Type** | 01보간법.html | (1560-1568) 보간법 `${}` |
+| | 02Object.html | (1560-1568) 객체, 메서드, this |
+| | 03solve.html | (1560-1568) 객체 연습 |
+| | 03-1solved.html | (1560-1568) 03 정답 |
+| | 04solve.html | (1560-1568) 객체 연습 (은행, 카페, 주차장) |
+| | 05ArrayObject.html | (1560-1568) 배열 |
+
+---
+
+### JavaScript 핵심 요약
+
+1. **실행 위치** : `onclick`, `href="javascript:..."`, `<script>` 내부  
+2. **DOM** : `document.getElementById`, `querySelector`, `innerHTML`, `document.write`  
+3. **보간법** : 백틱(``) + `${표현식}`  
+4. **변수** : `let`(재할당 가능), `const`(상수)  
+5. **타입** : number, string, boolean, object, null, undefined (typeof로 확인)  
+6. **객체** : `{ key: value }`, 메서드, `this`  
+7. **배열** : `[]`, index 접근, `push`/`pop`, `forEach`  
+8. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type` 참고
