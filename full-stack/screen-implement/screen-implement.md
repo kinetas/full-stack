@@ -1684,6 +1684,102 @@ arr.sort((a, b) => a - b);   // 오름차순
 
 ---
 
+### querySelector, value
+
+**CSS 선택자 방식으로 요소를 찾고**, 입력창·선택창의 **현재 값**을 읽거나 쓸 때 씀.
+
+```javascript
+const koreaInput = document.querySelector('.korea');
+const restaurantEl = document.querySelector('.select-restorant');
+
+koreaInput.value;             // 입력값 읽기
+restaurantEl.value = '식당명'; // 값 넣기
+```
+
+| 메서드 / 속성 | 설명 |
+|---------------|------|
+| `querySelector('선택자')` | CSS 선택자로 요소 한 개 찾기 |
+| `.value` | input, select 등의 현재 값 읽기·쓰기 |
+
+---
+
+### Number()
+
+`input.value` 는 **문자열(string)** 이라서, **계산하기 전에 숫자로 변환**할 때 자주 씀.
+
+```javascript
+const kor = document.querySelector('.korea').value;
+const eng = document.querySelector('.english').value;
+
+const sum = Number(kor) + Number(eng);
+```
+
+- `"10" + "20"` 은 문자열 결합이라 `"1020"` 이 됨
+- `Number(...)` 로 바꾸면 `10 + 20` 처럼 숫자 계산 가능
+
+---
+
+### filter, map, reduce
+
+배열이나 오픈데이터에서 **조건 추출**, **형태 변환**, **누적 계산**할 때 가장 많이 쓰는 조합.
+
+```javascript
+const koreanFoods = dataArray.filter(item => item.FD_CS == '한식');
+const japaneseFoods = dataArray
+    .filter(item => item.FD_CS == '일식')
+    .map(item => ({ 상호명: item.BZ_NM, 메뉴: item.MNU }));
+
+const deptTotal = employees.reduce((sum, item) => {
+    sum[item.department] = (sum[item.department] || 0) + item.salary;
+    return sum;
+}, {});
+```
+
+| 메서드 | 설명 |
+|--------|------|
+| `filter(조건)` | 조건에 맞는 요소만 골라 새 배열 반환 |
+| `map(변환)` | 각 요소를 다른 형태로 바꾼 새 배열 반환 |
+| `reduce(누적로직, 초기값)` | 합계, 통계, 묶음 만들기 등 누적 처리 |
+
+---
+
+### document.createElement, appendChild
+
+JavaScript로 **새 HTML 요소를 만들고**, 화면에 **붙일 때** 씀. `select > option` 채우기에서 자주 사용.
+
+```javascript
+const optionEl = document.createElement('option');
+optionEl.innerHTML = item.BZ_NM;
+selectRestorantEl.appendChild(optionEl);
+```
+
+| 메서드 | 설명 |
+|--------|------|
+| `createElement('태그명')` | 새 요소 노드 생성 |
+| `appendChild(노드)` | 부모 요소의 맨 뒤에 자식 노드 추가 |
+
+---
+
+### Object.entries()
+
+객체를 **`[key, value]` 형태의 배열**로 바꿔서 반복문이나 `forEach` 로 처리할 때 씀.
+
+```javascript
+const categoryList = { 한식: 10, 일식: 4 };
+
+Object.entries(categoryList).forEach(item => {
+    console.log(item[0], item[1]); // key, value
+});
+```
+
+| 메서드 | 설명 |
+|--------|------|
+| `Object.entries(obj)` | 객체를 `[key, value]` 배열 묶음으로 변환 |
+| `item[0]` | key |
+| `item[1]` | value |
+
+---
+
 ### JAVASCRIPT 폴더 예제 파일 인덱스
 
 | 폴더 | 파일 | 설명 |
@@ -1694,10 +1790,13 @@ arr.sort((a, b) => a - b);   // 오름차순
 | | 04.html | (1560-1568) typeof |
 | **02Type** | 01보간법.html | (1560-1568) 보간법 `${}` |
 | | 02Object.html | (1560-1568) 객체, 메서드, this |
-| | 03solve.html | (1560-1568) 객체 연습 |
-| | 03-1solved.html | (1560-1568) 03 정답 |
+| | 03solve.html | (1560-1568) 점수 저장, `querySelector`, `value`, `Number()` |
+| | 03-1solved.html | (1560-1568) 점수 합계/평균 객체 처리 |
 | | 04solve.html | (1560-1568) 객체 연습 (은행, 카페, 주차장) |
-| | 05ArrayObject.html | (1560-1568) 배열 |
+| | 05ArrayObject.html | (1560-1568) 배열, `filter`, `map`, `reduce` |
+| | 06OpenData.html | (1560-1568) 오픈데이터 필터링/가공 |
+| | 07solve.html | (1560-1568) `createElement`, `appendChild`, `Object.entries` |
+| | 07solved.html | (1560-1568) 주문받기 화면 실습 |
 
 ---
 
@@ -1709,5 +1808,7 @@ arr.sort((a, b) => a - b);   // 오름차순
 4. **변수** : `let`(재할당 가능), `const`(상수)  
 5. **타입** : number, string, boolean, object, null, undefined (typeof로 확인)  
 6. **객체** : `{ key: value }`, 메서드, `this`  
-7. **배열** : `[]`, index 접근, `push`/`pop`, `forEach`  
-8. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type` 참고
+7. **배열** : `[]`, index 접근, `push`/`pop`, `forEach`, `filter`, `map`, `reduce`  
+8. **입력값 처리** : `querySelector`, `.value`, `Number()`  
+9. **동적 DOM 생성** : `createElement`, `appendChild`, `Object.entries`  
+10. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type` 참고
