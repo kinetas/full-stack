@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/서구맛집.js">
+
+    </script>
+</head>
+
+<body>
+
+
+    <script>
+        console.log("서구맛집", 서구맛집);
+        // 
+        const dataArray = 서구맛집.data;
+        console.log("dataArray", dataArray);
+        // 
+        const 한식맛집 = dataArray.filter((item) => { return item.FD_CS == "한식" });
+        console.log("한식맛집", 한식맛집);
+        //BZ_NM,MNU,GNG_CS
+        const 일식맛집 = dataArray.filter((item) => { return item.FD_CS == "일식" })
+            .map((item)=>{return {상호명 : item.BZ_NM, 메뉴 : item.MNU, 주소 : item.GNG_CS}});
+        console.log("일식맛집", 일식맛집);
+    </script>
+</body>
+
+</html>
