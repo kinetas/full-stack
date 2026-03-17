@@ -103,7 +103,7 @@
         // console.log(n1=n2);  //대입연산자
         // console.log(n1==n2); //동등비교연산자
 
-        // // // == vs ===
+        // // == vs ===
         // console.log('1'+2);
         // console.log('123' == 123);
         // console.log('123' === 123); //value와 자료형을 함께 일치여부 확인
@@ -113,7 +113,7 @@
     <!--
     논리 연산자 (Logical Operators):
 
-    && (논리 AND)
+    && (논리 AND) : 보통은 조건식 둘다 만족하면 참을 반환하지만 왼쪽이 참이면 오른쪽으로 넘어가는 것을 이용하기도 함
     || (논리 OR)
     ! (논리 NOT)
     비트 연산자 (Bitwise Operators):
@@ -128,17 +128,22 @@
     -->
 
     <script>
-        let n1 = 100;
-        let n2 = true;
-        let n3 = false;
-        let n4 = null;
-        let n5 = undefined;
-        let n6 = 0;
+        // let n1 = 100;
+        // let n2 = true;
+        // let n3 = false;
+        // let n4 = null;
+        // let n5 = undefined;
+        // let n6 = 0;
         
         //조건식 && 조건식  : AND 연산자 : 왼쪽조건식의 수행결과가 true일때 오른쪽 조건식을 실행
         //
-        // console.log((n1<10) && (n6++) )
+        // console.log((n1>10) && (n6++) )
         // console.log("n6 : ",n6);
+
+        // console.log(10>5 && "data");
+        // console.log(10<5 && "data");
+        // console.log(10==10 && (n1=200));
+        // console.log(true && true);
 
         // console.log(n1  && 'n1안의 정수값은 true를 의미합니다.');
         // console.log(!n4 && 'n4안의 값은 null입니다.');
@@ -186,6 +191,7 @@
         //조건식 ? true인경우실행 : 거짓인경우실행 ;
         
         // const data = prompt("값을 입력하세요");
+        // console.log('입력값 : ', data);
         // (data>10) ? console.log("참입니다") : console.log("거짓입니다");
 
         

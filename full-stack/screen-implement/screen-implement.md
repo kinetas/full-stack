@@ -1893,6 +1893,131 @@ knife.toString();  // "toString 재정의 : 검, 포매라니안, 검정"
 
 ---
 
+### 산술 연산자 (Arithmetic Operators)
+
+| 연산자 | 설명 |
+|--------|------|
+| `+` | 덧셈 |
+| `-` | 뺄셈 |
+| `*` | 곱셈 |
+| `/` | 나눗셈 |
+| `%` | 나머지 (짝홀수, 배수, 끝자리수, 수 범위 제한 등에 활용) |
+| `++` | 증가 (전치 `++n` / 후치 `n++`) |
+| `--` | 감소 |
+
+```javascript
+4 % 2 == 0 && '짝수입니다.';   // 짝수 판별
+123456 % 10;                   // 끝 1자리 (6)
+123456 % 100;                  // 끝 2자리 (56)
+(parseInt(Math.random() * 100) % 45 + 1);  // 1~45 범위 난수
+
+// 전치 vs 후치
+let n1 = 10;
+n1++;   // 후치: 다른 연산 처리 후 증가
+++n1;   // 전치: 증가 후 다른 연산
+```
+
+---
+
+### 할당 연산자 (Assignment Operators)
+
+| 연산자 | 설명 | 동등 표현 |
+|--------|------|-----------|
+| `=` | 할당 | - |
+| `+=` | 더해서 할당 | `n1 = n1 + n2` |
+| `-=` | 빼서 할당 | `n1 = n1 - n2` |
+| `*=` | 곱해서 할당 | `n1 = n1 * n2` |
+| `/=` | 나눠서 할당 | `n1 = n1 / n2` |
+| `%=` | 나머지를 할당 | `n1 = n1 % n2` |
+
+---
+
+### 비교 연산자 (Comparison Operators)
+
+조건식 생성에 사용. 이항 연산자.
+
+| 연산자 | 설명 |
+|--------|------|
+| `==` | 동등 비교 (타입 변환 후 비교) |
+| `===` | 일치 비교 (값 + 자료형 모두 일치) |
+| `!=` | 부등 비교 |
+| `!==` | 불일치 비교 |
+| `>`, `<`, `>=`, `<=` | 크다, 작다, 크거나 같다, 작거나 같다 |
+
+```javascript
+'123' == 123;   // true (문자열→숫자 변환 후 비교)
+'123' === 123;  // false (타입이 다름)
+```
+
+---
+
+### 논리 연산자 (Logical Operators)
+
+| 연산자 | 설명 | 단축 평가 |
+|--------|------|-----------|
+| `&&` | 논리 AND | 왼쪽이 **참**이면 오른쪽 실행 |
+| `\|\|` | 논리 OR | 왼쪽이 **거짓**이면 오른쪽 실행 |
+| `!` | 논리 NOT | 반대값 반환 |
+
+```javascript
+// AND: 둘 다 참이어야 참
+10 > 5 && "data";   // "data" (왼쪽 참 → 오른쪽 반환)
+10 < 5 && "data";   // false (왼쪽 거짓 → 오른쪽 미실행)
+
+// OR: 하나만 참이어도 참
+true || false;      // true
+false || "대체값";  // "대체값" (왼쪽 거짓 → 오른쪽 반환)
+
+// falsy 값: null, undefined, 0, false, '' 등
+!n4 && 'n4는 null입니다.';
+```
+
+---
+
+### 비트 연산자 (Bitwise Operators)
+
+| 연산자 | 설명 |
+|--------|------|
+| `&` | 비트 AND |
+| `\|` | 비트 OR |
+| `^` | 비트 XOR |
+| `~` | 비트 NOT |
+| `<<` | 왼쪽 시프트 |
+| `>>` | 오른쪽 시프트 (부호 유지) |
+| `>>>` | 부호 없는 오른쪽 시프트 |
+
+---
+
+### 삼항 조건 연산자 (Ternary Operator)
+
+```javascript
+조건식 ? 참일 때 실행 : 거짓일 때 실행;
+
+// 예시
+(data > 10) ? console.log("참입니다") : console.log("거짓입니다");
+
+// 반응형 스타일
+(window.innerWidth < 380)
+    ? (boxEl.style.backgroundColor = 'green') && (boxEl.style.height = "50px")
+    : console.log("거짓입니다");
+```
+
+---
+
+### 타입 연산자 (typeof)
+
+피연산자의 **타입을 문자열로 반환**.
+
+```javascript
+typeof 10;        // "number"
+typeof "HELLO";  // "string"
+typeof {};       // "object"
+typeof null;     // "object" (예외)
+typeof undefined;// "undefined"
+```
+
+---
+
 ### JAVASCRIPT 폴더 예제 파일 인덱스
 
 | 폴더 | 파일 | 설명 |
@@ -1912,6 +2037,7 @@ knife.toString();  // "toString 재정의 : 검, 포매라니안, 검정"
 | | 07solved.html | (1560-1568) 주문받기 화면 실습 |
 | | 08Prototype.html | Object 유틸리티, Object.prototype, 프로토타입 기초 (Person) |
 | | 09Prototype.html | 프로토타입 상속 (Animal → Dog → 포매라니안) |
+| **03Operator** | 00Info.html | 산술·할당·비교·논리·비트·삼항·typeof 연산자 |
 
 ---
 
@@ -1927,4 +2053,5 @@ knife.toString();  // "toString 재정의 : 검, 포매라니안, 검정"
 8. **입력값 처리** : `querySelector`, `.value`, `Number()`
 9. **동적 DOM 생성** : `createElement`, `appendChild`, `Object.entries`
 10. **프로토타입** : `Object.keys/values/entries/freeze`, `생성자.prototype`, `Object.create` 상속 (예제: `02Type/08Prototype.html`, `09Prototype.html`)
-11. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type` 참고
+11. **연산자** : 산술(+, -, *, /, %), 할당(+=, -=), 비교(==, ===), 논리(&&, \|\|, !), 삼항(?:), typeof (예제: `03Operator/00Info.html`)
+12. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type`, `03Operator` 참고
