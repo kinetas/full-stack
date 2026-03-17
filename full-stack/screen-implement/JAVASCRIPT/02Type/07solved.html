@@ -107,13 +107,18 @@
 
     <script>
         // 사전작업
-
-        //---------------------------------------
-        // step-1 - 상호명 선택하기 채우기
-        // 카테고리 list 표시 (id : filter-option)
         //---------------------------------------
         const selectRestorantEl = document.querySelector('.select-restorant');
         const fillterOptionEl = document.getElementById('filter-option')
+
+        const categorylist =
+        중구맛집.data.reduce((categorylist,item)=>{
+            categorylist[item.FD_CS] = categorylist[item.FD_CS]==undefined? 1 : categorylist[item.FD_CS] +=1;
+            return categorylist;
+        },{})
+        //---------------------------------------
+        // step-1 - 상호명 선택하기 채우기
+        // 카테고리 list 표시 (id : filter-option)
         
         
         중구맛집.data.forEach((item)=>{
@@ -126,11 +131,6 @@
             
         })
         
-        const categorylist =
-        중구맛집.data.reduce((categorylist,item)=>{
-            categorylist[item.FD_CS] = categorylist[item.FD_CS]==undefined? 1 : categorylist[item.FD_CS] +=1;
-            return categorylist;
-        },{})
         Object.entries(categorylist).forEach((item)=>{
             console.log(item);
             const optionEl = document.createElement('option');
@@ -138,6 +138,28 @@
             fillterOptionEl.appendChild(optionEl);
         })
         console.log(categorylist);
+        // 이벤트 표시
+        fillterOptionEl.addEventListener('change',(e)=>{
+            // console.log(e.target);
+            const target = e.target.value;
+            const selectedItems = 
+            중구맛집.data.filter((item)=>{
+                return target=="all"? item:target.includes(item.FD_CS);
+            });
+            console.log(selectedItems);
+
+            // 기존 select option 초기화
+            while(selectRestorantEl.firstChild){
+                selectRestorantEl.removeChild(selectRestorantEl.firstChild);
+            }
+
+            // 추가
+            selectedItems.forEach((item)=>{
+                const optionEl = document.createElement('option');
+                optionEl.innerHTML = item.BZ_NM;
+                selectRestorantEl.appendChild(optionEl);
+            })
+        })
         
 
 

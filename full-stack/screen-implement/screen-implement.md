@@ -1762,7 +1762,7 @@ selectRestorantEl.appendChild(optionEl);
 
 ### Object.entries()
 
-객체를 **`[key, value]` 형태의 배열**로 바꿔서 반복문이나 `forEach` 로 처리할 때 씀.
+객체를 **`[key, value]` 형태의 배열**로 바꿔서 반복문이나 `forEach` 로 처리할 때 사용.
 
 ```javascript
 const categoryList = { 한식: 10, 일식: 4 };
