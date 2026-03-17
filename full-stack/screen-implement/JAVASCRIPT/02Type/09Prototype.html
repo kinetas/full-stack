@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 상위프로토타입 함수
+        function Animal(name){
+            console.log('Animal 생성자 호출');
+            this.name = name;
+        }
+        // toString 재정의(Object's toString을 Animal에서 재정의)
+        Animal.prototype.toString = function(){
+            return `toString 재정의 : ${this.name}`;
+        }
+        
+        const bow = new Animal("보우");
+        console.log("Animal's Object :", bow);
+        console.log("Animal's toString :", bow.toString());
+        
+        // 하위프로토타입 함수
+        function Dog(name,kind){
+            Animal.call(this,name); //상위 프로토타입 생성자 호출
+            console.log("Dog 생성자 호출!");
+            this.kind=kind;
+        }
+        // toString 재정의(Animal's toString을 Dog에서 재정의)
+        Dog.prototype.toString = function(){
+            return `toString 재정의 : ${this.name},${this.kind}`;
+        }
+        // 상속 코드(상위클래스Animal <- 하위클래스Dog)
+        Dog.prototype=Object.create(Animal.prototype);
+        
+        const gun = new Dog("건","CyberDog");
+        console.log("Dog's Object : ", gun);
+        console.log("Dog's toString :", gun.toString());
+
+        function 포매라니안(name,kind,color){
+            Dog.call(this,name,kind);
+            console.log("포매라니안 생성자 호출");
+            this.color=color;
+        }
+        포매라니안.prototype=Object.create(Dog.prototype);
+
+        포매라니안.prototype.toString = function(){
+            return `toString 재정의 : ${this.name},${this.kind}, ${this.color}`;
+        }
+
+        const knife = new 포매라니안("검","포매라니안","검정");
+        console.log(knife);
+        console.log(knife.toString());
+
+        
+    </script>
+</body>
+</html>
