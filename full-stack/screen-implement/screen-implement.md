@@ -1780,6 +1780,119 @@ Object.entries(categoryList).forEach(item => {
 
 ---
 
+### Object 유틸리티 메서드
+
+객체를 다루는 기본 함수 제공.
+
+| 메서드 | 설명 |
+|--------|------|
+| `Object.keys(obj)` | 객체의 key를 배열로 변환 |
+| `Object.values(obj)` | 객체의 value를 배열로 변환 |
+| `Object.entries(obj)` | 열거 가능한 속성을 `[key, value]` 배열로 변환 |
+| `Object.assign(target, ...sources)` | 여러 객체를 병합하여 target에 반영 |
+| `Object.freeze(obj)` | 객체 읽기 전용 (수정·추가 불가) |
+
+```javascript
+const obj = { name: "김", age: 25 };
+Object.keys(obj);    // ["name", "age"]
+Object.values(obj);  // ["김", 25]
+Object.entries(obj); // [["name", "김"], ["age", 25]]
+
+Object.freeze(obj);
+obj.name = "이";     // 무시됨
+obj.hobby = "등산";  // 추가 안 됨
+```
+
+---
+
+### Object.prototype
+
+**Object.prototype**은 자바스크립트의 모든 객체가 상속하는 프로토타입 체인의 최상위 객체.
+
+| 메서드/속성 | 설명 |
+|-------------|------|
+| `toString()` | 객체를 문자열로 변환 |
+| `hasOwnProperty(prop)` | 해당 속성을 직접 소유하는지 확인 |
+| `isPrototypeOf(obj)` | 프로토타입 체인에 존재하는지 확인 |
+| `valueOf()` | 객체의 원시 값 표현 반환 |
+| `constructor` | 객체를 생성한 생성자 함수 참조 |
+
+---
+
+### 프로토타입 기초 (생성자 + prototype)
+
+생성자 함수와 `prototype`으로 **메서드 재정의** 및 **기능 추가(Extends)** 가능.
+
+```javascript
+function Person(name) {
+    this.name = name;
+    this.getName = function() { console.log(this.name); };
+}
+// toString 재정의
+Person.prototype.toString = function() {
+    return `toString 재정의 : ${this.name}`;
+};
+// 새 기능 추가
+Person.prototype.helloworld = function() {
+    console.log(`${this.name} HELLO WORLD`);
+};
+
+const person1 = new Person("김");
+person1.toString();    // "toString 재정의 : 김"
+person1.helloworld();  // "김 HELLO WORLD"
+```
+
+| 개념 | 설명 |
+|------|------|
+| `생성자.prototype.메서드` | 해당 생성자로 만든 모든 인스턴스가 공유하는 메서드 |
+| `new 생성자()` | prototype을 상속한 인스턴스 생성 |
+
+---
+
+### 프로토타입 상속 (Object.create)
+
+상위 생성자 → 하위 생성자로 **상속 체인**을 만들 때 사용.
+
+```javascript
+// 상위
+function Animal(name) {
+    this.name = name;
+}
+Animal.prototype.toString = function() {
+    return `toString 재정의 : ${this.name}`;
+};
+
+// 하위 (Animal 상속)
+function Dog(name, kind) {
+    Animal.call(this, name);  // 상위 생성자 호출
+    this.kind = kind;
+}
+Dog.prototype = Object.create(Animal.prototype);  // 상속 연결
+Dog.prototype.toString = function() {
+    return `toString 재정의 : ${this.name}, ${this.kind}`;
+};
+
+// 하위의 하위 (Dog 상속)
+function 포매라니안(name, kind, color) {
+    Dog.call(this, name, kind);
+    this.color = color;
+}
+포매라니안.prototype = Object.create(Dog.prototype);
+포매라니안.prototype.toString = function() {
+    return `toString 재정의 : ${this.name}, ${this.kind}, ${this.color}`;
+};
+
+const knife = new 포매라니안("검", "포매라니안", "검정");
+knife.toString();  // "toString 재정의 : 검, 포매라니안, 검정"
+```
+
+| 패턴 | 설명 |
+|------|------|
+| `상위.call(this, ...args)` | 하위 생성자에서 상위 생성자 호출 (속성 상속) |
+| `하위.prototype = Object.create(상위.prototype)` | prototype 체인 연결 (메서드 상속) |
+
+---
+
 ### JAVASCRIPT 폴더 예제 파일 인덱스
 
 | 폴더 | 파일 | 설명 |
@@ -1797,6 +1910,8 @@ Object.entries(categoryList).forEach(item => {
 | | 06OpenData.html | (1560-1568) 오픈데이터 필터링/가공 |
 | | 07solve.html | (1560-1568) `createElement`, `appendChild`, `Object.entries` |
 | | 07solved.html | (1560-1568) 주문받기 화면 실습 |
+| | 08Prototype.html | Object 유틸리티, Object.prototype, 프로토타입 기초 (Person) |
+| | 09Prototype.html | 프로토타입 상속 (Animal → Dog → 포매라니안) |
 
 ---
 
@@ -1809,6 +1924,7 @@ Object.entries(categoryList).forEach(item => {
 5. **타입** : number, string, boolean, object, null, undefined (typeof로 확인)  
 6. **객체** : `{ key: value }`, 메서드, `this`  
 7. **배열** : `[]`, index 접근, `push`/`pop`, `forEach`, `filter`, `map`, `reduce`  
-8. **입력값 처리** : `querySelector`, `.value`, `Number()`  
-9. **동적 DOM 생성** : `createElement`, `appendChild`, `Object.entries`  
-10. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type` 참고
+8. **입력값 처리** : `querySelector`, `.value`, `Number()`
+9. **동적 DOM 생성** : `createElement`, `appendChild`, `Object.entries`
+10. **프로토타입** : `Object.keys/values/entries/freeze`, `생성자.prototype`, `Object.create` 상속 (예제: `02Type/08Prototype.html`, `09Prototype.html`)
+11. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type` 참고
