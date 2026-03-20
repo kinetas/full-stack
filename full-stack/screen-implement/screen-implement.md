@@ -2265,6 +2265,169 @@ function customMap(array, func) {
 const r2 = customMap(arr, (item) => ({ id: item.id, addr: item.addr }));
 ```
 
+**customMap2: 조건부 반환 (filter 유사)**
+
+cutline 등 추가 인자를 넘겨, 조건에 맞는 항목만 반환.
+
+```javascript
+const students = [
+    { name: "철수", score: 85 },
+    { name: "영희", score: 42 },
+    { name: "민수", score: 91 },
+    { name: "지현", score: 55 },
+    { name: "태호", score: 73 }
+];
+
+function customMap2(cutline, students, func) {
+    let newArray = [];
+    for (let i = 0; i < students.length; i++) {
+        const passItem = func(students[i], cutline);
+        if (passItem) newArray.push(passItem);
+    }
+    return newArray;
+}
+// 60점 이상만 pass
+const result = customMap2(60, students, (item, cutline) =>
+    item.score >= cutline && { name: item.name, grade: "pass" }
+);
+// [ { name: '철수', grade: 'pass' }, { name: '민수', grade: 'pass' }, { name: '태호', grade: 'pass' } ]
+```
+
+**클로저 + 콜백: customMap (체이닝 형태)**
+
+`customMap(array)`가 내부 `map` 함수를 담은 객체를 반환. `newArray`는 클로저로 유지.
+
+```javascript
+function customMap(array) {
+    let newArray = [];  // 클로저 대상 (State)
+    function map(func) {
+        for (let i = 0; i < array.length; i++) {
+            newArray.push(func(array[i]));
+        }
+        return newArray;
+    }
+    return { map: map };
+}
+// 사용
+customMap(arr).map((item) => ({ id: item.id, addr: item.addr }));
+```
+
+---
+
+### 마우스 이벤트 (Mouse Events)
+
+| 이벤트 | 설명 |
+|--------|------|
+| `mouseenter` | 마우스 포인터가 특정 영역 내로 진입 시 |
+| `mouseover` | 마우스 포인터가 특정 영역 내에 머무를 시 |
+| `mouseleave` | 마우스 포인터가 특정 영역 밖으로 나갈 때 |
+| `click` | 마우스 1회 클릭 |
+| `dblclick` | 마우스 2회 클릭 (더블클릭) |
+| `contextmenu` | 마우스 우클릭 (메뉴 표시) |
+| `mousedown` | 마우스 버튼 눌림 |
+| `mousemove` | 마우스 이동 |
+
+---
+
+### 드래그 앤 드롭 (Drag and Drop)
+
+| 이벤트 | 발생 대상 | 설명 |
+|--------|------------|------|
+| `dragstart` | 드래그 소스 | 드래그 시작 |
+| `drag` | 드래그 소스 | 드래그 중 |
+| `dragenter` | 드롭 대상 | 드래그가 대상 영역 위로 이동 시 |
+| `dragover` | 드롭 대상 | 드래그가 대상 영역 위에 있는 동안 |
+| `dragleave` | 드롭 대상 | 드래그가 대상 영역에서 벗어날 때 |
+| `drop` | 드롭 대상 | 드롭 (마우스 버튼을 뗀 경우) |
+| `dragend` | 드래그 소스 | 드래그 종료 |
+
+**필수 설정**
+
+1. 드래그 소스에 `draggable="true"` 지정
+2. `dragenter`, `dragover`에서 `e.preventDefault()` 호출 (필수, drop 이벤트 발생을 위해)
+3. `drop`에서 `e.preventDefault()` 호출
+
+```javascript
+// 드래그 소스
+d1El.addEventListener('dragstart', (e) => {
+    e.dataTransfer.setData('text/plain', d1El.querySelector('span').innerHTML);
+});
+
+// 드롭 대상
+d4El.addEventListener('dragenter', (e) => { e.preventDefault(); });
+d4El.addEventListener('dragover', (e) => { e.preventDefault(); });  // 필수
+d4El.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const data = e.dataTransfer.getData('text/plain');
+    d4El.innerHTML = data || 'dropped';
+});
+```
+
+---
+
+### 파일 드롭 (File Drop)
+
+`e.dataTransfer.files`로 드롭된 파일 목록 접근
+
+```javascript
+d4El.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const files = e.dataTransfer.files;
+    for (let i = 0; i < files.length; i++) {
+        if (!isValid(files[i])) return;
+        const newImgEl = document.createElement('img');
+        newImgEl.src = URL.createObjectURL(files[i]);
+        previewEl.appendChild(newImgEl);
+    }
+});
+// 파일 검증: file.type (mime), file.size (bytes)
+```
+
+---
+
+### 드래그로 요소 생성 (보드에 아이템 배치)
+
+aside의 아이템을 article 보드로 드래그해 div 생성
+
+```javascript
+let dragedNode = null;
+liEls.forEach((liEl) => {
+    liEl.addEventListener('dragstart', (e) => { dragedNode = e.target; });
+});
+
+boardEl.addEventListener('dragover', (e) => { e.preventDefault(); });
+boardEl.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const newDivEl = document.createElement("div");
+    newDivEl.setAttribute('style', `left:${e.offsetX}px;top:${e.offsetY}px`);
+    newDivEl.classList.add("item", dragedNode.classList[0]);  // 드래그한 아이템 스타일 적용
+    boardEl.appendChild(newDivEl);
+});
+```
+
+---
+
+### 마우스 이벤트 좌표
+
+| 속성 | 설명 |
+|------|------|
+| `e.offsetX`, `e.offsetY` | 이벤트 대상 요소 기준 좌표 |
+| `e.clientX`, `e.clientY` | 뷰포트 기준 좌표 |
+| `e.target.getBoundingClientRect()` | 요소의 left, top, width, height 등 |
+
+---
+
+### 우클릭 이동 모드 (contextmenu)
+
+`contextmenu`에서 `e.preventDefault()`로 브라우저 기본 메뉴 비활성화 후, `mousedown`(e.button == 2)으로 이동 모드 토글.
+
+```javascript
+boardEl.addEventListener('contextmenu', (e) => { e.preventDefault(); });
+// mousedown에서 e.button == 2 (우클릭) 체크
+// targetNode.getBoundingClientRect()로 위치 계산
+// mousemove에서 targetNode.style.left/top 설정
+```
+
 ---
 
 ### JAVASCRIPT 폴더 예제 파일 인덱스
@@ -2294,7 +2457,9 @@ const r2 = customMap(arr, (item) => ({ id: item.id, addr: item.addr }));
 | | 02Hoisting.html | 호이스팅 (function, var) |
 | | 03Scope.html | 전역/지역/함수/블록/렉시컬 스코프, this |
 | | 04Closure.html | 클로저 (정보 은닉, 데이터 보존) |
-| | 05CallBack.html | 콜백 함수, customMap 구현 |
+| | 05CallBack.html | 콜백 함수, customMap, customMap2(조건부), 클로저+콜백 |
+| **06EVENT** | 01Mouse.html | 마우스 이벤트, 드래그 앤 드롭, 파일 드롭 (dataTransfer.files, URL.createObjectURL) |
+| | 02Mouse.html | aside→article 드래그 배치, 우클릭 이동 모드 (contextmenu, mousedown, mousemove) |
 
 ---
 
@@ -2313,4 +2478,5 @@ const r2 = customMap(arr, (item) => ({ id: item.id, addr: item.addr }));
 11. **연산자** : 산술(+, -, *, /, %), 할당(+=, -=), 비교(==, ===), 논리(&&, \|\|, !), 삼항(?:), typeof (예제: `03Operator/00Info.html`)
 12. **흐름 제어** : if/else if/else 분기문, while/for 반복문 (예제: `04FlowControl/01~03`)
 13. **함수** : function vs 화살표 함수, 호이스팅, 스코프(전역/지역/렉시컬), 클로저, 콜백 (예제: `05Function/01~05`)
-14. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type`, `03Operator`, `04FlowControl`, `05Function` 참고
+14. **이벤트** : 마우스(click, contextmenu, mousedown, mousemove), 드래그 앤 드롭(dragstart, dragover, drop), 파일 드롭 (예제: `06EVENT/01Mouse.html`, `02Mouse.html`)
+15. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type`, `03Operator`, `04FlowControl`, `05Function`, `06EVENT` 참고
