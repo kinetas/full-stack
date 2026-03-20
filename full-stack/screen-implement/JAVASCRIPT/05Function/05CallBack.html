@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            콜백함수(CALL BACK)
+            함수를 호출하는 시점이 바뀌어진 형태의 함수
+            기존방식 : 사용자(개발자)가 함수를 직접정의 -> 정의된 함수를 호출(CALL)하며 결과를 반환받는 방식
+            CALLBACK : 콜백함수에 인자로 로직이 담긴 함수를 (함수주소) 전달하며 콜백함수로 부터 처리된 결과를 반환받는 방식
+        */
+
+        // 함수 정의
+        // function func1(n1,n2){
+        //     console.log("func(n1,n2)...call");
+        //     return n1+n2;
+        // }
+
+        // // 함수 실행(CALL)
+        // const r1 = func1(10,20); //call-by-value : 값(value)전달을 통한 함수 직접 실행(CALL)
+        // console.log("r1",r1);
+
+        // // 콜백함수 (n1,n2 : value, logic : function함수명(함수의 위치, 메모리주소:참조값))
+        // function callbackFunc(n1,n2,logic){
+        //     console.log("callbackFunc Start");
+        //     const result = logic(n1,n2);    //외부로부터 받은함수를 내부에서 CALL
+        //     console.log("result",result);
+        //     console.log("callbackFunc End");
+        // }
+        // callbackFunc(100,200,func1); //콜백함수의 CALL
+        // console.log("--------------------");
+        // callbackFunc(10,20,(n1,n2)=>{return n2-n1;}); //콜백함수의 CALL
+        // console.log("--------------------");
+        // callbackFunc(500,300,(n1,n2)=>{return n1>n2?n1-n2:n2-n1;}); //콜백함수의 CALL
+        
+
+        
+    </script>
+</body>
+
+</html>
