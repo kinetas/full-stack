@@ -38,9 +38,102 @@
         // callbackFunc(10,20,(n1,n2)=>{return n2-n1;}); //콜백함수의 CALL
         // console.log("--------------------");
         // callbackFunc(500,300,(n1,n2)=>{return n1>n2?n1-n2:n2-n1;}); //콜백함수의 CALL
-        
 
-        
+        // //Callback함수로 Map 만들기
+        // const arr = [
+        //     { "id": "111", "name": "티모", age: 555, "addr": "대구" },
+        //     { "id": "222", "name": "렝가", age: 333, "addr": "인천" },
+        //     { "id": "333", "name": "워윅", age: 222, "addr": "부산" },
+        //     { "id": "444", "name": "문도박사", age: 111, "addr": "울산" },
+        //     { "id": "555", "name": "이즈리얼", age: 99, "addr": "창원" }
+        // ]
+        // // 제공되는 배열함수 map
+        // const r1 = arr.map((item) => { return { "id": item.id, "addr": item.addr } })
+        // console.log("r1", r1);
+
+        // // 콜백함수로 만든 유사 map
+        // function customMap(array, func) {
+        //     // console.log(array);
+        //     let newArray = [];
+        //     for(let i=0;i<array.length;i++){
+        //         // console.log(array[i]);
+        //         const newItem = func(array[i]);
+        //         console.log(newItem);
+        //         newArray.push(newItem);
+        //     }
+        //     return newArray;
+        // }
+        // // 콜백함수 실행
+        // const r2 = customMap(arr,(item) => { return { "id": item.id, "addr": item.addr } });
+        // console.log("r2", r2);
+
+        // //미니문제
+        // const students = [
+        //     { name: "철수", score: 85 },
+        //     { name: "영희", score: 42 },
+        //     { name: "민수", score: 91 },
+        //     { name: "지현", score: 55 },
+        //     { name: "태호", score: 73 }
+        // ];
+        // // 여기에 작성하세요(점수가 60점 이상인 학생만 pass)
+        // const result = customMap2(60, students, (item,cutline) => { 
+        //     // return item.score >= cutline ? students["grade"] = "pass" : students["grade"] = "fail" 
+        //     return item.score>=cutline && {'name':item.name, 'grade': "pass"}
+        // })
+        // console.log(result)
+        // // 기대 출력
+        // // [ { name: '철수', grade: 'pass' },
+        // //   { name: '민수', grade: 'pass' },
+        // //   { name: '태호', grade: 'pass' } ]        
+
+        // function customMap2(cutline, students, func) {
+        //     let newArray = [];
+        //     for (let i = 0; i < students.length; i++) {
+        //         // console.log(array[i]);
+        //         // console.log(newItem);
+        //         const passItem = func(students[i],cutline)
+        //         if(passItem)newArray.push(passItem);
+        //     }
+        //     return newArray;
+        // }
+
+        // Closure+ Callback
+
+        const arr = [
+            { "id": "111", "name": "티모", age: 555, "addr": "대구" },
+            { "id": "222", "name": "렝가", age: 333, "addr": "인천" },
+            { "id": "333", "name": "워윅", age: 222, "addr": "부산" },
+            { "id": "444", "name": "문도박사", age: 111, "addr": "울산" },
+            { "id": "555", "name": "이즈리얼", age: 99, "addr": "창원" }
+        ]
+
+        // 콜백함수로 만든 유사 map + closure
+        function customMap(array) {
+            // State(클로저 대상)
+            let newArray = [];
+
+            // inner Function
+            function map(func){
+                for(let i=0;i<array.length;i++){
+                    // console.log(array[i]);
+                    const newItem = func(array[i]);
+                    console.log(newItem);
+                    newArray.push(newItem);
+                }
+                return newArray;
+            }
+            return {"map":map};
+        }
+        // 콜백함수 실행
+        // const closureFunc = customMap();
+        console.log(
+            customMap(arr).map((item) => { return { "id": item.id, "addr": item.addr } })
+
+        )
+        // const r2 = customMap(arr,(item) => { return { "id": item.id, "addr": item.addr } });
+        // console.log("r2", r2);
+
+
     </script>
 </body>
 

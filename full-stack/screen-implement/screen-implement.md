@@ -2018,6 +2018,255 @@ typeof undefined;// "undefined"
 
 ---
 
+### 분기문 (if / else if / else)
+
+조건에 따라 **다른 코드 블록**을 실행.
+
+```javascript
+if (조건식) {
+    // 참인 경우 실행
+} else if (다른조건) {
+    // 다른조건 참인 경우 실행
+} else {
+    // 모두 거짓인 경우 실행
+}
+```
+
+**실전 예시** (01분기문.html): select 변경 시 레이아웃 모드 전환 (데스크탑/태블릿/모바일)
+
+```javascript
+modeEl.addEventListener('change', (e) => {
+    const mode = e.target.value;
+    if (mode == 'desktop') {
+        wrapperEl.classList.remove('layout-mobile', 'layout-tablet');
+        wrapperEl.classList.add('layout');
+    } else if (mode == 'tablet') {
+        wrapperEl.classList.remove('layout', 'layout-mobile');
+        wrapperEl.classList.add('layout-tablet');
+    } else {
+        wrapperEl.classList.remove('layout', 'layout-tablet');
+        wrapperEl.classList.add('layout-mobile');
+    }
+});
+```
+
+**실전 예시** (02분기문.html): 회원가입 폼 유효성 검증
+
+```javascript
+const submitForm = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    if (form.email.value == "") {
+        messageEl.innerHTML = "※이메일 입력은 필수사항입니다.";
+        return false;
+    } else if (form.password.value == "") {
+        messageEl.innerHTML = "※패스워드 입력은 필수사항입니다.";
+        return false;
+    } else if (!regex.test(form.password.value)) {
+        messageEl.innerHTML = "※최소 8자, 대소문자+숫자+특수문자 포함";
+        return false;
+    } else if (form.password.value != form.rePassword.value) {
+        messageEl.innerHTML = "※패스워드가 일치하지 않습니다.";
+        return false;
+    }
+    // 전송
+};
+```
+
+---
+
+### 반복문 (while / for)
+
+**while**: 조건이 참인 동안 반복
+
+```javascript
+let i = 0;
+while (i < n) {
+    // 종속 문장
+    i++;
+}
+```
+
+**for**: 탈출용 변수·조건·연산식을 한 줄에
+
+```javascript
+for (let i = 0; i < n; i++) {
+    // 조건이 참인 동안 반복
+}
+```
+
+---
+
+### 함수 기초 (function / 화살표 함수)
+
+| 문법 | 호이스팅 | 설명 |
+|------|----------|------|
+| `function 함수명() {}` | O | ECMAScript 6 이전, 호이스팅 됨 |
+| `const 함수명 = () => {}` | X | ECMAScript 6 이후, 유지보수에 유리 |
+
+**인자·리턴 조합**
+
+| 인자 | 리턴 | 예시 |
+|------|------|------|
+| O | O | `(n1, n2) => { return n1 + n2; }` |
+| O | X | `(n1, n2) => { console.log(n1, n2); }` |
+| X | O | `() => { return prompt('입력'); }` |
+| X | X | `() => { console.log('실행'); }` |
+
+```javascript
+// function 선언 (호이스팅 O)
+function sum1(n1, n2) {
+    return n1 + n2;
+}
+const r1 = sum1(10, 20);  // Call-by-value
+
+// 화살표 함수 (호이스팅 X)
+const sum2 = (n1, n2) => {
+    return n1 + n2;
+};
+```
+
+---
+
+### 호이스팅 (Hoisting)
+
+**변수와 함수 정의가 코드 실행 전에 메모리에 미리 올라가는 현상.**
+
+| 예약어 | 호이스팅 |
+|--------|----------|
+| `function` | O |
+| `var` | O |
+| `let`, `const` | X (TDZ) |
+
+```javascript
+h1();  // 정상 실행 (function 호이스팅)
+function h1() { console.log("HELLO"); }
+
+h2();  // 에러 (화살표 함수는 호이스팅 안 됨)
+const h2 = () => { console.log("HELLO-2"); };
+```
+
+- `var`는 가급적 사용 지양
+- `function`은 “선언 전 호출” 효과가 필요할 때만 사용
+- 화살표 함수는 기본적으로 익명 함수
+
+---
+
+### 스코프 (Scope)
+
+**변수·함수가 접근할 수 있는 범위.**
+
+| 구분 | 설명 |
+|------|------|
+| **전역 스코프** | 모든 지역에서 접근 가능 |
+| **지역 스코프** | 특정 `{}` 블록 내에서만 접근 가능 |
+| **함수 스코프** | `var` – 함수 본문 `{}` 내에서만 유효 |
+| **블록 스코프** | `let`, `const` – `if`, `while` 등 `{}` 블록 내에서만 유효 |
+| **렉시컬 스코프** | 변수를 **선언한 위치**에 따라 스코프 결정 |
+
+```javascript
+// var: 함수 스코프 (블록 무시)
+if (true) {
+    var v_2 = "블록 내 var";
+}
+console.log(v_2);  // 접근 가능
+
+// let: 블록 스코프
+if (true) {
+    let v_1 = "블록 내 let";
+}
+console.log(v_1);  // 에러
+
+// 렉시컬 스코프
+const name = "Global";
+function outer() {
+    const name = "Local";
+    function inner() {
+        console.log(name);  // "Local" (선언 위치 기준)
+    }
+    inner();
+}
+```
+
+**this 차이**
+
+| 함수 형태 | this 기준 |
+|-----------|-----------|
+| `function` | **호출 시점** 기준 (호출한 객체) |
+| `() => {}` | **탄생 시점** 기준 (상위 스코프, 렉시컬) |
+
+```javascript
+const a = {
+    name: "김",
+    talk: function() { console.log(this.name); },  // this === a
+    walk: () => { console.log(this.name); }        // this === 상위(예: window)
+};
+```
+
+---
+
+### 클로저 (Closure)
+
+**내부 함수가 외부 함수의 변수에 접근할 수 있는 메커니즘.**
+
+- **정보 은닉**: 외부에서 직접 접근 불가, 함수를 통해서만 제어
+- **데이터 보존**: 함수 생성 시점의 환경을 유지하며 데이터 보존
+- **비동기 처리**: 비동기 결과를 유지하고 필요 시 접근
+
+```javascript
+function outer() {
+    let state = 0;
+    function setState(n) {
+        state = n;  // outer의 state에 접근 (렉시컬 스코프)
+        console.log('state', state);
+    }
+    return setState;  // 함수 참조(주소) 반환
+}
+const closureFunc = outer();
+closureFunc(10);  // state 10
+closureFunc(20);  // state 20 (state가 유지됨)
+```
+
+---
+
+### 콜백 함수 (Callback)
+
+**호출 시점이 바뀐 함수.** 인자로 **함수(로직)**를 넘겨, 그 함수를 내부에서 호출하는 방식.
+
+| 방식 | 설명 |
+|------|------|
+| 기존 | 개발자가 함수 정의 → 직접 호출(CALL) → 결과 반환 |
+| 콜백 | 로직이 담긴 함수를 인자로 전달 → 콜백 함수가 내부에서 호출 → 결과 반환 |
+
+```javascript
+// 일반 함수: 직접 호출
+function func1(n1, n2) { return n1 + n2; }
+const r1 = func1(10, 20);
+
+// 콜백: logic 함수를 인자로 전달
+function callbackFunc(n1, n2, logic) {
+    const result = logic(n1, n2);  // 외부에서 받은 함수를 내부에서 CALL
+    return result;
+}
+callbackFunc(100, 200, func1);
+callbackFunc(10, 20, (n1, n2) => n2 - n1);
+```
+
+**콜백으로 map 유사 구현**
+
+```javascript
+function customMap(array, func) {
+    let newArray = [];
+    for (let i = 0; i < array.length; i++) {
+        newArray.push(func(array[i]));
+    }
+    return newArray;
+}
+const r2 = customMap(arr, (item) => ({ id: item.id, addr: item.addr }));
+```
+
+---
+
 ### JAVASCRIPT 폴더 예제 파일 인덱스
 
 | 폴더 | 파일 | 설명 |
@@ -2038,6 +2287,14 @@ typeof undefined;// "undefined"
 | | 08Prototype.html | Object 유틸리티, Object.prototype, 프로토타입 기초 (Person) |
 | | 09Prototype.html | 프로토타입 상속 (Animal → Dog → 포매라니안) |
 | **03Operator** | 00Info.html | 산술·할당·비교·논리·비트·삼항·typeof 연산자 |
+| **04FlowControl** | 01분기문.html | if/else if/else, 레이아웃 모드 전환 (select) |
+| | 02분기문.html | if 분기, 회원가입 폼 유효성 검증 |
+| | 03반복문.html | while, for 반복문 |
+| **05Function** | 01Basic.html | function vs 화살표 함수, 인자·리턴 조합 |
+| | 02Hoisting.html | 호이스팅 (function, var) |
+| | 03Scope.html | 전역/지역/함수/블록/렉시컬 스코프, this |
+| | 04Closure.html | 클로저 (정보 은닉, 데이터 보존) |
+| | 05CallBack.html | 콜백 함수, customMap 구현 |
 
 ---
 
@@ -2054,4 +2311,6 @@ typeof undefined;// "undefined"
 9. **동적 DOM 생성** : `createElement`, `appendChild`, `Object.entries`
 10. **프로토타입** : `Object.keys/values/entries/freeze`, `생성자.prototype`, `Object.create` 상속 (예제: `02Type/08Prototype.html`, `09Prototype.html`)
 11. **연산자** : 산술(+, -, *, /, %), 할당(+=, -=), 비교(==, ===), 논리(&&, \|\|, !), 삼항(?:), typeof (예제: `03Operator/00Info.html`)
-12. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type`, `03Operator` 참고
+12. **흐름 제어** : if/else if/else 분기문, while/for 반복문 (예제: `04FlowControl/01~03`)
+13. **함수** : function vs 화살표 함수, 호이스팅, 스코프(전역/지역/렉시컬), 클로저, 콜백 (예제: `05Function/01~05`)
+14. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type`, `03Operator`, `04FlowControl`, `05Function` 참고
