@@ -42,35 +42,52 @@
             height: 20px;
         }
 
+        /* index2: 공통 보조 (index.html에는 없음 — ul/버튼/박스모델) */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        .wrapper ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            border: none;
+        }
+
+        em {
+            color: #666666;
+        }
+
         .layout {
             width: 1020px;
             margin: 0 auto;
         }
 
         /* Layout */
-        .wrapper {}
-
-        /* Layout-header */
         .wrapper {
             background-color: #fafafa;
         }
 
+        /* Layout-header */
         .wrapper>header {
             width: 100%;
-            height: 80px;
             background-color: #fa0050;
-
         }
 
         .wrapper>header>.top-header {
             display: flex;
             justify-content: center;
+            height: 80px;
         }
 
         .wrapper>header>.top-header>div {
-            width: 1350px;
+            width: 100%;
             height: 80px;
-            /* border: 1px solid; */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -80,6 +97,8 @@
             width: 90px;
             height: 40px;
             color: white;
+            font-size: 32px;
+            font-weight: bold;
             text-align: center;
             line-height: 40px;
             cursor: pointer;
@@ -89,8 +108,6 @@
             width: 300px;
             display: flex;
             justify-content: space-between;
-
-            /* border: 1px solid ; */
         }
 
         .wrapper>header>.top-header>div>.logo.right>.login {
@@ -103,6 +120,7 @@
             cursor: pointer;
         }
 
+        /* index2: 상단 주문표 버튼 */
         .wrapper>header>.top-header>div>.logo.right>.order {
             width: 120px;
             height: 40px;
@@ -113,7 +131,7 @@
             cursor: pointer;
         }
 
-
+        /* Layout-header > nav (index2 전용: 배경·검색·드롭다운) */
         .wrapper>header>nav {
             display: flex;
             justify-content: center;
@@ -127,15 +145,24 @@
         .wrapper>header>nav>.backing {
             width: 1920px;
             height: 235px;
-            position: absolute;
+            /* position: absolute; */
             margin-left: -1px;
             background-image: url(https://www.yogiyo.co.kr/mobile/image/bg-top.png?v=1);
             background-repeat: no-repeat;
             background-size: contain;
-            background-position: center;
-
-
+            background-position-x: 50%;
+            background-position-y: 100%;
         }
+
+        /* .wrapper>header>nav>.back-back{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: url(https://www.yogiyo.co.kr/mobile/image/bg-top.png?v=1);
+      background-size: 100% 100%;
+      background-color: #fa0050;
+      
+    } */
 
         .wrapper>header>nav>.back {
             margin-top: 80px;
@@ -286,27 +313,71 @@
 
         }
 
-
-
         /* Layout-main */
         .wrapper>main {
             padding: 20px 10px 30px;
-        }
-
-        .wrapper>main>section {
             display: flex;
-            justify-content: space-between;
-            margin: 1px;
-            padding: 10px;
-            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* index2: 카테고리 메뉴 영역 */
+        .wrapper>main>.menu {
+            margin-top: 235px;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            /* border: 1px solid; */
+
+
+            /* position: relative; */
         }
 
 
+        .wrapper>main>.menu>.menu-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
 
 
+            /* position: absolute; */
+        }
 
-        /* Layout-footer */
+        .wrapper>main>.menu>.menu-box>div {
+            width: 240px;
+            height: 220px;
+            border: 1px solid;
+            /* display: flex; */
+            border: 1px solid lightgray;
+            position: relative;
+            background-color: white;
+        }
 
+        .wrapper>main>.menu>.menu-box>div>.category {
+            width: 80px;
+            height: 22px;
+            margin: 10px;
+            /* border: 1px solid; */
+            z-index: 5;
+            position: absolute;
+
+        }
+
+        .wrapper>main>.menu>.menu-box>div>img {
+            width: 90%;
+            height: 100%;
+            /* border: 1px solid; */
+            /* padding: 10px; */
+
+            right: 0px;
+            top: 0px;
+            position: absolute;
+            cursor: pointer;
+
+        }
+
+        /* Layout-footer — index2: .footer-menu ul 구조가 index.html(ul>li)과 다름(ul>div>li) */
         .wrapper>footer {
             width: 100%;
             height: 400px;
@@ -335,17 +406,31 @@
             align-items: center;
         }
 
-        .wrapper>footer>.footer-menu>ul>li {
+        .wrapper>footer>.footer-menu>ul>div {
+            display: flex;
+            gap: 10px;
+        }
+
+        .wrapper>footer>.footer-menu>ul>div>li {}
+
+        .wrapper>footer>.footer-menu>ul>div>li>a {
             color: lightgray;
+            padding: 0 30px;
+            font-size: 0.9rem;
+
+        }
+
+        .wrapper>footer>.footer-menu>ul>div>li>a:first-child {
+            padding-left: 0px;
+        }
+
+        .wrapper>footer>.footer-menu>ul>.footer-menu-right>a {
+
             padding: 0 10px;
         }
 
-        .wrapper>footer>.footer-menu>ul>li:last-child {
-            padding-right: 0;
-        }
-
-        .wrapper>footer>.footer-menu>ul>li>a {
-            padding-left: 20px;
+        .wrapper>footer>.footer-menu>ul>.footer-menu-right>a:last-child {
+            padding-right: 0px;
         }
 
         .wrapper>footer>.company {
@@ -472,23 +557,11 @@
                 width: 700px;
                 margin: 0 auto;
             }
-
-            .wrapper>main>section {
-                flex-direction: column;
-            }
-
-            .wrapper>main>section>.items>.banner {
-                position: relative;
-                width: 660px;
-                right: auto;
-                top: 20px;
-            }
         }
     </style>
 </head>
 
 <body>
-
 
     <div class="wrapper">
         <header>
@@ -502,7 +575,9 @@
                 </div>
             </div>
             <nav>
-                <div class="backing"></div>
+                <div class="backing">
+
+                </div>
                 <div class="back-back"></div>
                 <div class="back">
                     <button class="gps">
@@ -531,24 +606,24 @@
             </nav>
         </header>
         <main class="layout">
-            <section>
 
-            </section>
         </main>
-        <div>
+        <footer>
             <div class="footer-menu">
                 <ul>
-                    <li>이용약관</li>
-                    <li>개인정보처리방침</li>
-                    <li>포인트정책</li>
-                    <li>회사소개</li>
-                    <li>저기요사장님</li>
-                    <li>입점문의</li>
-                    <li>공지사항</li>
-                    <li>FAQ</li>
-                    <li>
-                        <a href="">페이스북</a>
-                        <a href="">블로그</a>
+                    <div>
+                        <li><a href="javascript:void(0)">이용약관</a></li>
+                        <li><a href="javascript:void(0)">개인정보처리방침</a></li>
+                        <li><a href="javascript:void(0)">포인트정책</a></li>
+                        <li><a href="javascript:void(0)">회사소개</a></li>
+                        <li><a href="javascript:void(0)">저기요사장님</a></li>
+                        <li><a href="javascript:void(0)">입점문의</a></li>
+                        <li><a href="javascript:void(0)">공지사항</a></li>
+                        <li><a href="javascript:void(0)">FAQ</a></li>
+                    </div>
+                    <li class="footer-menu-right">
+                        <a href="javascript:void(0)">페이스북</a>
+                        <a href="javascript:void(0)">블로그</a>
                     </li>
                 </ul>
             </div>
@@ -589,8 +664,11 @@
                 발생하는 손해에대해 주식회사 위대한상상은 책임을 지지 않습니다. 상품 및 거래에 관하여 보다 정확한 정보는 해당 판매자에게 직접 확인하여 주시기 바랍니다. 단, 주식회사 위대한상상이
                 판매자로 등록판매한
                 상품은 판매자로서 책임을 부담합니다. Copyright YOGIYO. All Rights Reserved.</div>
-            
-            </footer>
+        </footer>
     </div>
+
+
+
+</body>
 
 </html>
