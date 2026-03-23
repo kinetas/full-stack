@@ -2430,6 +2430,55 @@ boardEl.addEventListener('contextmenu', (e) => { e.preventDefault(); });
 
 ---
 
+### 키보드 이벤트 (Keyboard Events) — `06EVENT/03Keyboard.html`
+
+| 이벤트 | 발생 시점 | 비고 |
+|--------|-------------|------|
+| `keyup` | 키를 뗄 때 | 영문 대소문자 구분 없음, 제어 문자 포함 |
+| `keydown` | 키를 누를 때 | 영문 대소문자 구분 없음, 제어 문자 포함 |
+| `keypress` | 키를 누르고 있을 때(레거시) | 영문 대소문자 구분, 제어 문자는 제외되는 경우가 많음 |
+
+- `addEventListener`로 각 입력창에 연결, 이벤트 객체 `e`에서 `e.key`, `e.keyCode` 등 확인 가능.
+- 예제: `keyup`에서 `e.keyCode == 13`(Enter)이면 입력값을 `<p>`에 누적하고 입력창은 비움.
+
+---
+
+### 입력·IME(한글 조합) 이벤트 — `06EVENT/04Keyboard.html`
+
+| 이벤트 | 설명 |
+|--------|------|
+| `input` | 텍스트 입력이 반영될 때(한글·영문 공통, 입력 완료 단위로 감지) |
+| `compositionstart` | IME 조합 시작(한글 자모 입력 시작) |
+| `compositionupdate` | 조합 중(현재 조합 상태 확인) |
+| `compositionend` | 조합 완료(완성 글자 확정) |
+
+- 콘솔에 `e`, `e.data`, `e.target.value`를 출력해 키보드 이벤트와의 차이를 비교하는 용도.
+
+---
+
+### 타자 연습 — `06EVENT/05KeyboardPractice.html`
+
+- 문장 배열 `texts`에서 **랜덤 인덱스**로 제시 문장 표시.
+- `input` 이벤트로 입력값과 목표 문장을 **한 글자씩 비교**: 일치는 `.valid`(초록), 불일치·초과 입력은 `.invalid`(빨강).
+- `validCnt / text.length`로 진행률(%) 계산, `#percentage` 안 아이콘의 `left`를 이동해 시각적 진행 표시(100%일 때 `calc(... - 25px)`로 끝 정렬).
+- 입력이 목표 문장과 **완전 일치**하면 `setTimeout`으로 잠시 후 다음 문장(이전과 다른 인덱스가 나올 때까지 `while`로 재추첨), 입력·결과 초기화, 포커스 유지.
+
+---
+
+### 체크박스 — `06EVENT/06CheckEvent.html`
+
+- `change` 이벤트: `e.target.checked`로 체크 여부 확인.
+- 체크 시 라벨 색을 초록, 해제 시 검정으로 변경 (`label` 스타일).
+
+---
+
+### 표 동적 생성·셀 선택 — `06EVENT/07solve.html`
+
+- 행·열 개수 입력 후 `생성`으로 `<table>`의 `<tbody>`를 비운 뒤 `tr`/`td`를 `createElement` + `appendChild`로 생성.
+- 각 `td`에 `data-row`, `data-col` 속성과 `[행, 열]` 표시, `click` 시 이전 선택 셀은 `deSelectedStyle`, 새 셀은 `selectedStyle`으로 배경·글자색 강조.
+
+---
+
 ### JAVASCRIPT 폴더 예제 파일 인덱스
 
 | 폴더 | 파일 | 설명 |
@@ -2460,6 +2509,11 @@ boardEl.addEventListener('contextmenu', (e) => { e.preventDefault(); });
 | | 05CallBack.html | 콜백 함수, customMap, customMap2(조건부), 클로저+콜백 |
 | **06EVENT** | 01Mouse.html | 마우스 이벤트, 드래그 앤 드롭, 파일 드롭 (dataTransfer.files, URL.createObjectURL) |
 | | 02Mouse.html | aside→article 드래그 배치, 우클릭 이동 모드 (contextmenu, mousedown, mousemove) |
+| | 03Keyboard.html | `keyup` / `keydown` / `keypress` 차이, Enter(`keyCode` 13)로 입력 확정 예제 |
+| | 04Keyboard.html | `input`, `compositionstart` / `compositionupdate` / `compositionend`(IME·한글 조합) |
+| | 05KeyboardPractice.html | `input`으로 글자 단위 검증, 진행률·Material 아이콘 이동, 문장 완료 시 다음 문장 |
+| | 06CheckEvent.html | 체크박스 `change`, `checked`로 라벨 색 변경 |
+| | 07solve.html | 행·열 입력으로 표 생성, `data-row` / `data-col`, 클릭 시 셀 선택 스타일 |
 
 ---
 
@@ -2478,5 +2532,5 @@ boardEl.addEventListener('contextmenu', (e) => { e.preventDefault(); });
 11. **연산자** : 산술(+, -, *, /, %), 할당(+=, -=), 비교(==, ===), 논리(&&, \|\|, !), 삼항(?:), typeof (예제: `03Operator/00Info.html`)
 12. **흐름 제어** : if/else if/else 분기문, while/for 반복문 (예제: `04FlowControl/01~03`)
 13. **함수** : function vs 화살표 함수, 호이스팅, 스코프(전역/지역/렉시컬), 클로저, 콜백 (예제: `05Function/01~05`)
-14. **이벤트** : 마우스(click, contextmenu, mousedown, mousemove), 드래그 앤 드롭(dragstart, dragover, drop), 파일 드롭 (예제: `06EVENT/01Mouse.html`, `02Mouse.html`)
+14. **이벤트** : 마우스·드래그(`01Mouse.html`, `02Mouse.html`), 키보드(`keyup`/`keydown`/`keypress`, `03Keyboard.html`), 입력·IME(`input`, `composition*`, `04Keyboard.html`), 타자 연습(`05KeyboardPractice.html`), 체크박스(`change`, `06CheckEvent.html`), 표·클릭 선택(`07solve.html`)
 15. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type`, `03Operator`, `04FlowControl`, `05Function`, `06EVENT` 참고
