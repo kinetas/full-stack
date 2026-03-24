@@ -5,10 +5,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .container>.item {
+            display: flex;
+            justify-content: left;
+            gap: 10px;
+        }
+    </style>
 </head>
 
 <body>
 
+    <input type="text" class="insert-value">
+    &nbsp;&nbsp;
+    <a href="javascript:void(0)" class="btn btn-insert">입력</a>
+    <hr>
+    <div class="container">
+        <div class="item">
+            <!-- <div class="left">
+                <input type="text" value="김" readonly>
+            </div>
+            <div class="right">
+                <a href="javascript:void(0)">삭제</a>
+            </div> -->
+        </div>
+    </div>
+
+    <script>
+        const insertValueEl = document.querySelector('.insert-value');
+        const btnInsertEl = document.querySelector('.btn-insert');
+        const containerEl = document.querySelector('.container');
+
+        //이벤트처리
+        insertValueEl.addEventListener("keydown", (e) => {
+            // 1. enter키 친다면 insertValueEl.value 값 가져오기
+            // console.log(e.keyCode)
+            if (e.keyCode == 13) {
+                const value = insertValueEl.value;
+                // 2. 유효성검증
+                if (!isValid(value)) return;
+
+                // 3. 새노드생성 -> container연결
+                createNode(value);
+
+                // 4. insertValueEl.value 값 비우기
+                insertValueEl.value = "";
+            }
+        });
+        btnInsertEl.addEventListener("click", (e) => {
+            // 1. insertValueEl.value 값 가져오기
+            const value = insertValueEl.value;
+            // console.log(value)
+
+            // 2. 유효성검증
+            if (!isValid(value)) return;
+
+            // 3. 새노드생성 -> container연결
+            createNode(value);
+            // 4. insertValueEl.value 값 비우기
+            insertValueEl.value = "";
+
+        });
+        function isValid(value) {
+            const regx = /^[^\d].*$/;
+            if (value.trim() === "" || value.trim() === null || value.trim() === undefined){
+                alert("내용을 입력하세요.")
+                return false;
+            }    
+            if(!regx.test(value)){
+                alert("첫단어 문자필수");
+                return false;
+            }
+            return true;
+        };
+        function createNode(text) {
+            // 새노드 생성
+            const itemEl = document.createElement('div');
+            const leftEl = document.createElement('div');
+            const inputEl = document.createElement('input');
+            const rightEl = document.createElement('div');
+            const aEl = document.createElement('a');
+
+            // 클래스 추가
+            itemEl.classList.add('item');
+            leftEl.className = 'left';
+            rightEl.className = 'rights';
+
+            // 속성추가
+            inputEl.setAttribute('readonly', true);
+            aEl.setAttribute("href", "javascript:void(0)");
+
+            // 데이터 삽입
+            aEl.innerHTML = "삭제";
+            inputEl.value = text;
+
+            // 노드 연결
+            leftEl.appendChild(inputEl);
+            rightEl.appendChild(aEl);
+            itemEl.appendChild(leftEl);
+            itemEl.appendChild(rightEl);
+            containerEl.appendChild(itemEl);
+
+            // 
+        };
+    </script>
 </body>
 
 </html>
