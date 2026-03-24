@@ -110,13 +110,12 @@
             if(!isValid(formEl)){
                 return;
             }
+            
             if(edited == false){
-    
-                insertData(name, age, addr);
-    
-                usernameEl.value = "";
-                ageEl.value = "";
-                addressEl.value = "";
+                
+                insertData(formEl);
+                
+                init(formEl)
             }
             else{
                 // console.log(selectedNode.childNodes);
@@ -124,27 +123,32 @@
                 updateData(selectedNode,name,age,addr);
                 edited=false;
                 selectedNode=null;
-                usernameEl.value = "";
-                ageEl.value = "";
-                addressEl.value = "";
             }
 
         });
 
+        function isValid(formEl){
+            return true;
+        }
 
-
-        function insertData(name, age, addr) {
-            const trEl = document.createElement('tr');
-            const thNameEl = document.createElement('th');
-            const thAgeEl = document.createElement('th');
-            const thAddrEl = document.createElement('th');
-            const deleteEl = document.createElement('th');
-
+        
+        
+        
+        function insertData(formEl) {
+            const td1El = document.createElement('td');
+            const td2El = document.createElement('td');
+            const td3El = document.createElement('td');
+            const td4El = document.createElement('td');
+            const td1InputEl = document.createElement('input');
+            const td2InputEl = document.createElement('input');
+            const td3InputEl = document.createElement('input');
+            const td4AEl = document.createElement('a');
+            
             thNameEl.innerHTML = name;
             thAgeEl.innerHTML = age;
             thAddrEl.innerHTML = addr;
             deleteEl.innerHTML = "삭제";
-
+            
             trEl.addEventListener('click', (e) => {
                 // console.log(thNameEl.textContent);
                 usernameEl.value = thNameEl.textContent;
@@ -159,20 +163,23 @@
                 const trEl = e.target.parentNode;
                 trEl.remove();
             });
-
+            
             trEl.appendChild(thNameEl);
             trEl.appendChild(thAgeEl);
             trEl.appendChild(thAddrEl);
             trEl.appendChild(deleteEl);
             tableBodyEl.appendChild(trEl);
-
+            
         }
         function updateData(node,name,age,addr){
             selectedNode.childNodes[0].innerHTML = name;
             selectedNode.childNodes[1].innerHTML = age;
             selectedNode.childNodes[2].innerHTML = addr;
         }
+        function init(formEl){
 
+        }
+        
     </script>
 </body>
 
