@@ -67,7 +67,7 @@
 
         });
         function isValid(value) {
-            const regx = /^[^\d].*$/;
+            const regx = /^[\d].*$/;
             if (value.trim() === "" || value.trim() === null || value.trim() === undefined){
                 alert("내용을 입력하세요.")
                 return false;
@@ -98,6 +98,12 @@
             // 데이터 삽입
             aEl.innerHTML = "삭제";
             inputEl.value = text;
+
+            aEl.addEventListener('click',(e)=>{
+                // console.log(e.target.parentNode.parentNode);
+                const itemEl = e.target.parentNode.parentNode;
+                itemEl.remove();
+            });
 
             // 노드 연결
             leftEl.appendChild(inputEl);
