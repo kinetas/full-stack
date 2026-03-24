@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .item{
-            
-        }
+        .item {}
     </style>
 </head>
 
@@ -33,12 +31,12 @@
         // id
         const li2El = document.getElementById('li2');
         // li2El.style.fontSize="2rem";
-        li2El.setAttribute("style","color:red;background-color:black;");
+        li2El.setAttribute("style", "color:red;background-color:black;");
 
         // selector
         const li2El_2 = document.querySelector('#li2');
-        li2El_2.style.width="200px";
-        li2El_2.style.border="1px solid";
+        li2El_2.style.width = "200px";
+        li2El_2.style.border = "1px solid";
 
         const itemEl = document.querySelector('.item');
         itemEl.style.color = 'green';
@@ -46,10 +44,22 @@
 
         const itemsEl = document.querySelectorAll('.item');
         console.log(itemsEl);
-        itemsEl.forEach((item)=>{
+        itemsEl.forEach((item) => {
             item.style.backgroundColor = 'orange';
         });
+
         // tagName
+        let liEls = document.getElementsByTagName('li');
+        console.log(liEls);
+        //유사배열 배열화
+        console.log(Object.entries(liEls)); 
+        //유사배열 배열화(키값이랑 인덱스랑 중복x)
+        console.log(Array.from(liEls));
+
+        liEls = Array.from(liEls);
+        liEls.forEach((item)=>{
+            item.style.fontSize="2rem"
+        });
     </script>
 </body>
 
