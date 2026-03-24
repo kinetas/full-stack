@@ -107,9 +107,7 @@
             const name = usernameEl.value;
             const age = ageEl.value;
             const addr = addressEl.value;
-            if(!isValid(formEl)){
-                return;
-            }
+            
             if(edited == false){
     
                 insertData(name, age, addr);
@@ -144,33 +142,40 @@
             thAgeEl.innerHTML = age;
             thAddrEl.innerHTML = addr;
             deleteEl.innerHTML = "삭제";
-
-            trEl.addEventListener('click', (e) => {
+            
+            trEl.addEventListener('dblclick', (e) => {
                 // console.log(thNameEl.textContent);
+                if(e.target.textContent=="삭제"){
+                    return;
+                }
                 usernameEl.value = thNameEl.textContent;
                 ageEl.value = thAgeEl.textContent;
                 addressEl.value = thAddrEl.textContent;
                 edited=true;
                 selectedNode=trEl;
+                selectedNode.style.backgroundColor="lightgray";
             });
             deleteEl.style.cursor = "pointer";
             deleteEl.addEventListener('click', (e) => {
                 // console.log(e.target.parentNode);
+                // console.log(e.target);
                 const trEl = e.target.parentNode;
                 trEl.remove();
             });
-
+            
             trEl.appendChild(thNameEl);
             trEl.appendChild(thAgeEl);
             trEl.appendChild(thAddrEl);
             trEl.appendChild(deleteEl);
             tableBodyEl.appendChild(trEl);
-
+            // console.log(trEl.childNodes);
+            
         }
         function updateData(node,name,age,addr){
             selectedNode.childNodes[0].innerHTML = name;
             selectedNode.childNodes[1].innerHTML = age;
             selectedNode.childNodes[2].innerHTML = addr;
+            selectedNode.style.backgroundColor="white";
         }
 
     </script>
