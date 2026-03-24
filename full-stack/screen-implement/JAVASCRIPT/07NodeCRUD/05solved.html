@@ -42,12 +42,13 @@
             border: 1px solid;
             margin: 2px;
         }
-        td input{
+
+        td input {
             width: 100%;
             margin: 0;
             padding: 0;
             border: 0;
-            /* padding-left: 10px; */
+            /* padding-left:5px; */
             outline: none;
         }
 
@@ -75,7 +76,7 @@
     <table>
         <thead>
             <tr>
-                <th class="chk">이름</th>
+                <th>이름</th>
                 <th>나이</th>
                 <th>주소</th>
                 <th>삭제</th>
@@ -83,6 +84,17 @@
             </tr>
         </thead>
         <tbody>
+            <!-- 탬플릿 -->
+            <!-- 
+            <tr>
+                <td><input></td>
+                <td><input></td>
+                <td><input></td>
+                <td>
+                    <a href="javascript:void(0)">삭제</a>
+                </td>
+            </tr> 
+            -->
 
         </tbody>
 
@@ -103,34 +115,41 @@
         const ageEl = formEl.age;
         const addressEl = formEl.address;
         const tableBodyEl = document.querySelector('table tbody');
-        let idx =1;
+        let idx = 0;
 
-        // console.log(document.querySelector('.chk'));
+        btnEl.addEventListener('click', (e) => {
 
-        // formEl = (e) => {
-        //     e.preventDefault();
-        // }
-
-        btnEl.addEventListener('click', () => {
-            const name = usernameEl.value;
-            const age = ageEl.value;
-            const addr = addressEl.value;
-            if(!isValid(formEl)){
+            // 1. 유효성검증
+            if (!isValid(formEl)) {
                 return;
             }
-            insertData(formEl);
+            // 2. form's input value 가져오기
+            // 3. 새노드생성->tableBodyEl append/prepend
+            createNode(formEl);
+            // 4. form's input 초기화
             init(formEl);
 
-        });
+        })
 
-        function isValid(formEl){
+        function isValid(formEl) {
+
+            if (formEl.username.value.trim() === "") {
+                alert("이름이 공백입니다");
+                return false;
+            }
+            if (formEl.age.value.trim() === "") {
+                alert("나이가 공백입니다");
+                return false;
+            }
+            if (formEl.address.value.trim() === "") {
+                alert("주소가 공백입니다");
+                return false;
+            }
             return true;
         }
+        function createNode(formEl) {
 
-        
-        
-        
-        function insertData(formEl) {
+            // 생성
             const trEl = document.createElement('tr');
             const td1El = document.createElement('td');
             const td2El = document.createElement('td');
@@ -143,64 +162,82 @@
             const td4AEl = document.createElement('a');
             const td5AEl = document.createElement('a');
 
-            td1InputEl.setAttribute("readonly",true);
-            td2InputEl.setAttribute("readonly",true);
-            td3InputEl.setAttribute("readonly",true);
-            td4AEl.setAttribute("href","javascript:void(0)");
-            td4AEl.setAttribute("dataset-idx",idx);
-            td5AEl.setAttribute("href","javascript:void(0)");
-            td5AEl.setAttribute("dataset-idx",idx);
-            trEl.setAttribute("dataset-idx",idx);
+            //속성 설정
+            td1InputEl.setAttribute("readonly", true);
+            td2InputEl.setAttribute("readonly", true);
+            td3InputEl.setAttribute("readonly", true);
+            td4AEl.setAttribute("href", "javascript:void(0)");
+            td4AEl.setAttribute("data-idx", idx);
+            td5AEl.setAttribute("href", "javascript:void(0)");
+            td5AEl.setAttribute("data-idx", idx);
+            trEl.setAttribute("data-idx", idx);
             idx++;
-            
-            td1InputEl.value=formEl.username.value;
-            td2InputEl.value=formEl.age.value;
-            td3InputEl.value=formEl.address.value;
-            td4AEl.innerHTML="삭제";
-            td5AEl.innerHTML="수정";
 
-            td4AEl.addEventListener('click',(e)=>{
+            //값 삽입
+            td1InputEl.value = formEl.username.value;
+            td2InputEl.value = formEl.age.value;
+            td3InputEl.value = formEl.address.value;
+            td4AEl.innerHTML = '삭제';
+            td5AEl.innerHTML = '수정';
+
+            //이벤트
+            td4AEl.addEventListener('click', (e) => {
                 const n = td4AEl.dataset.idx;
-                tableBodyEl.querySelector(`tr[dataset-idx='${n}']`).remove();
-            });
-            
-            td5AEl.addEventListener('click',(e)=>{
-                const n = td4AEl.dataset.idx;
-                const updateTrEl = tableBodyEl.querySelector(`tr[dataset-idx='${n}']`);
-                const inputsEl = updateTrEl.querySelectorAll('input');
-                inputsEl.forEach((inputEl)=>{
-                    inputEl.removeAttribute("readonly");
-                    inputEl.style.backgroundColor="lightgray"
-                });
-                td5AEl.dataset.update="update";
-                td5AEl.innerHTML="저장";
-                
-                td5AEl.removeAttribute("[data-update]");
-                td5AEl.innerHTML="수정";
-            });
-            
+                console.log("idx", n);
+                tableBodyEl.querySelector(`tr[data-idx='${n}']`).remove();
+            })
+
+            td5AEl.addEventListener('click', (e) => {
+                const n = td5AEl.dataset.idx;
+                const status = td5AEl.dataset.update;
+                if (status == undefined) {
+                    console.log("idx", n);
+                    const updateTrEl = tableBodyEl.querySelector(`tr[data-idx='${n}']`);
+                    const inputEls = updateTrEl.querySelectorAll("input");
+                    inputEls.forEach((inputEl) => {
+                        inputEl.removeAttribute("readonly");
+                        inputEl.style.backgroundColor = "lightgray";
+                    })
+                    td5AEl.dataset.update = "update";
+                    td5AEl.innerHTML = '저장';
+                }
+                else {
+                    console.log("idx", n);
+                    const updateTrEl = tableBodyEl.querySelector(`tr[data-idx='${n}']`);
+                    const inputEls = updateTrEl.querySelectorAll("input");
+                    inputEls.forEach((inputEl) => {
+                        inputEl.setAttribute("readonly", true);
+                        inputEl.style.backgroundColor = "white";
+                    })
+                    td5AEl.removeAttribute("data-update");
+                    td5AEl.innerHTML = '수정';
+
+                }
+            })
+
+
+            // 연결
             td1El.appendChild(td1InputEl);
-            td3El.appendChild(td2InputEl);
-            td2El.appendChild(td3InputEl);
+            td2El.appendChild(td2InputEl);
+            td3El.appendChild(td3InputEl);
             td4El.appendChild(td4AEl);
             td5El.appendChild(td5AEl);
+
             trEl.appendChild(td1El);
             trEl.appendChild(td2El);
             trEl.appendChild(td3El);
             trEl.appendChild(td4El);
             trEl.appendChild(td5El);
+
             tableBodyEl.appendChild(trEl);
 
-            
-            
+        }
+        function init(formEl) {
+            formEl.username.value = '';
+            formEl.age.value = '';
+            formEl.address.value = '';
         }
 
-        function init(formEl){
-            formEl.username.value=""
-            formEl.age.value=""
-            formEl.address.value=""
-        }
-        
     </script>
 </body>
 

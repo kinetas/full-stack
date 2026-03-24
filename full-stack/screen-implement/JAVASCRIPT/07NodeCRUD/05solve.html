@@ -96,6 +96,7 @@
         const tableBodyEl = document.querySelector('table tbody');
         let edited = false;
         let selectedNode = null;
+        let dragedEl = null;
 
         // console.log(document.querySelector('.chk'));
 
@@ -107,27 +108,45 @@
             const name = usernameEl.value;
             const age = ageEl.value;
             const addr = addressEl.value;
-            
-            if(edited == false){
-    
+            if (!isValid(name, age, addr)) {
+                return;
+            }
+
+            if (edited == false) {
+
                 insertData(name, age, addr);
-    
+
                 usernameEl.value = "";
                 ageEl.value = "";
                 addressEl.value = "";
             }
-            else{
+            else {
                 // console.log(selectedNode.childNodes);
 
-                updateData(selectedNode,name,age,addr);
-                edited=false;
-                selectedNode=null;
+                updateData(selectedNode, name, age, addr);
+                edited = false;
+                selectedNode = null;
                 usernameEl.value = "";
                 ageEl.value = "";
                 addressEl.value = "";
             }
 
         });
+        function isValid(name, age, addr) {
+            if (name.trim() === "") {
+                alert("이름이 공백입니다.");
+                return false;
+            }
+            if (age.trim() === "") {
+                alert("나이가 공백입니다.");
+                return false;
+            }
+            if (addr.trim() === "") {
+                alert("주소가 공백입니다.");
+                return false;
+            }
+            return true;
+        }
 
 
 
@@ -138,22 +157,26 @@
             const thAddrEl = document.createElement('th');
             const deleteEl = document.createElement('th');
 
+            trEl.setAttribute("draggable", true);
+            trEl.className = 'item';
+            trEl.style.userSelect = "none";
+
             thNameEl.innerHTML = name;
             thAgeEl.innerHTML = age;
             thAddrEl.innerHTML = addr;
             deleteEl.innerHTML = "삭제";
-            
+
             trEl.addEventListener('dblclick', (e) => {
                 // console.log(thNameEl.textContent);
-                if(e.target.textContent=="삭제"){
+                if (e.target.textContent == "삭제") {
                     return;
                 }
                 usernameEl.value = thNameEl.textContent;
                 ageEl.value = thAgeEl.textContent;
                 addressEl.value = thAddrEl.textContent;
-                edited=true;
-                selectedNode=trEl;
-                selectedNode.style.backgroundColor="lightgray";
+                edited = true;
+                selectedNode = trEl;
+                selectedNode.style.backgroundColor = "lightgray";
             });
             deleteEl.style.cursor = "pointer";
             deleteEl.addEventListener('click', (e) => {
@@ -162,20 +185,38 @@
                 const trEl = e.target.parentNode;
                 trEl.remove();
             });
-            
+            trEl.addEventListener('dragstart', (e) => {
+                dragedEl = { "node": e.target.closest('.item'), "pageY": e.pageY }
+                console.log("dragedEl", dragedEl);
+
+            })
+            trEl.addEventListener('dragover', (e) => {
+                e.preventDefault();
+            })
+            trEl.addEventListener('drop', (e) => {
+                e.preventDefault()
+                const curEl = e.target.closest('.item');
+                const curPageY = e.pageY;
+                if(curPageY>dragedEl.pageY){
+                    curEl.after(dragedEl.node);
+                }else{
+                    curEl.before(dragedEl.node);
+                }
+            })
+
             trEl.appendChild(thNameEl);
             trEl.appendChild(thAgeEl);
             trEl.appendChild(thAddrEl);
             trEl.appendChild(deleteEl);
             tableBodyEl.appendChild(trEl);
             // console.log(trEl.childNodes);
-            
+
         }
-        function updateData(node,name,age,addr){
+        function updateData(node, name, age, addr) {
             selectedNode.childNodes[0].innerHTML = name;
             selectedNode.childNodes[1].innerHTML = age;
             selectedNode.childNodes[2].innerHTML = addr;
-            selectedNode.style.backgroundColor="white";
+            selectedNode.style.backgroundColor = "white";
         }
 
     </script>
