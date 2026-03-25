@@ -2472,10 +2472,58 @@ boardEl.addEventListener('contextmenu', (e) => { e.preventDefault(); });
 
 ---
 
-### 표 동적 생성·셀 선택 — `06EVENT/07solve.html`
+### 표 동적 생성·셀 선택 — `06EVENT/07solve.html`, `07solved.html`
 
-- 행·열 개수 입력 후 `생성`으로 `<table>`의 `<tbody>`를 비운 뒤 `tr`/`td`를 `createElement` + `appendChild`로 생성.
-- 각 `td`에 `data-row`, `data-col` 속성과 `[행, 열]` 표시, `click` 시 이전 선택 셀은 `deSelectedStyle`, 새 셀은 `selectedStyle`으로 배경·글자색 강조.
+- **07solve.html** : 연습용 뼈대. 행·열 입력으로 표를 만들고, `selectedStyle` / `deSelectedStyle` / `makemap` 등을 스스로 채우는 과제.
+- **07solved.html** : 완성 예제. 행·열 개수 입력 후 `생성`으로 `<tbody>`를 비우고 `tr`/`td`를 `createElement` + `appendChild`로 생성. 각 `td`에 `data-row`, `data-col`, 클릭 시 이전 선택 해제 후 동일 속성을 가진 셀을 `querySelector`로 찾아 스타일 적용. **화살표 키**(37~40)로 셀 이동, `maxRow`/`maxCol`로 경계 처리.
+
+---
+
+### 스크롤 이벤트 — `06EVENT/08Scroll.html`
+
+- `document`에 `scroll` 리스너. `window.scrollY`(또는 `document.documentElement.scrollTop`)로 세로 스크롤 위치 확인.
+- `.wrapper>header>nav`에 `scrollY >= 50`이면 `nav-fixed`(상단 고정·전체 너비) 클래스 토글, 헤더 레이아웃 전환 예제.
+
+---
+
+### 리사이즈 이벤트 — `06EVENT/09Resize.html`
+
+- `window`에 `resize` 리스너. `outerWidth` 구간에 따라 `.ball`에 `ball-1280px` / `ball-860px` / `ball-380px` 클래스 교체(원 크기·배경색 반응형).
+
+---
+
+### DOM 로드 이벤트 — `06EVENT/10DOMload.html`
+
+- **`DOMContentLoaded`** : HTML 파싱 완료 후 DOM 준비 시 1회 (CSS·이미지 등 리소스 완료와 무관).
+- **`load`** : 문서·하위 리소스까지 모두 로드 후 1회.
+- 예제: `DOMContentLoaded` 안에서 `innerWidth`로 초기 `ball-*` 클래스 설정, 리사이즈와 동일한 브레이크포인트 로직.
+
+---
+
+### DOM 노드 탐색·CRUD — `JAVASCRIPT/07NodeCRUD`
+
+| 파일 | 설명 |
+|------|------|
+| **01.html** | `getElementById`, `querySelector` / `querySelectorAll`, `getElementsByTagName`, 유사 배열 `Array.from`·`Object.entries` |
+| **02.html** | `document.forms`, 인덱스·`name`으로 폼·폼 내 `input` 접근 |
+| **03.html** | `querySelectorAll` + `mouseover` / `mouseleave`로 클래스 `btn--style1~8` 동적 부여 |
+| **04.html** | Enter·입력 버튼으로 값 추가, `createElement`로 행 UI 생성, 삭제 링크로 `remove()` (유효성: 빈 값·첫 글자 숫자 금지 등) |
+| **05solve.html** | 폼 → `tbody`에 행 추가·삭제, 더블클릭으로 폼에 재로딩 후 수정, 행 `dragstart`/`drop`으로 순서 바꾸기 |
+| **05solved.html** | 동일 주제 완성본: 각 셀 `input readonly`, 수정/삭제 링크, 입력 유효성 (`05solve`와 마크업 방식 차이) |
+| **06.html** | 04 유사 + **드래그 앤 드롭**으로 항목 순서 재배치(`dragstart` / `dragover` / `drop`) |
+
+---
+
+### 동기·비동기 — `JAVASCRIPT/08Sync&Async`
+
+`Info.txt` 요약: **동기**는 위→아래 순차 실행(긴 작업 시 지연), **비동기**는 기다리지 않고 다음 코드가 먼저 실행되며 콜백·Promise·async/await로 후속 처리.
+
+| 파일 | 설명 |
+|------|------|
+| **01.html** | 메인 스레드 `for`와 `setTimeout(..., 1)` 안 루프 실행 순서 비교(콘솔 로그) |
+| **02.html** | `setTimeout` 지연 실행, `clearTimeout`으로 예약 취소 |
+| **03.html** | `setInterval` 반복, `clearInterval`로 중지 |
+| **04.html** | `setInterval`로 메인 패널 갱신 + `Promise` + `async`/`await`로 `sub_process_executor` 두 단계 순서 배치 예제 |
 
 ---
 
@@ -2513,7 +2561,13 @@ boardEl.addEventListener('contextmenu', (e) => { e.preventDefault(); });
 | | 04Keyboard.html | `input`, `compositionstart` / `compositionupdate` / `compositionend`(IME·한글 조합) |
 | | 05KeyboardPractice.html | `input`으로 글자 단위 검증, 진행률·Material 아이콘 이동, 문장 완료 시 다음 문장 |
 | | 06CheckEvent.html | 체크박스 `change`, `checked`로 라벨 색 변경 |
-| | 07solve.html | 행·열 입력으로 표 생성, `data-row` / `data-col`, 클릭 시 셀 선택 스타일 |
+| | 07solve.html | 표 동적 생성·셀 선택 과제(함수 뼈대) |
+| | 07solved.html | 표 생성 + 클릭 선택 + 화살표 키 이동(완성) |
+| | 08Scroll.html | `scroll`, `scrollY`, 네비 상단 고정(`nav-fixed`) |
+| | 09Resize.html | `resize`, `outerWidth` 구간별 클래스 전환 |
+| | 10DOMload.html | `DOMContentLoaded` vs `load`, 초기 레이아웃 |
+| **07NodeCRUD** | 01~06.html | 노드 탐색, forms, 이벤트+동적 생성, 폼→테이블 CRUD, 드래그 순서 변경 (위 표 참고) |
+| **08Sync&Async** | 01~04.html, Info.txt | 동기·비동기 개념, `setTimeout`/`setInterval`, Promise·async/await (위 표 참고) |
 
 ---
 
@@ -2532,5 +2586,29 @@ boardEl.addEventListener('contextmenu', (e) => { e.preventDefault(); });
 11. **연산자** : 산술(+, -, *, /, %), 할당(+=, -=), 비교(==, ===), 논리(&&, \|\|, !), 삼항(?:), typeof (예제: `03Operator/00Info.html`)
 12. **흐름 제어** : if/else if/else 분기문, while/for 반복문 (예제: `04FlowControl/01~03`)
 13. **함수** : function vs 화살표 함수, 호이스팅, 스코프(전역/지역/렉시컬), 클로저, 콜백 (예제: `05Function/01~05`)
-14. **이벤트** : 마우스·드래그(`01Mouse.html`, `02Mouse.html`), 키보드(`keyup`/`keydown`/`keypress`, `03Keyboard.html`), 입력·IME(`input`, `composition*`, `04Keyboard.html`), 타자 연습(`05KeyboardPractice.html`), 체크박스(`change`, `06CheckEvent.html`), 표·클릭 선택(`07solve.html`)
-15. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type`, `03Operator`, `04FlowControl`, `05Function`, `06EVENT` 참고
+14. **이벤트** : 마우스·드래그(`01Mouse.html`, `02Mouse.html`), 키보드(`keyup`/`keydown`/`keypress`, `03Keyboard.html`), 입력·IME(`input`, `composition*`, `04Keyboard.html`), 타자 연습(`05KeyboardPractice.html`), 체크박스(`change`, `06CheckEvent.html`), 표·선택(`07solve.html` / `07solved.html`), 스크롤(`08Scroll.html`), 리사이즈(`09Resize.html`), 로드(`10DOMload.html`)
+15. **DOM CRUD·폼** : `07NodeCRUD`(탐색, `forms`, 동적 리스트/테이블, 드래그 정렬)
+16. **동기·비동기** : `08Sync&Async`(`setTimeout`/`setInterval`, Promise, `async`/`await`)
+17. **예제 파일** : JAVASCRIPT 폴더 내 `01Basic`, `02Type`, `03Operator`, `04FlowControl`, `05Function`, `06EVENT`, `07NodeCRUD`, `08Sync&Async` 참고
+
+---
+
+## SUB
+
+보충·연동 예제(메인 `JAVASCRIPT` 학습 목차와 분리).
+
+### 폴더 구조
+
+| 경로 | 설명 |
+|------|------|
+| `SUB/01SWIPER/01.html` | Swiper CDN 기반 메인 배너 슬라이드 예제 |
+| `SUB/01SWIPER/images/` | 슬라이드용 이미지 (`1.jpg` ~ `4.jpg`) |
+
+### `SUB/01SWIPER/01.html` 요약
+
+- **Swiper 12** : `swiper-bundle.min.css` / `swiper-bundle.min.js`(jsDelivr CDN).
+- **레이아웃** : `.wrapper` > `header` / `main` / `footer`, `main` 안 `section.main-banner`에 `.swiper` 구조(`swiper-wrapper`, `swiper-slide`).
+- **옵션** : JS에서 `new Swiper('.swiper', { … })`로 루프, 페이지네이션, 네비게이션, 자동 재생 등 설정(파일 내 주석·코드 참고).
+- **스타일** : 배너 높이·슬라이드 이미지 `object-fit` 등 화면형 데모. Google **Material Symbols** 아이콘 폰트는 헤더/UI 보조용으로 링크됨.
+
+---
