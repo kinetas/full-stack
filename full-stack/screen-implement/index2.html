@@ -17,9 +17,7 @@
                 'opsz' 24
         }
 
-        * {
-            /* box-sizing: border-box; */
-        }
+        /* * {box-sizing: border-box;} */
 
         body {
             background-color: whitesmoke;
@@ -31,7 +29,7 @@
             text-decoration: none;
         }
 
-        ul {}
+        /* ul {} */
 
         input {
             border: 1px solid lightgray;
@@ -71,8 +69,10 @@
             background-color: #fafafa;
         }
 
-        /* Layout-header */
+        /* Layout-header — 드롭다운이 main 위에 오도록 쌓임 맥락 */
         .wrapper>header {
+            position: relative;
+            z-index: 100;
             width: 100%;
             background-color: #fa0050;
         }
@@ -90,6 +90,14 @@
             justify-content: space-between;
             align-items: center;
             gap: 12px;
+        }
+
+        .wrapper>header>.top-header>div>.bar-left>.logo {
+            width: 90px;
+            height: 40px;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
         }
 
         .wrapper>header>.top-header>div>.bar-left {
@@ -153,31 +161,162 @@
             cursor: pointer;
         }
 
-        /* index2: 가게 상세 — 요기요 모바일 가게 페이지(#/가게번호/) 레이아웃 참고 */
-        .store-hero {
+        /* index2: header > nav (배경·검색·드롭다운) */
+        .wrapper>header>nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
             width: 100%;
-            height: 240px;
-            background-color: #3c2114;
-            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.35) 100%),
-                url(https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=1200&q=80);
-            background-size: cover;
-            background-position: center;
+            height: 100px;
+            position: relative;
+            background-color: #3C2114;
+            overflow: visible;
         }
 
-        .store-info {
+        .wrapper>header>nav>.backing {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            overflow: hidden;
+            background-image: url(https://www.yogiyo.co.kr/mobile/image/bg-top.png?v=1);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center bottom;
+            pointer-events: none;
+        }
+
+        .wrapper>header>nav>.back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            padding: 24px 10px;
+            width: 100%;
+            max-width: 1020px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .wrapper>header>nav>.back>.gps {
+            width: 40px;
+            height: 40px;
+            margin-right: 5px;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 40px;
+            text-align: center;
+            color: #333;
+        }
+
+        .wrapper>header>nav>.back>.nav-right {
+            display: flex;
+            position: relative;
+        }
+
+        .wrapper>header>nav>.back>.nav-right>input {
+            width: 280px;
+            height: 40px;
+            border: none;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            padding: 6px 12px;
+        }
+
+        .wrapper>header>nav>.back>.nav-right>.cancle {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            cursor: pointer;
+            color: #fa0050;
+            font-size: 1.25rem;
+            line-height: 40px;
+        }
+
+        .wrapper>header>nav>.back>.nav-right>.search {
+            width: 60px;
+            height: 40px;
+            background-color: #ff8a00;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .wrapper>header>nav>.back>.nav-right>.dropbox {
+            width: 100%;
+            position: absolute;
+            top: 42px;
+            left: 0;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 200;
+            display: none;
+        }
+
+        .wrapper>header>nav>.back>.nav-right:hover>.dropbox {
+            display: block;
+        }
+
+        .wrapper>header>nav>.back>.nav-right>.dropbox>ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .wrapper>header>nav>.back>.nav-right>.dropbox>ul>li {
+            min-height: 40px;
+            padding: 10px;
+            color: #4d4d4d;
+        }
+
+        .wrapper>header>nav>.back>.nav-right>.dropbox>ul>li:first-child {
+            border-bottom: 1px solid rgba(77, 77, 77, 0.5);
+        }
+
+        /* main — 본문: .store-column + .order_table (마크업 순서와 동일) */
+        .wrapper>main {
+            position: relative;
+            z-index: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            /* margin: 1px; */
+            padding: 20px 10px 40px;
+            box-sizing: border-box;
+        }
+
+        .wrapper>main>.store-column {
+            width: 660px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .wrapper>main>.store-column>.store-info {
             padding: 20px 16px 12px;
             background: #fff;
             border-bottom: 1px solid #eee;
         }
 
-        .store-info>h1 {
+        .wrapper>main>.store-column>.store-info>h1 {
             margin: 0 0 10px;
             font-size: 1.35rem;
             font-weight: 700;
             color: #222;
         }
 
-        .store-rating {
+        .wrapper>main>.store-column>.store-info .store-rating {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
@@ -186,12 +325,12 @@
             color: #666;
         }
 
-        .store-rating .star {
+        .wrapper>main>.store-column>.store-info .store-rating .star {
             color: #f5a623;
             letter-spacing: 1px;
         }
 
-        .store-delivery {
+        .wrapper>main>.store-column>.store-delivery {
             padding: 12px 16px;
             background: #fff;
             font-size: 0.88rem;
@@ -200,18 +339,18 @@
             border-bottom: 1px solid #eee;
         }
 
-        .store-delivery strong {
+        .wrapper>main>.store-column>.store-delivery strong {
             color: #333;
             font-weight: 600;
         }
 
-        .store-tabs {
+        .wrapper>main>.store-column>.store-tabs {
             display: flex;
             background: #fff;
             border-bottom: 1px solid #e0e0e0;
         }
 
-        .store-tabs>a {
+        .wrapper>main>.store-column>.store-tabs>a {
             flex: 1;
             text-align: center;
             padding: 14px 8px;
@@ -221,18 +360,18 @@
             margin-bottom: -1px;
         }
 
-        .store-tabs>a.is-active {
+        .wrapper>main>.store-column>.store-tabs>a.is-active {
             color: #fa0050;
             font-weight: 700;
             border-bottom-color: #fa0050;
         }
 
-        .store-menu {
+        .wrapper>main>.store-column>.store-menu {
             background: #fafafa;
             padding-bottom: 24px;
         }
 
-        .store-menu .menu-cat {
+        .wrapper>main>.store-column>.store-menu .menu-cat {
             margin: 0;
             padding: 18px 16px 10px;
             font-size: 1.05rem;
@@ -241,7 +380,7 @@
             background: #fafafa;
         }
 
-        .menu-item {
+        .wrapper>main>.store-column>.store-menu .menu-item {
             display: flex;
             gap: 14px;
             padding: 14px 16px;
@@ -250,11 +389,11 @@
             align-items: flex-start;
         }
 
-        .menu-item:last-child {
+        .wrapper>main>.store-column>.store-menu .menu-item:last-child {
             border-bottom: none;
         }
 
-        .menu-item-thumb {
+        .wrapper>main>.store-column>.store-menu .menu-item-thumb {
             width: 88px;
             height: 88px;
             flex-shrink: 0;
@@ -262,51 +401,109 @@
             background: #f0f0f0 center/cover no-repeat;
         }
 
-        .menu-item-thumb.thumb-fried {
+        .wrapper>main>.store-column>.store-menu .menu-item-thumb.thumb-fried {
             background-image: url(https://images.unsplash.com/photo-1598515214210-4640e0504e8e?auto=format&fit=crop&w=200&q=80);
         }
 
-        .menu-item-thumb.thumb-sauce {
+        .wrapper>main>.store-column>.store-menu .menu-item-thumb.thumb-sauce {
             background-image: url(https://images.unsplash.com/photo-1569058242567-93de6f36f8ac?auto=format&fit=crop&w=200&q=80);
         }
 
-        .menu-item-thumb.thumb-set {
+        .wrapper>main>.store-column>.store-menu .menu-item-thumb.thumb-set {
             background-image: url(https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=200&q=80);
         }
 
-        .menu-item-thumb.thumb-plain {
+        .wrapper>main>.store-column>.store-menu .menu-item-thumb.thumb-plain {
             background-color: #eee;
             background-image: none;
         }
 
-        .menu-item-body {
+        .wrapper>main>.store-column>.store-menu .menu-item-body {
             flex: 1;
             min-width: 0;
         }
 
-        .menu-item-name {
+        .wrapper>main>.store-column>.store-menu .menu-item-name {
             font-weight: 600;
             font-size: 0.98rem;
             color: #222;
             margin-bottom: 4px;
         }
 
-        .menu-item-desc {
+        .wrapper>main>.store-column>.store-menu .menu-item-desc {
             font-size: 0.82rem;
             color: #888;
             line-height: 1.4;
             margin-bottom: 8px;
         }
 
-        .menu-item-price {
+        .wrapper>main>.store-column>.store-menu .menu-item-price {
             font-size: 1rem;
             font-weight: 700;
             color: #fa0050;
         }
 
-        /* Layout-main */
-        .wrapper>main {
-            padding: 0 10px 40px;
+        .wrapper>main>.order_table {
+            width: 340px;
+            flex-shrink: 0;
+            position: fixed;
+            top: calc(80px + 100px + 16px);
+            right: calc((100vw - 1050px) / 2 + 10px);
+            z-index: 50;
+        }
+
+        .wrapper>main>.order_table .row {
+            display: block;
+            padding: 15px 10px 10px 10px;
+            background-color: rgb(51, 51, 51);
+            border: 1px solid rgb(51, 51, 51);
+        }
+        .row>label{
+            color: white;
+        }
+
+        .wrapper>main>.order_table .row.pay_place {
+            background-color: white;
+        }
+
+        .wrapper>main>.order_table .row.list_sum {
+            background-color: rgb(255, 248, 235);
+            gap: 5px;
+        }
+
+        .wrapper>main>.order_table .row.list_sum>.list_items {
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .wrapper>main>.order_table .row.list_sum>.list_items>div {
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .wrapper>main>.order_table .row.list_sum>.list_items_sum {
+            display: flex;
+            border-top: 1px dashed;
+            padding: 5px 10px;
+            justify-content: space-between;
+        }
+
+
+        .wrapper>main>.order_table .row.pay_decide {
+            background-color: whitesmoke;
+            border: 0;
+            padding: 0;
+            height: 30px;
+        }
+
+        .wrapper>main>.order_table .row.pay_decide>button {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background-color: #FA0050;
+            color: white;
+            cursor: pointer;
         }
 
         /* Layout-footer */
@@ -418,20 +615,20 @@
 
         }
 
-        .wrapper>footer>.service-info>.bpg {}
+        /* .wrapper>footer>.service-info>.bpg {}
 
-        .wrapper>footer>.service-info>.bpg>a {}
+        .wrapper>footer>.service-info>.bpg>a {} */
 
         .wrapper>footer>.service-info>.bpg>a>span {
             height: 35px;
             /* border: 1px solid; */
         }
 
-        .wrapper>footer>.service-info>.review {}
+        /* .wrapper>footer>.service-info>.review {}
 
         .wrapper>footer>.service-info>.review>a {}
 
-        .wrapper>footer>.service-info>.review>a>span {}
+        .wrapper>footer>.service-info>.review>a>span {} */
 
         .wrapper>footer>.service-info>.csc {
             /* border: 1px solid; */
@@ -459,7 +656,7 @@
             color: #818181;
         }
 
-        .wrapper>footer>.service-info>.csc>span {}
+        /* .wrapper>footer>.service-info>.csc>span {} */
 
 
         .wrapper>footer>.guide {
@@ -474,6 +671,23 @@
             .layout {
                 width: 700px;
                 margin: 0 auto;
+            }
+
+            .wrapper>main {
+                flex-direction: column;
+            }
+
+            .wrapper>main>.store-column {
+                width: 100%;
+            }
+
+            .wrapper>main>.order_table {
+                position: relative;
+                width: 100%;
+                max-width: 660px;
+                right: auto;
+                top: 20px;
+                z-index: auto;
             }
 
             .wrapper>header>.top-header>div>.logo.right {
@@ -499,8 +713,7 @@
             <div class="top-header layout">
                 <div>
                     <div class="bar-left">
-                        <button type="button" class="back-btn" aria-label="뒤로가기">‹</button>
-                        <span class="store-title">00치킨 강남점</span>
+                        <a href="javascipt:void(0)" class="logo">저기요</a>
                     </div>
                     <div class="logo right">
                         <button type="button" class="login">로그인</button>
@@ -508,62 +721,106 @@
                     </div>
                 </div>
             </div>
-            <div class="store-hero" role="img" aria-label="가게 대표 이미지"></div>
+            <nav>
+                <div class="backing"></div>
+                <div class="back-back"></div>
+                <div class="back">
+                    <button type="button" class="gps">G</button>
+                    <div class="nav-right">
+                        <input type="text" id="searchbar" placeholder="건물명, 도로명, 지번으로 검색하세요">
+                        <button type="button" class="cancle">x</button>
+                        <button type="button" class="search">검색</button>
+                        <div class="dropbox">
+                            <ul>
+                                <li>현재 위치로 설정합니다.</li>
+                                <li>주--------------------소1</li>
+                                <li>주--------------------소2</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
         <main class="layout">
-            <section class="store-info">
-                <h1>00치킨 강남점</h1>
-                <div class="store-rating">
-                    <span class="star" aria-hidden="true">★★★★☆</span>
-                    <span>4.5</span>
-                    <span>리뷰 1,234</span>
-                    <span>찜 567</span>
+            <div class="store-column">
+                <section class="store-info">
+                    <h1>00치킨 강남점</h1>
+                    <div class="store-rating">
+                        <span class="star" aria-hidden="true">★★★★☆</span>
+                        <span>4.5</span>
+                        <span>리뷰 1,234</span>
+                        <span>찜 567</span>
+                    </div>
+                </section>
+                <section class="store-delivery">
+                    <strong>배달비</strong> 무료~3,000원 · <strong>최소주문</strong> 15,000원 · <strong>배달시간</strong> 40~55분
+                </section>
+                <nav class="store-tabs" aria-label="가게 탭">
+                    <a href="javascript:void(0)" class="is-active">메뉴</a>
+                    <a href="javascript:void(0)">정보</a>
+                    <a href="javascript:void(0)">리뷰</a>
+                </nav>
+                <section class="store-menu" aria-label="메뉴 목록">
+                    <h2 class="menu-cat">인기 메뉴</h2>
+                    <article class="menu-item">
+                        <div class="menu-item-thumb thumb-fried"></div>
+                        <div class="menu-item-body">
+                            <div class="menu-item-name">후라이드 치킨</div>
+                            <div class="menu-item-desc">바삭한 튀김옷, 담백한 속살 (반마리/한마리 선택 가능)</div>
+                            <div class="menu-item-price">18,000원</div>
+                        </div>
+                    </article>
+                    <article class="menu-item">
+                        <div class="menu-item-thumb thumb-sauce"></div>
+                        <div class="menu-item-body">
+                            <div class="menu-item-name">양념치킨</div>
+                            <div class="menu-item-desc">달콤짭짤한 양념 소스</div>
+                            <div class="menu-item-price">19,000원</div>
+                        </div>
+                    </article>
+                    <h2 class="menu-cat">세트 · 사이드</h2>
+                    <article class="menu-item">
+                        <div class="menu-item-thumb thumb-set"></div>
+                        <div class="menu-item-body">
+                            <div class="menu-item-name">치킨무 세트</div>
+                            <div class="menu-item-desc">치킨무 추가 + 콜라 500ml</div>
+                            <div class="menu-item-price">3,000원</div>
+                        </div>
+                    </article>
+                    <article class="menu-item">
+                        <div class="menu-item-thumb thumb-plain"></div>
+                        <div class="menu-item-body">
+                            <div class="menu-item-name">감자튀김</div>
+                            <div class="menu-item-desc">바삭한 슈스트링 감자</div>
+                            <div class="menu-item-price">4,500원</div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+            <div class="order_table" aria-label="주문내역">
+                <div class="row">
+                    <label>주문표</label>
                 </div>
-            </section>
-            <section class="store-delivery">
-                <strong>배달비</strong> 무료~3,000원 · <strong>최소주문</strong> 15,000원 · <strong>배달시간</strong> 40~55분
-            </section>
-            <nav class="store-tabs" aria-label="가게 탭">
-                <a href="javascript:void(0)" class="is-active">메뉴</a>
-                <a href="javascript:void(0)">정보</a>
-                <a href="javascript:void(0)">리뷰</a>
-            </nav>
-            <section class="store-menu" aria-label="메뉴 목록">
-                <h2 class="menu-cat">인기 메뉴</h2>
-                <article class="menu-item">
-                    <div class="menu-item-thumb thumb-fried"></div>
-                    <div class="menu-item-body">
-                        <div class="menu-item-name">후라이드 치킨</div>
-                        <div class="menu-item-desc">바삭한 튀김옷, 담백한 속살 (반마리/한마리 선택 가능)</div>
-                        <div class="menu-item-price">18,000원</div>
+                <div class="row list_sum">
+                    <div class="list_items">
+                        <div>
+                            <label>목록1</label>
+                            <label>가격</label>
+                        </div>
+                        <div>
+                            <label>목록2</label>
+                            <label>가격</label>
+                        </div>
                     </div>
-                </article>
-                <article class="menu-item">
-                    <div class="menu-item-thumb thumb-sauce"></div>
-                    <div class="menu-item-body">
-                        <div class="menu-item-name">양념치킨</div>
-                        <div class="menu-item-desc">달콤짭짤한 양념 소스</div>
-                        <div class="menu-item-price">19,000원</div>
+                    <div class="list_items_sum">
+                        <label>총 결제 금액</label>
+                        <label>합계</label>
                     </div>
-                </article>
-                <h2 class="menu-cat">세트 · 사이드</h2>
-                <article class="menu-item">
-                    <div class="menu-item-thumb thumb-set"></div>
-                    <div class="menu-item-body">
-                        <div class="menu-item-name">치킨무 세트</div>
-                        <div class="menu-item-desc">치킨무 추가 + 콜라 500ml</div>
-                        <div class="menu-item-price">3,000원</div>
-                    </div>
-                </article>
-                <article class="menu-item">
-                    <div class="menu-item-thumb thumb-plain"></div>
-                    <div class="menu-item-body">
-                        <div class="menu-item-name">감자튀김</div>
-                        <div class="menu-item-desc">바삭한 슈스트링 감자</div>
-                        <div class="menu-item-price">4,500원</div>
-                    </div>
-                </article>
-            </section>
+                </div>
+                <div class="row pay_decide">
+                    <button type="button">주문하기</button>
+                </div>
+            </div>
         </main>
         <footer>
             <div class="footer-menu">
