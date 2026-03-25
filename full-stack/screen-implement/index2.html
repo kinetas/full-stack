@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>00치킨 강남점 | 저기요</title>
     <!-- GOOGLE ICON -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -16,9 +16,7 @@
                 'GRAD' 0,
                 'opsz' 24
         }
-    </style>
 
-    <style>
         * {
             /* box-sizing: border-box; */
         }
@@ -91,21 +89,45 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
         }
 
-        .wrapper>header>.top-header>div>.logo {
-            width: 90px;
-            height: 40px;
+        .wrapper>header>.top-header>div>.bar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .wrapper>header>.top-header>div>.bar-left>.back-btn {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            background: transparent;
             color: white;
-            font-size: 32px;
-            font-weight: bold;
-            text-align: center;
-            line-height: 40px;
+            font-size: 1.75rem;
+            line-height: 1;
             cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .wrapper>header>.top-header>div>.bar-left>.back-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .wrapper>header>.top-header>div>.bar-left>.store-title {
+            color: white;
+            font-size: 1.15rem;
+            font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .wrapper>header>.top-header>div>.logo.right {
             width: 300px;
+            flex-shrink: 0;
             display: flex;
             justify-content: space-between;
         }
@@ -131,253 +153,163 @@
             cursor: pointer;
         }
 
-        /* Layout-header > nav (index2 전용: 배경·검색·드롭다운) */
-        .wrapper>header>nav {
+        /* index2: 가게 상세 — 요기요 모바일 가게 페이지(#/가게번호/) 레이아웃 참고 */
+        .store-hero {
+            width: 100%;
+            height: 240px;
+            background-color: #3c2114;
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.35) 100%),
+                url(https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=1200&q=80);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .store-info {
+            padding: 20px 16px 12px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .store-info>h1 {
+            margin: 0 0 10px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .store-rating {
             display: flex;
-            justify-content: center;
+            flex-wrap: wrap;
             align-items: center;
-            width: 100%;
-            height: 235px;
-            position: relative;
-            background-color: #3C2114;
+            gap: 8px 14px;
+            font-size: 0.9rem;
+            color: #666;
         }
 
-        .wrapper>header>nav>.backing {
-            width: 1920px;
-            height: 235px;
-            /* position: absolute; */
-            margin-left: -1px;
-            background-image: url(https://www.yogiyo.co.kr/mobile/image/bg-top.png?v=1);
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position-x: 50%;
-            background-position-y: 100%;
+        .store-rating .star {
+            color: #f5a623;
+            letter-spacing: 1px;
         }
 
-        /* .wrapper>header>nav>.back-back{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-image: url(https://www.yogiyo.co.kr/mobile/image/bg-top.png?v=1);
-      background-size: 100% 100%;
-      background-color: #fa0050;
-      
-    } */
+        .store-delivery {
+            padding: 12px 16px;
+            background: #fff;
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.5;
+            border-bottom: 1px solid #eee;
+        }
 
-        .wrapper>header>nav>.back {
-            margin-top: 80px;
+        .store-delivery strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .store-tabs {
             display: flex;
-
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
         }
 
-        .wrapper>header>nav>.back>.gps {
-            width: 40px;
-            height: 40px;
-            margin-right: 5px;
-            border-radius: 5px;
-            background-color: white;
-            /* border: 1px solid; */
-            z-index: 3;
-
+        .store-tabs>a {
+            flex: 1;
+            text-align: center;
+            padding: 14px 8px;
+            font-size: 0.95rem;
+            color: #888;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -1px;
         }
 
-        .wrapper>header>nav>.back>.nav-right {
-            /* border: 1px solid ; */
-            display: flex;
-
-            position: relative;
-
-
-
-        }
-
-        .wrapper>header>nav>.back>.nav-right>input {
-            width: 280px;
-            height: 40px;
-            border: none;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            padding: 6px 12px;
-
-            /* position: relative; */
-        }
-
-        .wrapper>header>nav>.back>.nav-right>input>ul {
-            width: 200px;
-            border: 1px solid;
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-        }
-
-        .wrapper>header>nav>.back>.nav-right>input>ul>li {
-            border: 1px solid;
-
-            position: absolute;
-        }
-
-        .wrapper>header>nav>.back>.nav-right>.cancle {
-            width: 40px;
-            height: 40px;
-            background-color: white;
-            /* border: 1px solid; */
-        }
-
-        .wrapper>header>nav>.back>.nav-right>.search {
-            width: 60px;
-            height: 40px;
-            background-color: #ff8a00;
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-
-
-        }
-
-        .wrapper>header>nav>.back>.nav-right>.search>a {
-            color: white;
-        }
-
-        .wrapper>header>nav>.back>.gps>a {
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-
-            /* border: 1px solid black; */
-            display: block;
-            margin-left: -6px;
-            margin-top: -1px;
-        }
-
-        .wrapper>header>nav>.back>.nav-right>.text>a {}
-
-        .wrapper>header>nav>.back>.nav-right>.cancle>a {
-            width: 40px;
-            height: 40px;
+        .store-tabs>a.is-active {
             color: #fa0050;
-            font-size: 1.5rem;
-            line-height: 40px;
-
-            /* border: 1px solid; */
-            display: block;
-
-            margin-left: -7px;
-            margin-top: -2px;
-
+            font-weight: 700;
+            border-bottom-color: #fa0050;
         }
 
-        .wrapper>header>nav>.search>a {
-            color: white;
-
+        .store-menu {
+            background: #fafafa;
+            padding-bottom: 24px;
         }
 
-
-        .wrapper>header>nav>.back>.nav-right>.dropbox {
-            /* border: 1px solid; */
-            z-index: 5;
-
-            width: 100%;
-            position: absolute;
-            top: 42px;
-            left: 0;
-            background-color: white;
-            border-radius: 5px;
-            z-index: 10;
-
-            display: none;
+        .store-menu .menu-cat {
+            margin: 0;
+            padding: 18px 16px 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #222;
+            background: #fafafa;
         }
 
-        .wrapper>header>nav>.back>.nav-right:hover>.dropbox {
-            display: block;
-        }
-
-
-        .wrapper>header>nav>.back>.nav-right>.dropbox>ul {
-            height: 100%;
+        .menu-item {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            /* border: 1px solid ; */
-
+            gap: 14px;
+            padding: 14px 16px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            align-items: flex-start;
         }
 
-        .wrapper>header>nav>.back>.nav-right>.dropbox>ul>li {
-            height: 40px;
-            /* border: 1px solid; */
-            /* line-height: 45px; */
-            padding: 10px;
-            color: #4d4d4d;
+        .menu-item:last-child {
+            border-bottom: none;
         }
 
-        .wrapper>header>nav>.back>.nav-right>.dropbox>ul>li:first-child {
-            border-bottom: 1px solid rgba(77, 77, 77, 0.5);
+        .menu-item-thumb {
+            width: 88px;
+            height: 88px;
+            flex-shrink: 0;
+            border-radius: 4px;
+            background: #f0f0f0 center/cover no-repeat;
+        }
 
+        .menu-item-thumb.thumb-fried {
+            background-image: url(https://images.unsplash.com/photo-1598515214210-4640e0504e8e?auto=format&fit=crop&w=200&q=80);
+        }
+
+        .menu-item-thumb.thumb-sauce {
+            background-image: url(https://images.unsplash.com/photo-1569058242567-93de6f36f8ac?auto=format&fit=crop&w=200&q=80);
+        }
+
+        .menu-item-thumb.thumb-set {
+            background-image: url(https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=200&q=80);
+        }
+
+        .menu-item-thumb.thumb-plain {
+            background-color: #eee;
+            background-image: none;
+        }
+
+        .menu-item-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .menu-item-name {
+            font-weight: 600;
+            font-size: 0.98rem;
+            color: #222;
+            margin-bottom: 4px;
+        }
+
+        .menu-item-desc {
+            font-size: 0.82rem;
+            color: #888;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .menu-item-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fa0050;
         }
 
         /* Layout-main */
         .wrapper>main {
-            padding: 20px 10px 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 0 10px 40px;
         }
 
-        /* index2: 카테고리 메뉴 영역 */
-        .wrapper>main>.menu {
-            margin-top: 235px;
-            display: flex;
-            width: 100%;
-            height: 100%;
-            /* border: 1px solid; */
-
-
-            /* position: relative; */
-        }
-
-
-        .wrapper>main>.menu>.menu-box {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 10px;
-
-
-            /* position: absolute; */
-        }
-
-        .wrapper>main>.menu>.menu-box>div {
-            width: 240px;
-            height: 220px;
-            border: 1px solid;
-            /* display: flex; */
-            border: 1px solid lightgray;
-            position: relative;
-            background-color: white;
-        }
-
-        .wrapper>main>.menu>.menu-box>div>.category {
-            width: 80px;
-            height: 22px;
-            margin: 10px;
-            /* border: 1px solid; */
-            z-index: 5;
-            position: absolute;
-
-        }
-
-        .wrapper>main>.menu>.menu-box>div>img {
-            width: 90%;
-            height: 100%;
-            /* border: 1px solid; */
-            /* padding: 10px; */
-
-            right: 0px;
-            top: 0px;
-            position: absolute;
-            cursor: pointer;
-
-        }
-
-        /* Layout-footer — index2: .footer-menu ul 구조가 index.html(ul>li)과 다름(ul>div>li) */
+        /* Layout-footer */
         .wrapper>footer {
             width: 100%;
             height: 400px;
@@ -406,31 +338,17 @@
             align-items: center;
         }
 
-        .wrapper>footer>.footer-menu>ul>div {
-            display: flex;
-            gap: 10px;
-        }
-
-        .wrapper>footer>.footer-menu>ul>div>li {}
-
-        .wrapper>footer>.footer-menu>ul>div>li>a {
+        .wrapper>footer>.footer-menu>ul>li {
             color: lightgray;
-            padding: 0 30px;
-            font-size: 0.9rem;
-
-        }
-
-        .wrapper>footer>.footer-menu>ul>div>li>a:first-child {
-            padding-left: 0px;
-        }
-
-        .wrapper>footer>.footer-menu>ul>.footer-menu-right>a {
-
             padding: 0 10px;
         }
 
-        .wrapper>footer>.footer-menu>ul>.footer-menu-right>a:last-child {
-            padding-right: 0px;
+        .wrapper>footer>.footer-menu>ul>li:last-child {
+            padding-right: 0;
+        }
+
+        .wrapper>footer>.footer-menu>ul>li>a {
+            padding-left: 20px;
         }
 
         .wrapper>footer>.company {
@@ -557,6 +475,19 @@
                 width: 700px;
                 margin: 0 auto;
             }
+
+            .wrapper>header>.top-header>div>.logo.right {
+                width: auto;
+                gap: 8px;
+            }
+
+            .wrapper>header>.top-header>div>.logo.right>.login,
+            .wrapper>header>.top-header>div>.logo.right>.order {
+                font-size: 1.1rem;
+                width: auto;
+                min-width: 100px;
+                padding: 0 10px;
+            }
         }
     </style>
 </head>
@@ -567,61 +498,85 @@
         <header>
             <div class="top-header layout">
                 <div>
-                    <h1 class="logo">저기요</h1>
+                    <div class="bar-left">
+                        <button type="button" class="back-btn" aria-label="뒤로가기">‹</button>
+                        <span class="store-title">00치킨 강남점</span>
+                    </div>
                     <div class="logo right">
-                        <button class="login">로그인</button>
-                        <button class="order">주문표</button>
+                        <button type="button" class="login">로그인</button>
+                        <button type="button" class="order">주문표</button>
                     </div>
                 </div>
             </div>
-            <nav>
-                <div class="backing">
-
-                </div>
-                <div class="back-back"></div>
-                <div class="back">
-                    <button class="gps">
-                        <a href="">G</a>
-                    </button>
-                    <div class="nav-right">
-                        <input type="text" id="searchbar" placeholder="건물명, 도로명, 지번으로 검색하세요">
-                        <button class="cancle">
-                            <a href="">x</a>
-                        </button>
-                        <button class="search">
-                            <a href="">검색</a>
-                        </button>
-
-
-                        <div class="dropbox">
-                            <ul>
-                                <li>현재 위치로 설정합니다.</li>
-                                <li>주--------------------소1</li>
-                                <li>주--------------------소2</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </nav>
+            <div class="store-hero" role="img" aria-label="가게 대표 이미지"></div>
         </header>
         <main class="layout">
-
+            <section class="store-info">
+                <h1>00치킨 강남점</h1>
+                <div class="store-rating">
+                    <span class="star" aria-hidden="true">★★★★☆</span>
+                    <span>4.5</span>
+                    <span>리뷰 1,234</span>
+                    <span>찜 567</span>
+                </div>
+            </section>
+            <section class="store-delivery">
+                <strong>배달비</strong> 무료~3,000원 · <strong>최소주문</strong> 15,000원 · <strong>배달시간</strong> 40~55분
+            </section>
+            <nav class="store-tabs" aria-label="가게 탭">
+                <a href="javascript:void(0)" class="is-active">메뉴</a>
+                <a href="javascript:void(0)">정보</a>
+                <a href="javascript:void(0)">리뷰</a>
+            </nav>
+            <section class="store-menu" aria-label="메뉴 목록">
+                <h2 class="menu-cat">인기 메뉴</h2>
+                <article class="menu-item">
+                    <div class="menu-item-thumb thumb-fried"></div>
+                    <div class="menu-item-body">
+                        <div class="menu-item-name">후라이드 치킨</div>
+                        <div class="menu-item-desc">바삭한 튀김옷, 담백한 속살 (반마리/한마리 선택 가능)</div>
+                        <div class="menu-item-price">18,000원</div>
+                    </div>
+                </article>
+                <article class="menu-item">
+                    <div class="menu-item-thumb thumb-sauce"></div>
+                    <div class="menu-item-body">
+                        <div class="menu-item-name">양념치킨</div>
+                        <div class="menu-item-desc">달콤짭짤한 양념 소스</div>
+                        <div class="menu-item-price">19,000원</div>
+                    </div>
+                </article>
+                <h2 class="menu-cat">세트 · 사이드</h2>
+                <article class="menu-item">
+                    <div class="menu-item-thumb thumb-set"></div>
+                    <div class="menu-item-body">
+                        <div class="menu-item-name">치킨무 세트</div>
+                        <div class="menu-item-desc">치킨무 추가 + 콜라 500ml</div>
+                        <div class="menu-item-price">3,000원</div>
+                    </div>
+                </article>
+                <article class="menu-item">
+                    <div class="menu-item-thumb thumb-plain"></div>
+                    <div class="menu-item-body">
+                        <div class="menu-item-name">감자튀김</div>
+                        <div class="menu-item-desc">바삭한 슈스트링 감자</div>
+                        <div class="menu-item-price">4,500원</div>
+                    </div>
+                </article>
+            </section>
         </main>
         <footer>
             <div class="footer-menu">
                 <ul>
-                    <div>
-                        <li><a href="javascript:void(0)">이용약관</a></li>
-                        <li><a href="javascript:void(0)">개인정보처리방침</a></li>
-                        <li><a href="javascript:void(0)">포인트정책</a></li>
-                        <li><a href="javascript:void(0)">회사소개</a></li>
-                        <li><a href="javascript:void(0)">저기요사장님</a></li>
-                        <li><a href="javascript:void(0)">입점문의</a></li>
-                        <li><a href="javascript:void(0)">공지사항</a></li>
-                        <li><a href="javascript:void(0)">FAQ</a></li>
-                    </div>
-                    <li class="footer-menu-right">
+                    <li>이용약관</li>
+                    <li>개인정보처리방침</li>
+                    <li>포인트정책</li>
+                    <li>회사소개</li>
+                    <li>저기요사장님</li>
+                    <li>입점문의</li>
+                    <li>공지사항</li>
+                    <li>FAQ</li>
+                    <li>
                         <a href="javascript:void(0)">페이스북</a>
                         <a href="javascript:void(0)">블로그</a>
                     </li>
@@ -629,7 +584,7 @@
             </div>
             <div class="company">
                 <div class="company-logo">
-                    <a href="javasctipt:void(0)">저기요</a>
+                    <a href="javascript:void(0)">저기요</a>
                 </div>
                 <div class="company-info">
                     <strong>주식회사 위대한 상상</strong>
