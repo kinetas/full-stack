@@ -706,7 +706,7 @@
                                 <!-- 주문시 요청사항 세부 -->
                                 <div class="row order_detail">
                                     <div>
-                                        <input type="text"
+                                        <input type="text" maxlength="100"
                                             placeholder="코로나19 예방을 위해 비대면 배달 권장드립니다. 요기서 결제 선택 후, &quot;문앞 배달&quot;을 요청사항에 남겨주세요.">
                                     </div>
                                     <div>
@@ -870,6 +870,20 @@
                 판매자로 등록판매한
                 상품은 판매자로서 책임을 부담합니다. Copyright YOGIYO. All Rights Reserved.</div>
         </footer>
+
+        <script>
+            const order_detailEl = document.querySelector('.row.order_detail');
+            const order_detailInputEl = document.querySelector('.row.order_detail div input');
+            const order_detailLabelEl = document.querySelector('.row.order_detail div label');
+
+            order_detailInputEl.addEventListener('input',(e)=>{
+                let number = order_detailInputEl.value.length;
+                console.log(number);
+                order_detailLabelEl.textContent = `${number}/100`
+            })
+
+
+        </script>
     </div>
 
 </html>

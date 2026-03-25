@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- SWIPER CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .wrapper {}
+
+        .wrapper>header {}
+
+        .wrapper>header>.top-header {}
+
+        .wrapper>header>nav {}
+
+        .wrapper>header>nav {}
+
+        .wrapper>main {}
+
+        .wrapper>main>section {}
+
+        .wrapper>main>section.main-banner {}
+
+        .wrapper>main>section.main-banner>.swiper {
+            width: 100%;
+            /* height: 720px; */
+            position: relative;
+        }
+
+
+        .wrapper>main>section.main-banner>.swiper>.swiper-wrapper {
+            height: 100%;
+        }
+
+        .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide {
+            height: 100%;
+        }
+
+        .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide>a {
+            height: 100%;
+            display: block;
+        }
+
+        .wrapper>main>section.main-banner>.swiper>.swiper-pagination {}
+
+        .wrapper>main>section.main-banner>.swiper>.swiper-button-prev,
+        .wrapper>main>section.main-banner>.swiper>.swiper-button-next {
+            width: 1.563vw;
+            height: 4.167vh;
+            /* border: 1px solid white; */
+            position: absolute;
+            border-radius: 50%;
+            color: white;
+            top: 87%;
+        }
+        
+        .wrapper>main>section.main-banner>.swiper>.swiper-button-prev {
+            left: 25%;
+        }
+        
+        .wrapper>main>section.main-banner>.swiper>.swiper-button-next {
+            left: calc(25% + 180px);
+
+        }
+
+        .wrapper>main>section.main-banner>.swiper>.swiper-wrapper>.swiper-slide>a>img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .wrapper>footer {}
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="top-header">
+
+        </div>
+        <nav>
+
+        </nav>
+        <main>
+            <section class="main-banner">
+                <!-- Slider main container -->
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0)">
+                                <img src="./images/1.jpg" alt="">
+                            </a>
+
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0)">
+                                <img src="./images/2.jpg" alt="">
+                            </a>
+
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0)">
+                                <img src="./images/3.jpg" alt="">
+                            </a>
+
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="javascript:void(0)">
+                                <img src="./images/4.jpg" alt="">
+                            </a>
+
+                        </div>
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                    <!-- If we need scrollbar -->
+                    <!-- <div class="swiper-scrollbar"></div> -->
+                </div>
+            </section>
+            <section></section>
+            <section></section>
+            <section></section>
+        </main>
+        <footer></footer>
+    </div>
+
+    <script>
+        const mainBannerSwiper = new Swiper('.wrapper>main>section.main-banner>.swiper', {
+            // Optional parameters
+            direction: 'horizontal', //vertical 수직, horizontal 수평
+            autoplay: {
+                delay: 2000,
+                // pauseOnMouseEnter:true,
+            },
+            loop: true,
+            effect: 'slide', //slide(기본), fade, scroll, cube, coverflow, flip
+            mousewheel: true,
+
+            // If we need pagination
+            pagination: {
+                el: '.wrapper>main>section.main-banner>.swiper>.swiper-pagination',
+                clickable: true,
+                type: "progressbar", //bullets(default), fraction, progressbar
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.wrapper>main>section.main-banner>.swiper>.swiper-button-next',
+                prevEl: '.wrapper>main>section.main-banner>.swiper>.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+            // scrollbar: {
+            //     el: '.swiper-scrollbar',
+            // },
+
+        });
+    </script>
+</body>
+
+</html>

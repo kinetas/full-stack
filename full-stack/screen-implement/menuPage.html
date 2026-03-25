@@ -387,6 +387,7 @@
             background: #fff;
             border-bottom: 1px solid #eee;
             align-items: flex-start;
+            cursor: pointer;
         }
 
         .wrapper>main>.store-column>.store-menu .menu-item:last-child {
@@ -401,17 +402,17 @@
             background: #f0f0f0 center/cover no-repeat;
         }
 
-        .wrapper>main>.store-column>.store-menu .menu-item-thumb.thumb-fried {
-            background-image: url(https://images.unsplash.com/photo-1598515214210-4640e0504e8e?auto=format&fit=crop&w=200&q=80);
+        /* .wrapper>main>.store-column>.store-menu .menu-item-thumb.thumb-fried {
+        
         }
 
         .wrapper>main>.store-column>.store-menu .menu-item-thumb.thumb-sauce {
-            background-image: url(https://images.unsplash.com/photo-1569058242567-93de6f36f8ac?auto=format&fit=crop&w=200&q=80);
+            
         }
 
         .wrapper>main>.store-column>.store-menu .menu-item-thumb.thumb-set {
-            background-image: url(https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=200&q=80);
-        }
+            
+        } */
 
         .wrapper>main>.store-column>.store-menu .menu-item-thumb.thumb-plain {
             background-color: #eee;
@@ -458,7 +459,8 @@
             background-color: rgb(51, 51, 51);
             border: 1px solid rgb(51, 51, 51);
         }
-        .row>label{
+
+        .row>label {
             color: white;
         }
 
@@ -474,12 +476,18 @@
         .wrapper>main>.order_table .row.list_sum>.list_items {
             gap: 5px;
             margin-bottom: 5px;
+            display: flex;
+            flex-direction: column;
         }
 
-        .wrapper>main>.order_table .row.list_sum>.list_items>div {
+        .order_table .row.list_sum>.list_items>.list_item>.list_item_price {
             padding: 5px 10px;
             display: flex;
             justify-content: space-between;
+        }
+
+        .order_table .row.list_sum>.list_items>.list_item>.list_item_price>div>button {
+            cursor: pointer;
         }
 
         .wrapper>main>.order_table .row.list_sum>.list_items_sum {
@@ -497,13 +505,18 @@
             height: 30px;
         }
 
-        .wrapper>main>.order_table .row.pay_decide>button {
+        .wrapper>main>.order_table .row.pay_decide>a {
+            display: block;
             width: 100%;
             height: 100%;
+            line-height: 30px;
             border: 0;
             background-color: #FA0050;
             color: white;
             cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            box-sizing: border-box;
         }
 
         /* Layout-footer */
@@ -803,22 +816,30 @@
                 </div>
                 <div class="row list_sum">
                     <div class="list_items">
-                        <div>
-                            <label>목록1</label>
-                            <label>가격</label>
-                        </div>
-                        <div>
-                            <label>목록2</label>
-                            <label>가격</label>
-                        </div>
+                        <!-- <div class="list_item">
+                            <div class="list_item_name">
+                                <label>목록1</label>
+                            </div>
+                            <div class="list_item_price">
+                                <div class="price">
+                                    <button class="delete">X</button>
+                                    <label>가격</label>
+                                </div>
+                                <div class="amount">
+                                    <button class="minus">-</button>
+                                    <label>1</label>
+                                    <button class="plus">+</button>
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                     <div class="list_items_sum">
-                        <label>총 결제 금액</label>
-                        <label>합계</label>
+                        <label class="title">총 결제 금액</label>
+                        <label class="price_sum">0원</label>
                     </div>
                 </div>
                 <div class="row pay_decide">
-                    <button type="button">주문하기</button>
+                    <a href="./payPage.html">주문하기</a>
                 </div>
             </div>
         </main>
@@ -879,7 +900,118 @@
         </footer>
     </div>
 
+    <script>
+        const menuItemEls = document.querySelectorAll('.menu-item');
+        const listItemsEl = document.querySelector('.list_items');
+        const priceSumEl = document.querySelector('.list_items_sum .price_sum');
 
+        function parsePrice(priceStr) { //총합계 더하기 할때 필요한거
+            if (!priceStr) return 0;
+            const n = parseInt(String(priceStr).replace(/[^0-9]/g, ''), 10);
+            return Number.isNaN(n) ? 0 : n;
+        }
+
+        function formatPrice(n) { //그냥 format용
+            return n.toLocaleString('ko-KR') + '원';
+        }
+
+        function updateTotal() {  //합계를 텍스트를 읽어서 가져오는 방식
+            if (!priceSumEl || !listItemsEl) return;
+            let total = 0;
+            listItemsEl.querySelectorAll('.list_item').forEach((row) => {
+                const unit = Number(row.dataset.unitPrice) || 0;
+                const qty = Number(row.querySelector('.amount label')?.textContent) || 0;
+                total += unit * qty;
+            });
+            priceSumEl.textContent = formatPrice(total);
+        }
+
+        function setLinePrice(row) {//아이템 수량 만큼 가격에 곱연산
+            const unit = Number(row.dataset.unitPrice) || 0;
+            const qty = Number(row.querySelector('.amount label')?.textContent) || 0;
+            const priceLabel = row.querySelector('.price label');
+            if (priceLabel) priceLabel.textContent = formatPrice(unit * qty);
+        }
+
+        function addItem(name, price) {
+            if (!name || !listItemsEl) return;
+            const unit = parsePrice(price); //unit에 숫자만 때오기
+            const existing = [...listItemsEl.querySelectorAll('.list_item')].find(
+                (row) => row.dataset.name === name
+            );
+            if (existing) {
+                const qtyLabel = existing.querySelector('.amount label');
+                let q = Number(qtyLabel.textContent) || 1;
+                q += 1;
+                qtyLabel.textContent = String(q);
+                setLinePrice(existing);
+                updateTotal();
+                return;
+            }
+
+            const row = document.createElement('div');
+            row.className = 'list_item';
+            row.dataset.name = name;
+            row.dataset.unitPrice = String(unit); //dataset에 문자열로 저장
+            row.innerHTML =
+                '<div class="list_item_name">' +
+                '<label>' + `${name}` + '</label>' +
+                '</div>' +
+                '<div class="list_item_price">' +
+                '<div class="price">' +
+                '<button type="button" class="delete">X</button>' +
+                '<label>' + formatPrice(unit) + '</label>' +
+                '</div>' +
+                '<div class="amount">' +
+                '<button type="button" class="minus">-</button>' +
+                '<label>1</label>' +
+                '<button type="button" class="plus">+</button>' +
+                '</div>' +
+                '</div>';
+            listItemsEl.appendChild(row);
+            updateTotal();
+        }
+
+        listItemsEl.addEventListener('click', (e) => {
+            const row = e.target.closest('.list_item');
+            if (!row) return;
+
+            if (e.target.closest('.delete')) {
+                row.remove();
+                updateTotal();
+                return;
+            }
+            if (e.target.closest('.plus')) {
+                const qtyLabel = row.querySelector('.amount label');
+                let q = Number(qtyLabel.textContent) || 1;
+                q += 1;
+                qtyLabel.textContent = String(q);
+                setLinePrice(row);
+                updateTotal();
+                return;
+            }
+            if (e.target.closest('.minus')) {
+                const qtyLabel = row.querySelector('.amount label');
+                let q = Number(qtyLabel.textContent) || 1;
+                if (q <= 1) {
+                    setLinePrice(row); //1밑으로는 안떨어지게
+                } else {
+                    q -= 1;
+                    qtyLabel.textContent = String(q);
+                    setLinePrice(row);
+                }
+                updateTotal();
+            }
+        });
+
+        menuItemEls.forEach((menuItemEl) => {
+            menuItemEl.addEventListener('click', () => {
+                const name = menuItemEl.querySelector('.menu-item-name')?.textContent?.trim();
+                const price = menuItemEl.querySelector('.menu-item-price')?.textContent?.trim();
+                addItem(name, price);
+            });
+        });
+    </script>
 
 </body>
 
