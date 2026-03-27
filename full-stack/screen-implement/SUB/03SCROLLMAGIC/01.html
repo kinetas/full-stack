@@ -37,6 +37,12 @@
         .move{
             left:calc(100% - 100px);
             top:calc(100% - 100px);
+
+            animation-name: ball;
+            animation-iteration-count:infinite ;
+            animation-duration: 1s;
+            transform: rotate(180deg);background-color: black; color:white;
+            transition: 1s;
         }
     </style>
 </head>
@@ -59,7 +65,7 @@
                 triggerElement:spyedEl,             // 감시할 요소
                 triggerHook:0.5,                    // 스크롤 위치값(0~1,0: 최상단 0.5: 화면 중앙, 1: 최하단)
             })                                      
-            .setClassToggle()                       // 애니메이션 효과 적용
+            .setClassToggle(ballEl, 'move')         // 애니메이션 효과 적용
             .addTo(new ScrollMagic.Controller());   // 제어부(스크롤 상황 감시)
 
     </script>

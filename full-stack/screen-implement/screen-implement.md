@@ -2597,18 +2597,49 @@ boardEl.addEventListener('contextmenu', (e) => { e.preventDefault(); });
 
 보충·연동 예제(메인 `JAVASCRIPT` 학습 목차와 분리).
 
-### 폴더 구조
+### 예제 파일
 
-| 경로 | 설명 |
-|------|------|
-| `SUB/01SWIPER/01.html` | Swiper CDN 기반 메인 배너 슬라이드 예제 |
-| `SUB/01SWIPER/images/` | 슬라이드용 이미지 (`1.jpg` ~ `4.jpg`) |
+| 경로 | 다루는 기능(요지) |
+|------|-------------------|
+| `SUB/01SWIPER/01.html` | 단일 `Swiper` 인스턴스, `pagination`·`navigation`·`autoplay` API |
+| `SUB/01SWIPER/02.html` | 인스턴스 2개(수직·수평), 동일 배너 옵션 + `autoplay` 토글 |
+| `SUB/01SWIPER/03.html` | `slidesPerView`·`centeredSlides`·`slideToLoop`, 호버 시 `autoplay` 제어 |
+| `SUB/01SWIPER/images/` | 슬라이드 이미지 리소스 (`1.jpg` ~ `4.jpg`) |
+| `SUB/02LODASH/01.html` | `_.throttle`로 `scroll` 콜백 실행 빈도 제한 |
+| `SUB/03SCROLLMAGIC/01.html` | `ScrollMagic.Scene`·`setClassToggle`·`Controller`로 스크롤 트리거 |
 
 ### `SUB/01SWIPER/01.html` 요약
 
-- **Swiper 12** : `swiper-bundle.min.css` / `swiper-bundle.min.js`(jsDelivr CDN).
-- **레이아웃** : `.wrapper` > `header` / `main` / `footer`, `main` 안 `section.main-banner`에 `.swiper` 구조(`swiper-wrapper`, `swiper-slide`).
-- **옵션** : JS에서 `new Swiper('.swiper', { … })`로 루프, 페이지네이션, 네비게이션, 자동 재생 등 설정(파일 내 주석·코드 참고).
-- **스타일** : 배너 높이·슬라이드 이미지 `object-fit` 등 화면형 데모. Google **Material Symbols** 아이콘 폰트는 헤더/UI 보조용으로 링크됨.
+- **`new Swiper(선택자, 옵션)`** : Swiper 12 번들 CDN으로 인스턴스 생성.
+- **`direction: 'horizontal'`** , **`effect: 'slide'`** , **`loop: true`** , **`mousewheel: true`** : 전환 방향·효과·무한 루프·휠 이동.
+- **`autoplay: { delay: 2000 }`** : 자동 재생 간격(ms).
+- **`pagination`** : `el`로 페이지네이션 DOM 지정, **`type: 'fraction'`** (분수형 현재/전체), **`clickable: true`**.
+- **`navigation`** : **`prevEl`** / **`nextEl`** 로 이전·다음 버튼 요소 연결.
+- **`mainBannerSwiper.autoplay.stop()`** / **`autoplay.start()`** : 클릭 핸들러에서 자동 재생 일시정지·재개(아이콘 문자열만 교체하는 UI와 연동).
+
+### `SUB/01SWIPER/02.html` 요약
+
+- **`new Swiper('.main-banner>.swiper', { … })`** : `01.html`과 동일한 배너 옵션(`fraction` 페이지네이션, `navigation`, `autoplay`, `loop`, `mousewheel` 등).
+- **`new Swiper('.top-header>.swiper', { direction: 'vertical', autoplay, loop })`** : 별도 인스턴스로 수직 자동 롤링(공지 텍스트용).
+- **`autoplay.stop` / `autoplay.start`** : 배너에 한해 재생 토글(상단 수직 Swiper는 별도 제어 없음).
+
+### `SUB/01SWIPER/03.html` 요약
+
+- 배너·상단 수직 Swiper는 **`02.html`과 동일한 API** 사용.
+- **`new Swiper('main>.multi-slider>.swiper', { … })`** : **`slidesPerView: 4`**, **`centeredSlides: true`**, **`loop`**, **`autoplay`**, **`navigation`** — 한 화면에 여러 슬라이드, 가운데 정렬.
+- **`multiSliderSwiper.autoplay.stop()`** / **`start()`** : **`mouseover`** / **`mouseleave`** 로 멀티 슬라이더에 포인터가 올라갈 때만 자동재생 끊기.
+- **`slideToLoop(realIndex)`** : 슬라이드 **`click`** 시 `data-swiper-slide-index`를 읽어 루프 모드에서 해당 실제 인덱스로 이동(가운데 슬라이드 맞추기). **`Element.closest()`** 로 클릭 대상이 슬라이드인지 판별.
+
+### `SUB/02LODASH/01.html` 요약
+
+- **`_.throttle(함수, 100)`** : Lodash가 반환한 함수를 `scroll` 리스너에 넣어, 스크롤 이벤트가 아무리 자주 와도 콜백은 최대 약 100ms 간격으로만 실행(연속 호출 부하 완화).
+- 콜백 안에서는 **`window.scrollY`** 로 현재 스크롤 위치를 로그.
+
+### `SUB/03SCROLLMAGIC/01.html` 요약
+
+- **`new ScrollMagic.Controller()`** : 스크롤을 감시하는 제어 객체.
+- **`new ScrollMagic.Scene({ triggerElement, triggerHook })`** : **`triggerElement`** 가 뷰 기준 어느 위치에 올 때 씬이 활성화될지 정함. **`triggerHook: 0.5`** 는 뷰포트 세로 중앙(0~1 스케일).
+- **`.setClassToggle(대상요소, '클래스명')`** : 씬 진입·이탈에 맞춰 클래스 추가/제거(여기서는 `.ball`에 **`move`** 토글).
+- **`.addTo(controller)`** : 위 씬을 컨트롤러에 등록해 실제로 스크롤과 연동.
 
 ---
