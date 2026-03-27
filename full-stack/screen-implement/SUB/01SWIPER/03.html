@@ -53,14 +53,28 @@
         /*  */
         .wrapper>header {}
 
-        .wrapper>header>.top-header {}
+        .wrapper>header>.top-header {
+            height: 50px;
+            padding: 10px 0;
+        }
+
+        .wrapper>header>.top-header>.swiper {
+            height: 100%;
+            background-color: orange;
+        }
+
+        .wrapper>header>.top-header>.swiper>.swiper-wrapper {}
+
+        .wrapper>header>.top-header>.swiper>.swiper-wrapper>.swiper-slide {}
 
         .wrapper>header>nav {}
 
         /*  */
         .wrapper>main {}
 
-        .wrapper>main>section {}
+        .wrapper>main>section {
+            margin-bottom: 25px;
+        }
 
         .wrapper>main>section.main-banner {}
 
@@ -163,8 +177,73 @@
             color: orange;
         }
 
+        /* multi-slider section */
+        main>.multi-slider {
+            height: 500px;
+            border: 1px solid;
+        }
+
+        main>.multi-slider>.swiper {
+            height: 100%;
+        }
+
+        main>.multi-slider>.swiper>.swiper-wrapper {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide {
+            height: 250px;
+            width: 250px;
+            border: 1px solid;
+            transition: .3s;
+        }
+
+        main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide>a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+
+        }
+
+        main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide-active {
+            background-color: orange;
+            transform: scale(1.5);
+            z-index: 2;
+        }
+
+        main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide-prev {
+            background-color: orange;
+            /* opacity: .5; */
+            transform: scale(1.2);
+            z-index: 1;
+        }
+
+        main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide-next {
+            background-color: orange;
+            transform: scale(1.2);
+            /* opacity: .5; */
+            z-index: 1;
+        }
+
+
+        main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide>a {}
+
+        main>.multi-slider>.swiper>.swiper-wrapper>.swiper-slide>a>img {}
+
+        main>.multi-slider>.swiper>.swiper-button-prev {}
+
+        main>.multi-slider>.swiper>.swiper-button-next {}
+
         /*  */
-        .wrapper>footer {}
+        .wrapper>footer {
+            height: 350px;
+            background-color: black;
+        }
     </style>
 
 </head>
@@ -175,7 +254,7 @@
     <div class="wrapper">
         <header>
             <div class="top-header">
-                <!-- 수직SWIPPER -->
+                <!-- 수직SWIPER -->
                 <!-- Slider main container -->
                 <div class="swiper">
                     <!-- Additional required wrapper -->
@@ -186,10 +265,12 @@
                         <div class="swiper-slide">[공지] 공지사항 2</div>
                         <div class="swiper-slide">[공지] 공지사항 3</div>
                     </div>
+
                 </div>
             </div>
             <nav></nav>
         </header>
+
         <main>
             <!-- BANNER SECTION -->
             <section class="main-banner">
@@ -241,7 +322,47 @@
                 </div>
             </section>
 
-            <section></section>
+            <!-- MULTISLIDER -->
+            <section class="multi-slider">
+
+                <!-- Slider main container -->
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <!-- .swiper-slide*20>a[href="javascript:void(0)"]{$} -->
+                        <div class="swiper-slide"><a href="javascript:void(0)">1</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">2</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">3</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">4</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">5</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">6</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">7</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">8</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">9</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">10</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">11</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">12</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">13</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">14</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">15</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">16</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">17</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">18</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">19</a></div>
+                        <div class="swiper-slide"><a href="javascript:void(0)">20</a></div>
+
+
+                    </div>
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                </div>
+
+
+            </section>
+
             <section></section>
             <section></section>
         </main>
@@ -297,6 +418,58 @@
                 mainBannerSwiper.autoplay.start();
             }
 
+        });
+
+
+        //Top-header Vertical Swiper
+        const topHeaderSwiper = new Swiper('.top-header>.swiper', {
+            // Optional parameters
+            direction: 'vertical',
+            autoplay: {
+                delay: 2000,
+            },
+            loop: true,
+        });
+
+        //Multi-Silder Swiper
+        const multiSliderSwiper = new Swiper('main>.multi-slider>.swiper', {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: true,
+            autoplay: {
+                delay: 2000
+            },
+            // multislider option
+            slidesPerView: 4,
+            centeredSlides: true,
+            // spaceBetween : 20,
+
+            // Navigation arrows
+            navigation: {
+                nextEl: 'main>.multi-slider>.swiper>.swiper-button-next',
+                prevEl: 'main>.multi-slider>.swiper>.swiper-button-prev',
+            },
+
+        });
+
+        // MultiSlider Mouse Event
+        const multiSliderEl = document.querySelector('main>.multi-slider>.swiper');
+        multiSliderEl.addEventListener('mouseover', () => { multiSliderSwiper.autoplay.stop(); });
+
+        multiSliderEl.addEventListener('mouseleave', () => { multiSliderSwiper.autoplay.start(); });
+
+        //
+        //클릭한 위치를 중심으로 이동(수정)
+        multiSliderEl.addEventListener('click', (e) => {
+            const slide = e.target.closest('main>.multi-slider>.swiper .swiper-slide');
+            if (!slide) return;
+            if (slide.classList.contains('main>.multi-slider>.swiper .swiper-slide-active')) return;
+
+            // data-swiper-slide-index : Swiper가 각 슬라이드에 부여하는 실제 인덱스
+            const realIndex = parseInt(slide.getAttribute('data-swiper-slide-index'));
+            if (!isNaN(realIndex)) {
+                multiSliderSwiper.slideToLoop(realIndex); // loop 모드에서는 slideToLoop 사용
+            }
         });
 
     </script>

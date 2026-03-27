@@ -53,7 +53,19 @@
         /*  */
         .wrapper>header {}
 
-        .wrapper>header>.top-header {}
+        .wrapper>header>.top-header {
+            height: 50px;
+            padding: 10px 0;
+        }
+
+        .wrapper>header>.top-header>.swiper {
+            height: 100%;
+            background-color: orange;
+        }
+
+        .wrapper>header>.top-header>.swiper>.swiper-wrapper {}
+
+        .wrapper>header>.top-header>.swiper>.swiper-wrapper>.swiper-slide {}
 
         .wrapper>header>nav {}
 
@@ -296,6 +308,17 @@
                 isPlay = true;
                 mainBannerSwiper.autoplay.start();
             }
+
+        });
+
+        // Top-header Vertical Swiper
+        const topHeaderSwiper = new Swiper('.top-header>.swiper', {
+            // Optional parameters
+            direction: 'vertical',
+            autoplay : {
+                delay:2000,
+            },
+            loop: true,
 
         });
 
