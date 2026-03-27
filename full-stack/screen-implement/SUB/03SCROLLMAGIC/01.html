@@ -34,15 +34,35 @@
             justify-content: center;
             align-items: center;
         }
+        .move{
+            left:calc(100% - 100px);
+            top:calc(100% - 100px);
+        }
     </style>
 </head>
 
 <body>
     <section></section>
-    <section class="scroll-section">
+    <section class="scroll-section scroll-spy">
         <div class="ball">BALL</div>
     </section>
     <section></section>
+
+    <script>
+        // 노드탐색
+        const spyedEl = document.querySelector('.scroll-spy');
+        const ballEl = document.querySelector('.ball');
+
+        // 스코롤 매직 객체
+        new ScrollMagic
+            .Scene({                                // 감시 위치 옵션
+                triggerElement:spyedEl,             // 감시할 요소
+                triggerHook:0.5,                    // 스크롤 위치값(0~1,0: 최상단 0.5: 화면 중앙, 1: 최하단)
+            })                                      
+            .setClassToggle()                       // 애니메이션 효과 적용
+            .addTo(new ScrollMagic.Controller());   // 제어부(스크롤 상황 감시)
+
+    </script>
 
 </body>
 
